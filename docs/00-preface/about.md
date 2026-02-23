@@ -1,5 +1,8 @@
 # About This Guide
 
+> **Note:** This guide does not promise exam coverage. It teaches the real-world
+> skills that those certifications measure.
+
 ## Purpose
 
 This guide exists to give Linux newcomers and experienced admins alike a single,

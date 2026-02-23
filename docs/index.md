@@ -1,5 +1,9 @@
 # Red Hat Enterprise Linux 10 — Beginner to RHCA
 
+> **Note:** This guide does not promise exam coverage. It teaches the real-world
+> skills that those certifications measure.
+
+
 Welcome. This guide takes you from your very first login on a RHEL 10 system
 all the way through the skills expected of a Red Hat Certified Architect (RHCA)
 on the **RHEL infrastructure** track — with hands-on labs every step of the way.
