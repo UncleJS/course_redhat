@@ -274,4 +274,8 @@ You deployed an Nginx container as a rootless systemd user service using Quadlet
 - Is isolated from the host filesystem using a read-only, SELinux-labeled volume mount
 - Respects RHEL 10 conventions: no `podman generate systemd`, no Docker socket, no root
 
-Next: [Lab - Secrets Rotation](secrets-rotate.md)
+---
+
+## Next step
+
+→ [Lab: Secrets Rotation](secrets-rotate.md)

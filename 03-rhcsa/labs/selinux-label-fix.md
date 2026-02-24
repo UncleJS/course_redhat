@@ -186,3 +186,9 @@ encounter. Whenever content is placed in a non-default path (custom app dirs,
 mounted volumes, symlinks), the context must be explicitly defined. The correct
 workflow is always: `semanage fcontext -a` → `restorecon -Rv` — never
 `setenforce 0`.
+
+---
+
+## Next step
+
+→ [RHCE: Automation Mindset](../../04-rhce/automation-mindset.md)

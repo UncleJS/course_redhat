@@ -46,3 +46,9 @@ style guide and include a working `Verify` section.
 
 This guide is published under the [Creative Commons Attribution 4.0 International
 License](https://creativecommons.org/licenses/by/4.0/).
+
+---
+
+## Next step
+
+→ [Lab Workflow (Snapshots, Safety)](labs.md)

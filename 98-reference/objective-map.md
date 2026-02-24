@@ -145,3 +145,9 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | System recovery procedures | [Recovery Patterns](../05-rhca/perf/recovery-patterns.md) |
 | journald retention and forwarding | [journald Retention](../05-rhca/journald-retention.md) |
 | Structured troubleshooting methodology | [Troubleshooting Playbook](../05-rhca/troubleshooting-playbook.md) |
+
+---
+
+## Next step
+
+→ [Glossary](glossary.md)

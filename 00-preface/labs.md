@@ -17,32 +17,33 @@
 ### Take a snapshot before each lab
 
 **virt-manager (GUI)**
+
 Right-click the VM → **Manage Snapshots** → **+**
 
-
 **virsh (CLI)**
+
 ```bash
 virsh snapshot-create-as --domain rhel10-lab \
   --name "before-lab-$(date +%Y%m%d)" \
   --description "clean state"
 ```
 
-
 **VirtualBox (CLI)**
+
 ```bash
 VBoxManage snapshot "rhel10-lab" take "before-lab-$(date +%Y%m%d)"
 ```
 
-
 ### Restore a snapshot
 
 **virsh (CLI)**
+
 ```bash
 virsh snapshot-revert --domain rhel10-lab --snapshotname "before-lab-20260223"
 ```
 
-
 **VirtualBox (CLI)**
+
 ```bash
 VBoxManage snapshot "rhel10-lab" restore "before-lab-20260223"
 ```
@@ -106,3 +107,9 @@ lab before proceeding.
 
 Multi-VM labs are always optional. The same skill is demonstrated in a
 single-VM variant where possible.
+
+---
+
+## Next step
+
+→ [Conventions (Prompts, Paths, Editors)](conventions.md)

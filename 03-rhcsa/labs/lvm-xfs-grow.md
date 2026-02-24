@@ -189,3 +189,9 @@ Running out of disk space on a server is one of the most common (and
 preventable) issues. LVM lets you extend storage on demand — adding a new
 disk to a VG and extending an LV — without downtime and without losing data.
 This is a fundamental skill for any RHEL admin.
+
+---
+
+## Next step
+
+→ [Lab — Fix a SELinux Label Issue](selinux-label-fix.md)

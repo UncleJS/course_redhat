@@ -208,3 +208,9 @@ This pattern — a script, a service unit, and a timer — is the foundation for
 automated maintenance tasks, health reporting, log rotation triggers, and
 application-specific watchdogs. Knowing how to create, debug, and manage these
 units is a daily skill for RHEL administrators.
+
+---
+
+## Next step
+
+→ [Lab — LVM + XFS Grow](lvm-xfs-grow.md)

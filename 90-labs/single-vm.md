@@ -255,3 +255,9 @@ Before moving on to Chapter 1:
 | SSH connection refused | Confirm `sshd` is running: `sudo systemctl start sshd` |
 | Disk not visible as `/dev/vda` | Different hypervisor uses `/dev/sda` — update disk references in labs accordingly |
 | `virt-install` fails with `No space left` | Free up disk space on the host in `/var/lib/libvirt/images/` |
+
+---
+
+## Next step
+
+→ [Multi-VM Lab Setup](multi-vm.md)

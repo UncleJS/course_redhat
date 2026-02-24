@@ -119,3 +119,9 @@ Each chapter title includes a track label:
 - **control node**: the machine running Ansible (often your laptop or a jump host)
 - **managed node**: a host Ansible configures
 - **container**: a rootless Podman container unless stated otherwise
+
+---
+
+## Next step
+
+→ [Install a RHEL 10 Lab VM](../01-getting-started/vm-install.md)

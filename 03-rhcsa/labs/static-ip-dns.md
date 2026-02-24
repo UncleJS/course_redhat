@@ -134,3 +134,9 @@ Servers rarely use DHCP. Static addressing ensures predictable access, stable
 DNS PTR records, and no surprise IP changes during DHCP lease expiry. Getting
 comfortable with `nmcli` is the foundation for all network configuration
 work that follows.
+
+---
+
+## Next step
+
+→ [Lab — Create a systemd Service](systemd-service.md)

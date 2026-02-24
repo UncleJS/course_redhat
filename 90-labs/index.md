@@ -61,3 +61,9 @@ Before starting Chapter 1:
 - [ ] Internet or local mirror accessible for `dnf`
 
 See [Single-VM Setup](single-vm.md) for the detailed walkthrough.
+
+---
+
+## Next step
+
+→ [Single-VM Lab Setup](single-vm.md)

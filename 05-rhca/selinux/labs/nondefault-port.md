@@ -161,3 +161,9 @@ Microservices, custom applications, and legacy software commonly run on
 non-standard ports. The correct RHEL workflow is always: identify the port's
 SELinux type requirement → `semanage port -a` → `firewall-cmd --permanent`.
 Skipping either step creates either a security gap or a broken service.
+
+---
+
+## Next step
+
+→ [RHCA Containers: Podman Fundamentals](../../containers/podman-fundamentals.md)

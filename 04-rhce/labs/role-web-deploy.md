@@ -240,3 +240,9 @@ any project and parameterised for dev (port 8080) vs prod (port 443). The
 SELinux and firewalld steps inside the role mean the service is correctly
 hardened by default — the role encapsulates all three: software, firewall,
 and MAC policy.
+
+---
+
+## Next step
+
+→ [Advanced Infrastructure — RHCA Track](../../05-rhca/troubleshooting-playbook.md)

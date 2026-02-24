@@ -341,4 +341,8 @@ Setting the correct profile at provisioning time (via Ansible: `community.genera
 | Show profile info | `tuned-adm profile_info <name>` |
 | Create custom | `/etc/tuned/<name>/tuned.conf` with `include=` |
 
-Next: [Recovery Patterns](recovery-patterns.md)
+---
+
+## Next step
+
+→ [Recovery Patterns](recovery-patterns.md)

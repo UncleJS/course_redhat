@@ -364,4 +364,8 @@ $ grep -E "HugePages|Hugepagesize" /proc/meminfo
 
 Effective performance triage is systematic: start with load average, identify the bottleneck layer (CPU → memory → disk → network), then zoom into the specific process or subsystem. **Never tune what you haven't measured.** Capture a before snapshot, make one change, measure again.
 
-Next: [tuned profiles and kernel parameter tuning](tuned.md)
+---
+
+## Next step
+
+→ [tuned Profiles and Kernel Parameter Tuning](tuned.md)

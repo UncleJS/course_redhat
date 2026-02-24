@@ -225,3 +225,9 @@ This four-part pattern — install packages, manage users/dirs, deploy config
 from template, notify handler — covers 80% of real-world service deployment
 tasks. The moment you have this working repeatably, you have a foundation to
 build every other role on.
+
+---
+
+## Next step
+
+→ [Lab — Role-Based Web Service Deploy](role-web-deploy.md)

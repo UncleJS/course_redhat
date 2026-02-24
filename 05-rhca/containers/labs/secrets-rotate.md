@@ -325,3 +325,9 @@ In real environments:
 ## Recap
 
 You created a secret, injected it into a container via Quadlet, verified it was never exposed on the process list or in environment variables, rotated it to a new version with a constant in-container path, and cleaned up the old version. This complete lifecycle is the production-grade secret management pattern for Podman on RHEL 10.
+
+---
+
+## Next step
+
+→ [Networking: L2 Concepts](../../networking/l2-concepts.md)

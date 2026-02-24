@@ -426,3 +426,9 @@ RHCA candidates are expected to execute these procedures quickly and correctly u
 | Bad kernel | GRUB + grubby | `grubby --set-default <vmlinuz>` |
 | Network down | nmcli | `nmcli connection reload; nmcli device connect` |
 | Disk full | df + find + du | `journalctl --vacuum-size=`; `dnf clean`; `lvextend -r` |
+
+---
+
+## Next step
+
+→ [Objective Map](../../98-reference/objective-map.md)

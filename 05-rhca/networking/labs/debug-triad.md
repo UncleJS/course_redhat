@@ -200,3 +200,9 @@ is misidentifying the layer of a network problem: "it must be SELinux" when
 it's actually firewalld, or "restart the service" when DNS is broken. This
 lab builds the muscle memory for the diagnostic order: routing → DNS →
 firewall → SELinux → application.
+
+---
+
+## Next step
+
+→ [Performance Resource Triage](../../perf/resource-triage.md)
