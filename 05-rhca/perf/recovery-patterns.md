@@ -429,6 +429,17 @@ RHCA candidates are expected to execute these procedures quickly and correctly u
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Configuring the boot process](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/managing_monitoring_and_updating_the_kernel/index) | GRUB2, kernel parameters, and boot troubleshooting |
+| [`xfs_repair` man page](https://man7.org/linux/man-pages/man8/xfs_repair.8.html) | XFS filesystem recovery reference |
+| [`grubby` man page](https://man7.org/linux/man-pages/man8/grubby.8.html) | Managing GRUB2 default kernel entries |
+| [RHEL 10 — Rescuing and recovering a system](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/interactively_installing_rhel_from_installation_media/index) | Official rescue mode and root password reset guide |
+
+---
+
 ## Next step
 
 → [Objective Map](../../98-reference/objective-map.md)

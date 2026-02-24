@@ -162,6 +162,16 @@ ls -ld /tmp
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Managing users and groups](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_basic_system_settings/managing-users-and-groups_configuring-basic-system-settings) | Official user and group management guide |
+| [`chmod` man page](https://man7.org/linux/man-pages/man1/chmod.1.html) | Symbolic and octal mode reference |
+| [`umask` — Bash Reference](https://www.gnu.org/software/bash/manual/bash.html#index-umask) | How default permissions are set for new files |
+
+---
+
 ## Next step
 
 → [ACLs](acls.md)

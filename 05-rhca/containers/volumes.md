@@ -149,6 +149,16 @@ podman run --rm \
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Podman — Working with volumes](https://docs.podman.io/en/latest/markdown/podman-volume.1.html) | Volume create, inspect, and prune reference |
+| [Podman — Bind mounts and SELinux](https://www.redhat.com/sysadmin/user-namespaces-selinux-rootless-containers) | Red Hat blog on `:z`/`:Z` and rootless bind mounts |
+| [`podman-volume` man page](https://docs.podman.io/en/latest/markdown/podman-volume.1.html) | CLI reference for named volumes |
+
+---
+
 ## Next step
 
 → [Podman Secrets](secrets.md)

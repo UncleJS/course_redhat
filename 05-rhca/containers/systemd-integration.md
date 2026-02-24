@@ -173,6 +173,16 @@ sudo loginctl enable-linger $(whoami)
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Quadlet documentation](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html) | Full `.container` file directive reference |
+| [Podman — Quadlet tutorial](https://www.redhat.com/sysadmin/quadlet-podman) | Red Hat blog walkthrough of Quadlet-based deployments |
+| [`systemd.unit` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html) | Unit dependency model referenced by Quadlet |
+
+---
+
 ## Next step
 
 → [Container SELinux Gotchas](selinux-containers.md)

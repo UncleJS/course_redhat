@@ -235,6 +235,17 @@ Expected: `Deployed by Ansible`
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`ansible.builtin.service` module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html) | Start, stop, enable services idempotently |
+| [`ansible.posix.firewalld` module](https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html) | Manage firewalld zones and services from Ansible |
+| [`community.general.sefcontext` module](https://docs.ansible.com/ansible/latest/collections/community/general/sefcontext_module.html) | Manage SELinux file contexts from Ansible |
+| [RHEL System Roles — httpd](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/automating_system_administration_by_using_rhel_system_roles/index) | Red Hat-supported role for web server deployment |
+
+---
+
 ## Next step
 
 → [Patch Workflow + Reporting](ansible-patching.md)

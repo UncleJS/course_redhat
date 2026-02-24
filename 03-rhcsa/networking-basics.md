@@ -163,6 +163,16 @@ ip netns list
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`ip` man page](https://man7.org/linux/man-pages/man8/ip.8.html) | Full iproute2 command reference |
+| [`ss` man page](https://man7.org/linux/man-pages/man8/ss.8.html) | Socket statistics — the modern `netstat` replacement |
+| [RHEL 10 — Configuring and managing networking](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_and_managing_networking/index) | Official networking guide |
+
+---
+
 ## Next step
 
 → [NetworkManager (nmcli)](networkmanager-nmcli.md)

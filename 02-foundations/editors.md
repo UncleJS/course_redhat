@@ -119,6 +119,17 @@ Commands like `crontab -e` and `visudo` will use `$EDITOR` automatically.
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Vim official documentation](https://www.vim.org/docs.php) | Full vim reference including macros, registers, and plugins |
+| [Vim Adventures](https://vim-adventures.com/) | Interactive game for learning vim motions |
+| [nano documentation](https://www.nano-editor.org/docs.php) | Official nano manual |
+| [vimtutor](https://vimschool.netlify.app/introduction/vimtutor/) | Built-in interactive tutorial; run `vimtutor` in any terminal |
+
+---
+
 ## Next step
 
 → [Users, Groups, Permissions](permissions.md)

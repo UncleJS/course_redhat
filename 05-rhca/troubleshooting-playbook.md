@@ -202,6 +202,16 @@ Before escalating, document:
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [USE Method (Brendan Gregg)](https://www.brendangregg.com/usemethod.html) | Utilisation, Saturation, Errors — systematic performance and fault methodology |
+| [Linux Performance Analysis in 60 seconds](https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55) | Netflix blog post; the canonical "first 60s" checklist |
+| [Red Hat SRE Practices](https://www.redhat.com/en/blog/introduction-to-sre-practices) | Site reliability engineering concepts from Red Hat |
+
+---
+
 ## Next step
 
 → [Advanced systemd](systemd-advanced.md)

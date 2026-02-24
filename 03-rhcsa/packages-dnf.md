@@ -181,6 +181,17 @@ rpm -V nginx
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Managing software with the DNF tool](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/managing_software_with_the_dnf_tool/index) | Official dnf guide — repositories, modules, groups |
+| [`dnf` man page](https://dnf.readthedocs.io/en/latest/command_ref.html) | Complete dnf command reference |
+| [RPM documentation](https://rpm.org/documentation.html) | Upstream RPM packaging and query reference |
+| [RHEL 10 — Content Services (repositories)](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/managing_rhel_subscriptions/index) | Subscription and repo management |
+
+---
+
 ## Next step
 
 → [Storage Overview](storage-overview.md)

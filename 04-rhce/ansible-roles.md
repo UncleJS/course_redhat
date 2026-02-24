@@ -195,6 +195,17 @@ ansible-galaxy collection install -r requirements.yml
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Ansible — Roles guide](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html) | Official role structure, `defaults/`, `meta/`, `handlers/` explained |
+| [Ansible Galaxy](https://galaxy.ansible.com/) | Community roles and certified collections |
+| [Red Hat Certified Content Collections](https://console.redhat.com/ansible/automation-hub) | Production-grade Red Hat collections for RHEL management |
+| [Ansible — Collections guide](https://docs.ansible.com/ansible/latest/collections_guide/index.html) | Installing, using, and creating collections |
+
+---
+
 ## Next step
 
 → [Deploy a Service with Ansible](ansible-service-deploy.md)

@@ -154,6 +154,16 @@ ip -d link show ens3.100
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Configuring VLANs, bonds, and bridges](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_and_managing_networking/index) | Official guide with nmcli and keyfile examples |
+| [IEEE 802.1Q (VLAN standard)](https://standards.ieee.org/ieee/802.1Q/10422/) | Authoritative VLAN tagging specification |
+| [Linux bonding documentation](https://www.kernel.org/doc/Documentation/networking/bonding.txt) | Kernel bonding modes and configuration |
+
+---
+
 ## Next step
 
 → [Lab: Debug DNS vs Routing vs Firewall](labs/debug-triad.md)

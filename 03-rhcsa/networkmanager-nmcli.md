@@ -172,6 +172,16 @@ nmcli device show ens3
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`nmcli` man page](https://man7.org/linux/man-pages/man1/nmcli.1.html) | Full nmcli option and command reference |
+| [NetworkManager documentation](https://networkmanager.dev/docs/) | Connection file formats, dispatcher scripts, keyfile format |
+| [RHEL 10 — Configuring and managing networking](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_and_managing_networking/index) | Official guide covering nmcli, bonding, VLANs |
+
+---
+
 ## Next step
 
 → [DNS and Name Resolution](dns-resolution.md)

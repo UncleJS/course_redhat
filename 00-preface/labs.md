@@ -110,6 +110,16 @@ single-VM variant where possible.
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [KVM/libvirt Snapshot Management](https://libvirt.org/formatsnapshot.html) | Snapshot XML format and `virsh snapshot-*` commands |
+| [RHEL 10 — Configuring and using virtualization](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_and_managing_virtualization/index) | Official guide to KVM/QEMU on RHEL |
+| [virt-manager project](https://virt-manager.org/) | GUI for libvirt; useful for snapshot management |
+
+---
+
 ## Next step
 
 → [Conventions (Prompts, Paths, Editors)](conventions.md)

@@ -155,6 +155,16 @@ podman system reset
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Podman — Rootless containers](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md) | Official rootless setup and troubleshooting guide |
+| [User namespaces (`user_namespaces` man page)](https://man7.org/linux/man-pages/man7/user_namespaces.7.html) | Kernel feature that makes rootless containers possible |
+| [slirp4netns](https://github.com/rootless-containers/slirp4netns) | Userspace networking for rootless containers |
+
+---
+
 ## Next step
 
 → [Volumes and Persistent Data](volumes.md)

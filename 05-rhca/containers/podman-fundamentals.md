@@ -130,6 +130,17 @@ specifically required (e.g., port 80 binding, direct device access).
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Podman documentation](https://docs.podman.io/en/latest/) | Official Podman CLI reference |
+| [RHEL 10 — Building, running, and managing containers](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/building_running_and_managing_containers/index) | Official RHEL container guide |
+| [OCI Image Specification](https://github.com/opencontainers/image-spec) | What a container image actually is |
+| [Red Hat Container Catalog](https://catalog.redhat.com/software/containers/explore) | Certified UBI base images for RHEL |
+
+---
+
 ## Next step
 
 → [Rootless Podman](rootless.md)

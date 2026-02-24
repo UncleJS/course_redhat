@@ -217,6 +217,17 @@ log "INFO" "Script started"
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Bash Reference Manual](https://www.gnu.org/software/bash/manual/bash.html) | Authoritative reference for all Bash syntax and builtins |
+| [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) | Industry-standard conventions for readable shell scripts |
+| [ShellCheck](https://www.shellcheck.net/) | Online linter that catches common Bash mistakes |
+| [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/) | Deep reference; useful once fundamentals are solid |
+
+---
+
 ## Next step
 
 → [Ansible Setup and Inventory](ansible-setup-inventory.md)

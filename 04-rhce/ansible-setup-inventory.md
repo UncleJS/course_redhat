@@ -167,6 +167,16 @@ ansible all -m copy -a "src=/etc/hosts dest=/tmp/hosts_copy"
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Ansible — How to build your inventory](https://docs.ansible.com/ansible/latest/inventory_guide/index.html) | Static and dynamic inventory reference |
+| [`ansible.cfg` reference](https://docs.ansible.com/ansible/latest/reference_appendices/config.html) | All configuration file options |
+| [Ansible — Connection methods](https://docs.ansible.com/ansible/latest/plugins/connection.html) | SSH, local, and other connection plugins |
+
+---
+
 ## Next step
 
 → [Ansible Playbooks](ansible-playbooks.md)

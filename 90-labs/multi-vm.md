@@ -305,6 +305,16 @@ $ sudo virsh list --all
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [libvirt networking](https://wiki.libvirt.org/Networking.html) | Virtual network types: NAT, routed, isolated, bridged |
+| [Vagrant + libvirt provider](https://vagrant-libvirt.github.io/vagrant-libvirt/) | Scriptable multi-VM environments on KVM |
+| [`virsh net-*` reference](https://libvirt.org/manpages/virsh.html) | Managing virtual networks from the command line |
+
+---
+
 ## Next step
 
 → [Back to Contents](../README.md)

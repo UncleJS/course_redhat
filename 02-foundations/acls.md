@@ -125,6 +125,16 @@ rsync -aA /srv/project/ /backup/project/
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Managing file systems: ACLs](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/managing_file_systems/index) | Official ACL management guide for RHEL |
+| [`acl` man page](https://man7.org/linux/man-pages/man5/acl.5.html) | POSIX ACL specification and format |
+| [`setfacl` / `getfacl` man pages](https://man7.org/linux/man-pages/man1/setfacl.1.html) | Complete option reference |
+
+---
+
 ## Next step
 
 → [Lab: Shared Team Directory](labs/shared-team-dir.md)

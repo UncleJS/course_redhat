@@ -258,6 +258,16 @@ Before moving on to Chapter 1:
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`virt-install` man page](https://linux.die.net/man/1/virt-install) | Full CLI reference for scripted VM creation |
+| [`virsh` man page](https://libvirt.org/manpages/virsh.html) | VM lifecycle management: start, stop, snapshot, console |
+| [RHEL 10 — Installation Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/interactively_installing_rhel_from_installation_media/index) | Official RHEL installation walkthrough |
+
+---
+
 ## Next step
 
 → [Multi-VM Lab Setup](multi-vm.md)

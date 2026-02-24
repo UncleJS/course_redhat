@@ -213,6 +213,16 @@ This gives a security score and a list of hardening improvements available.
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`systemd.exec` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html) | All sandboxing directives: `PrivateTmp`, `NoNewPrivileges`, `CapabilityBoundingSet`, etc. |
+| [Lennart Poettering — Systemd service sandboxing](https://0pointer.net/blog/walkthrough-for-portable-services.html) | Deep dive on sandboxing rationale from systemd's author |
+| [RHEL 10 — Securing services with systemd](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/security_hardening/index) | RHEL hardening guide including systemd sandboxing |
+
+---
+
 ## Next step
 
 → [Journald Retention and Forwarding](journald-retention.md)

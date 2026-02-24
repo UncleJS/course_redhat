@@ -117,6 +117,16 @@ See [Lab Workflow](../00-preface/labs.md) for instructions.
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Configuring basic system settings](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_basic_system_settings/index) | Hostnames, time zones, locales, and initial configuration |
+| [systemd-hostnamed](https://www.freedesktop.org/software/systemd/man/latest/hostnamed.html) | Upstream docs for `hostnamectl` |
+| [chrony documentation](https://chrony-project.org/documentation.html) | NTP configuration reference |
+
+---
+
 ## Next step
 
 → [Accounts, sudo, and Updates](sudo-updates.md)

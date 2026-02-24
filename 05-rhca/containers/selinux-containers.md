@@ -149,6 +149,16 @@ sudo ausearch -m avc --pid <pid> -ts today
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Dan Walsh — Containers and SELinux](https://www.redhat.com/en/blog/container-permission-denied-errors) | Authoritative post on SELinux label errors in containers |
+| [RHEL 10 — Using SELinux with containers](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/building_running_and_managing_containers/index) | Official guide on container SELinux integration |
+| [`container_selinux` policy](https://github.com/containers/container-selinux) | Upstream source for the `container_t` policy |
+
+---
+
 ## Next step
 
 → [Lab: Run Rootless Web App + Persistent Data](labs/rootless-web.md)

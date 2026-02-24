@@ -161,6 +161,16 @@ These provide `semanage`, `sealert`, and improved audit analysis.
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Using SELinux](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/using_selinux/index) | Official SELinux guide — fundamentals through advanced policy |
+| [SELinux Project Wiki](https://selinuxproject.org/page/Main_Page) | Upstream policy reference and architecture docs |
+| [`selinux` man page](https://man7.org/linux/man-pages/man8/selinux.8.html) | Overview of the SELinux API |
+
+---
+
 ## Next step
 
 → [SELinux Troubleshooting (AVCs)](selinux-avc-basics.md)

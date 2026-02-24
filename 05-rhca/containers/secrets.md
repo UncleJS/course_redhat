@@ -178,6 +178,16 @@ access to your UID. On a shared host, each user's secrets are isolated.
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`podman-secret` man page](https://docs.podman.io/en/latest/markdown/podman-secret.1.html) | Full secrets management command reference |
+| [RHEL 10 — Using secrets in containers](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/building_running_and_managing_containers/index) | Official secrets usage guide |
+| [HashiCorp Vault](https://www.vaultproject.io/) | Enterprise-grade secrets manager — common in production environments alongside Podman |
+
+---
+
 ## Next step
 
 → [systemd-Managed Containers](systemd-integration.md)

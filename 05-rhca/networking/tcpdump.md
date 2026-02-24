@@ -173,6 +173,16 @@ Example:
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [tcpdump filter syntax](https://www.tcpdump.org/manpages/pcap-filter.7.html) | Full Berkeley Packet Filter (BPF) expression reference |
+| [Wireshark — Display filters](https://wiki.wireshark.org/DisplayFilters) | GUI-based packet analysis — useful for reading pcap files from `tcpdump -w` |
+| [*TCP/IP Illustrated, Vol. 1* by W. Richard Stevens](https://www.oreilly.com/library/view/tcpip-illustrated-volume/9780132808200/) | Definitive guide to understanding what you're capturing |
+
+---
+
 ## Next step
 
 → [VLAN, Bridge, Bond Concepts](l2-concepts.md)

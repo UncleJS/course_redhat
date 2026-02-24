@@ -122,6 +122,15 @@ Each chapter title includes a track label:
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Google Developer Documentation Style Guide](https://developers.google.com/style) | Industry reference for technical writing conventions |
+| [RHEL 10 — Using the command line](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_basic_system_settings/index) | Official RHEL conventions for prompts and notation |
+
+---
+
 ## Next step
 
 → [Install a RHEL 10 Lab VM](../01-getting-started/vm-install.md)

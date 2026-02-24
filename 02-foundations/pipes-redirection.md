@@ -130,6 +130,16 @@ EOF
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Bash Reference Manual — Redirections](https://www.gnu.org/software/bash/manual/bash.html#Redirections) | Complete redirection syntax including `&>`, `>>`, heredocs |
+| [Bash Reference Manual — Pipelines](https://www.gnu.org/software/bash/manual/bash.html#Pipelines) | Pipeline semantics and exit codes |
+| [UNIX Power Tools (O'Reilly)](https://www.oreilly.com/library/view/unix-power-tools/0596003307/) | Deep coverage of pipes, filters, and text processing |
+
+---
+
 ## Next step
 
 → [Editing Files](editors.md)

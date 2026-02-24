@@ -148,6 +148,16 @@ file /etc/passwd
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`find` man page](https://man7.org/linux/man-pages/man1/find.1.html) | Full reference for the most powerful file search tool |
+| [`grep` man page](https://man7.org/linux/man-pages/man1/grep.1.html) | Pattern matching reference including regex |
+| [GNU coreutils manual](https://www.gnu.org/software/coreutils/manual/coreutils.html) | Authoritative reference for `cp`, `mv`, `rm`, `ln`, and friends |
+
+---
+
 ## Next step
 
 → [Pipes and Redirection](pipes-redirection.md)

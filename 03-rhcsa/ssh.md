@@ -175,6 +175,17 @@ ssh -J admin@bastion.example.com rhel@10.0.0.50
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`sshd_config` man page](https://man.openbsd.org/sshd_config) | Complete server configuration reference |
+| [`ssh_config` man page](https://man.openbsd.org/ssh_config) | Client configuration and `~/.ssh/config` options |
+| [RHEL 10 — Securing networks: SSH](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/securing_networks/assembly_using-secure-communications-between-two-systems-with-openssh_securing-networks) | RHEL hardening recommendations for OpenSSH |
+| [Mozilla SSH Hardening Guide](https://infosec.mozilla.org/guidelines/openssh) | Industry-standard SSH server hardening recommendations |
+
+---
+
 ## Next step
 
 → [SELinux Fundamentals](selinux-fundamentals.md)

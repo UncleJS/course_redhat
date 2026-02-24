@@ -170,6 +170,16 @@ sudo systemctl restart rsyslog
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`journald.conf` man page](https://www.freedesktop.org/software/systemd/man/latest/journald.conf.html) | All retention, storage, compression, and forwarding options |
+| [rsyslog documentation](https://www.rsyslog.com/doc/master/index.html) | Forwarding journal to rsyslog or remote syslog servers |
+| [RHEL 10 — Viewing and managing log files](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/using_systemd_unit_files_in_rhel/index) | Official journal management guide |
+
+---
+
 ## Next step
 
 → [SELinux Deep Dive: Fix Taxonomy](selinux/fix-taxonomy.md)

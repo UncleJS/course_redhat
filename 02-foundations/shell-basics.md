@@ -123,6 +123,16 @@ cd -
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [The Linux Command Line (free book)](https://linuxcommand.org/tlcl.php) | Comprehensive introduction to the Bash shell |
+| [Bash Reference Manual](https://www.gnu.org/software/bash/manual/bash.html) | Official GNU Bash documentation |
+| [Filesystem Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) | Defines where everything lives under `/` |
+
+---
+
 ## Next step
 
 → [Files and Text](files-and-text.md)

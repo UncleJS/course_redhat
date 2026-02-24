@@ -128,6 +128,17 @@ dnf provides /usr/bin/ss
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [The Linux man-pages project](https://www.kernel.org/doc/man-pages/) | Upstream source for all Linux man pages |
+| [`info` manual (GNU)](https://www.gnu.org/software/texinfo/manual/info-stnd/info-stnd.html) | Guide to the `info` documentation system |
+| [explainshell.com](https://explainshell.com/) | Paste any command and get a breakdown of every flag |
+| [TLDR Pages](https://tldr.sh/) | Community-maintained command cheatsheets — fast alternative to man |
+
+---
+
 ## Next step
 
 → [Shell Basics](../02-foundations/shell-basics.md)

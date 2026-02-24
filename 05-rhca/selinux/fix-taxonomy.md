@@ -159,6 +159,16 @@ Granting access masks it.
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Using SELinux: Troubleshooting](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/using_selinux/troubleshooting-problems-related-to-selinux_using-selinux) | Official RHEL SELinux fix guidance |
+| [Dan Walsh's SELinux blog](https://danwalsh.livejournal.com/) | Authoritative commentary from the Red Hat SELinux lead |
+| [`sepolicy` man page](https://man7.org/linux/man-pages/man8/sepolicy.8.html) | Introspect policy — understand what a confined domain can do |
+
+---
+
 ## Next step
 
 → [semanage Reference](semanage.md)

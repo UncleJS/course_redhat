@@ -173,6 +173,17 @@ sudo systemctl hibernate
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`systemd.unit` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html) | Unit file format and all common directives |
+| [`systemd.service` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html) | Service-specific directives |
+| [systemd.io](https://systemd.io/) | Upstream blog and documentation index |
+| [RHEL 10 — Configuring services using systemd](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_basic_system_settings/index) | Official RHEL systemd configuration guide |
+
+---
+
 ## Next step
 
 → [Logs and journalctl](logging-journald.md)

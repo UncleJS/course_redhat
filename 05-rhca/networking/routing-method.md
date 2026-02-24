@@ -161,6 +161,16 @@ ip -brief link
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`ip-route` man page](https://man7.org/linux/man-pages/man8/ip-route.8.html) | Full routing table management reference |
+| [iproute2 documentation](https://wiki.linuxfoundation.org/networking/iproute2) | Overview of the iproute2 toolset |
+| [RHEL 10 — Configuring routing](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_and_managing_networking/index) | Static routes, policy routing, and multipath |
+
+---
+
 ## Next step
 
 → [tcpdump Guided Debugging](tcpdump.md)

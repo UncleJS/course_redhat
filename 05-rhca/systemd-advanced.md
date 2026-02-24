@@ -171,6 +171,17 @@ systemd-analyze critical-chain sshd.service
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`systemd.unit` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html) | Unit dependencies, ordering, and all `[Unit]` directives |
+| [systemd — Instantiated units](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html#Description) | Template unit `@` syntax and instance passing |
+| [systemd drop-in files](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html#id-1.8) | How override drop-ins work and merge rules |
+| [systemd.io blog](https://systemd.io/) | Upstream release notes and advanced feature write-ups |
+
+---
+
 ## Next step
 
 → [systemd Hardening Knobs](systemd-hardening.md)

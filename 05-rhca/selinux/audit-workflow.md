@@ -159,6 +159,16 @@ sudo setenforce 1            # back to enforcing
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`ausearch` man page](https://man7.org/linux/man-pages/man8/ausearch.8.html) | Query the audit log by type, time, user, or AVC |
+| [`auditd` man page](https://man7.org/linux/man-pages/man8/auditd.8.html) | Audit daemon configuration and log rotation |
+| [RHEL 10 — Auditing the system](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/security_hardening/auditing-the-system_security-hardening) | Official audit configuration and rule writing guide |
+
+---
+
 ## Next step
 
 → [Lab: Non-Default Port](labs/nondefault-port.md)

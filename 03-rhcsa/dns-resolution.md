@@ -163,6 +163,16 @@ sudo resolvectl flush-caches
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`systemd-resolved` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd-resolved.service.html) | Resolved configuration, DNS-over-TLS, LLMNR |
+| [`resolved.conf` man page](https://www.freedesktop.org/software/systemd/man/latest/resolved.conf.html) | All configuration knobs for DNS behaviour |
+| [RHEL 10 — Managing DNS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_and_managing_networking/index) | Official DNS configuration and troubleshooting guide |
+
+---
+
 ## Next step
 
 → [Firewalling (firewalld)](firewalld.md)

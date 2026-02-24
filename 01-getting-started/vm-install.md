@@ -102,6 +102,17 @@ Once registered, your system has access to all RHEL 10 repositories.
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Installation Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/interactively_installing_rhel_from_installation_media/index) | Official step-by-step installation reference |
+| [Red Hat Developer — Free RHEL](https://developers.redhat.com/products/rhel/download) | Download RHEL 10 for free with a Developer account |
+| [RHEL 10 — Configuring and managing virtualization](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_and_managing_virtualization/index) | KVM/QEMU host setup and VM management |
+| [virt-install man page](https://linux.die.net/man/1/virt-install) | Full CLI reference for VM creation |
+
+---
+
 ## Next step
 
 → [First Boot Checklist](first-boot.md)

@@ -154,6 +154,16 @@ sudo nmcli connection up "<connection-name>"
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [NetworkManager keyfile format](https://networkmanager.dev/docs/api/latest/nm-settings-keyfile.html) | Connection file format for `/etc/NetworkManager/system-connections/` |
+| [`nmcli` man page](https://man7.org/linux/man-pages/man1/nmcli.1.html) | Full option reference including `--offline` mode |
+| [RHEL 10 — NetworkManager at scale](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_and_managing_networking/index) | Automating and templating network configuration |
+
+---
+
 ## Next step
 
 → [Routing + Troubleshooting Method](routing-method.md)

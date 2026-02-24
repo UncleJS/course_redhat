@@ -153,6 +153,17 @@ df -ih
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Managing file systems](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/managing_file_systems/index) | XFS, ext4, fstab, and mount options |
+| [`fstab` man page](https://man7.org/linux/man-pages/man5/fstab.5.html) | Complete mount options and field descriptions |
+| [XFS documentation](https://xfs.wiki.kernel.org/) | Upstream XFS project wiki and performance notes |
+| [`xfs_repair` man page](https://man7.org/linux/man-pages/man8/xfs_repair.8.html) | Recovery tool reference |
+
+---
+
 ## Next step
 
 → [LVM](lvm.md)

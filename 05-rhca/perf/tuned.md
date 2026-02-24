@@ -343,6 +343,17 @@ Setting the correct profile at provisioning time (via Ansible: `community.genera
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Monitoring and managing system status and performance](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/monitoring_and_managing_system_status_and_performance/index) | Official tuned, PCP, and sysctl tuning guide |
+| [`tuned.conf` man page](https://man7.org/linux/man-pages/man5/tuned.conf.5.html) | Profile file format and available plugins |
+| [`sysctl` man page](https://man7.org/linux/man-pages/man8/sysctl.8.html) | Runtime kernel parameter management |
+| [Red Hat Performance Co-Pilot (PCP)](https://pcp.io/) | RHEL's observability framework for time-series performance data |
+
+---
+
 ## Next step
 
 → [Recovery Patterns](recovery-patterns.md)

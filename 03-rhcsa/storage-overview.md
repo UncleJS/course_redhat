@@ -180,6 +180,16 @@ UUID=<swap-uuid>  swap  swap  defaults  0 0
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Managing storage devices](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/managing_storage_devices/index) | Official storage overview, device naming, partitioning |
+| [`lsblk` man page](https://man7.org/linux/man-pages/man8/lsblk.8.html) | Full option reference |
+| [`blkid` man page](https://man7.org/linux/man-pages/man8/blkid.8.html) | Block device attribute querying |
+
+---
+
 ## Next step
 
 → [Filesystems and fstab](filesystems-fstab.md)

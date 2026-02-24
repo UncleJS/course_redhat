@@ -138,6 +138,17 @@ multiple hosts via Ansible.
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`semanage` man page](https://man7.org/linux/man-pages/man8/semanage.8.html) | Full subcommand reference: fcontext, port, boolean, user, login |
+| [`semanage-fcontext` man page](https://man7.org/linux/man-pages/man8/semanage-fcontext.8.html) | File context management in detail |
+| [`semanage-port` man page](https://man7.org/linux/man-pages/man8/semanage-port.8.html) | Port labeling — add, delete, list |
+| [RHEL 10 — Customizing SELinux policy](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/using_selinux/customizing-selinux-policy_using-selinux) | Official semanage and fcontext customization guide |
+
+---
+
 ## Next step
 
 → [Audit Workflow](audit-workflow.md)

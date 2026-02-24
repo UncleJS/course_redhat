@@ -149,6 +149,16 @@ ansible all -m command -a "tail -20 /var/log/ansible-patching.log" --become
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`ansible.builtin.dnf` module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html) | Full options for package and update management |
+| [RHEL System Roles — patch](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/automating_system_administration_by_using_rhel_system_roles/index) | Red Hat-supported patching role |
+| [Red Hat Security Advisories API](https://access.redhat.com/labs/securitydataapi/) | Programmatic access to CVE and errata data |
+
+---
+
 ## Next step
 
 → [Lab: Write Your First Playbook](labs/first-playbook.md)

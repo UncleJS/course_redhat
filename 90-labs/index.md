@@ -64,6 +64,16 @@ See [Single-VM Setup](single-vm.md) for the detailed walkthrough.
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Configuring and managing virtualization](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_and_managing_virtualization/index) | Official KVM/QEMU setup and VM management |
+| [Red Hat Developer — Free RHEL download](https://developers.redhat.com/products/rhel/download) | No-cost RHEL 10 for lab use |
+| [virt-manager project](https://virt-manager.org/) | GUI front-end for libvirt useful for lab management |
+
+---
+
 ## Next step
 
 → [Single-VM Lab Setup](single-vm.md)

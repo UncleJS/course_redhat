@@ -222,6 +222,16 @@ ansible-playbook site.yml --vault-password-file ~/.vault_pass
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Ansible — Variable precedence](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable) | The full 22-level precedence table |
+| [Jinja2 template documentation](https://jinja.palletsprojects.com/en/3.1.x/templates/) | Complete filter, test, and control structure reference |
+| [Ansible — Using encrypted variables with Vault](https://docs.ansible.com/ansible/latest/vault_guide/index.html) | Storing secrets safely in playbooks |
+
+---
+
 ## Next step
 
 → [Roles and Collections](ansible-roles.md)

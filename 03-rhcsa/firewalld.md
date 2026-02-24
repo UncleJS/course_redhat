@@ -181,6 +181,16 @@ sudo firewall-cmd --reload
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Using and configuring firewalld](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/securing_networks/using-and-configuring-firewalld_securing-networks) | Official firewalld guide including zones, rich rules, and nftables backend |
+| [`firewalld` man page](https://firewalld.org/documentation/man-pages/firewalld.html) | Daemon configuration reference |
+| [`firewall-cmd` man page](https://firewalld.org/documentation/man-pages/firewall-cmd.html) | Complete CLI option reference |
+
+---
+
 ## Next step
 
 → [SSH (Keys, Server Basics)](ssh.md)

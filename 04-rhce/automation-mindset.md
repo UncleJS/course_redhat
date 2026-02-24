@@ -100,6 +100,16 @@ Write → Test (lab) → Review → Apply (prod)
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [The Twelve-Factor App](https://12factor.net/) | Software methodology that embeds idempotent, reproducible thinking |
+| [Ansible — Getting started](https://docs.ansible.com/ansible/latest/getting_started/index.html) | Official intro to the Ansible automation philosophy |
+| [Infrastructure as Code (Martin Fowler)](https://martinfowler.com/bliki/InfrastructureAsCode.html) | Conceptual overview of IaC and idempotence |
+
+---
+
 ## Next step
 
 → [Bash Scripting Fundamentals](bash-fundamentals.md)

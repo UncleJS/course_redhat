@@ -366,6 +366,17 @@ Effective performance triage is systematic: start with load average, identify th
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Brendan Gregg — Linux Performance](https://www.brendangregg.com/linuxperf.html) | The definitive performance tools map and methodology |
+| [USE Method](https://www.brendangregg.com/usemethod.html) | Utilisation, Saturation, Errors — the systematic triage framework |
+| [`sar` man page](https://man7.org/linux/man-pages/man1/sar.1.html) | System Activity Reporter — historical performance data |
+| [*Systems Performance* by Brendan Gregg](https://www.brendangregg.com/systems-performance-2nd-edition-book.html) | Essential book for RHCA-level performance work |
+
+---
+
 ## Next step
 
 → [tuned Profiles and Kernel Parameter Tuning](tuned.md)

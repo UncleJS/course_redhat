@@ -178,6 +178,16 @@ sudo lvdisplay    # logical volumes (detailed)
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Configuring and managing logical volumes](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_and_managing_logical_volumes/index) | Official LVM guide including thin provisioning and snapshots |
+| [LVM2 resource page](https://sourceware.org/lvm2/) | Upstream LVM2 project and man pages |
+| [`lvmconfig` man page](https://man7.org/linux/man-pages/man8/lvmconfig.8.html) | LVM configuration file reference |
+
+---
+
 ## Next step
 
 → [systemd Essentials](systemd-basics.md)

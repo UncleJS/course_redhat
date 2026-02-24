@@ -155,6 +155,16 @@ in `/var/log/` still exist:
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`journalctl` man page](https://www.freedesktop.org/software/systemd/man/latest/journalctl.html) | Complete option and filter reference |
+| [`journald.conf` man page](https://www.freedesktop.org/software/systemd/man/latest/journald.conf.html) | Retention, storage, and forwarding configuration |
+| [RHEL 10 — Using the journal](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/using_systemd_unit_files_in_rhel/index) | Official logging and journal guide |
+
+---
+
 ## Next step
 
 → [Scheduling (timers + cron)](scheduling.md)

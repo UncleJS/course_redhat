@@ -176,6 +176,17 @@ grep CRON /var/log/messages
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`systemd.timer` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd.timer.html) | Timer unit directives and calendar expressions |
+| [`systemd.time` man page](https://www.freedesktop.org/software/systemd/man/latest/systemd.time.html) | Timestamp and timespan format reference |
+| [`crontab` man page](https://man7.org/linux/man-pages/man5/crontab.5.html) | Cron expression syntax |
+| [crontab.guru](https://crontab.guru/) | Interactive cron expression editor and validator |
+
+---
+
 ## Next step
 
 → [Networking Basics](networking-basics.md)

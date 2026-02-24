@@ -215,6 +215,16 @@ ansible-playbook site.yml --skip-tags packages
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [Ansible — Playbooks guide](https://docs.ansible.com/ansible/latest/playbook_guide/index.html) | Official playbook reference including conditionals, loops, blocks |
+| [Ansible module index](https://docs.ansible.com/ansible/latest/collections/index_module.html) | Full module reference — `ansible.builtin.*` is the core set |
+| [YAML specification](https://yaml.org/spec/1.2.2/) | Authoritative YAML syntax reference |
+
+---
+
 ## Next step
 
 → [Variables, Templates, and Files](ansible-vars-templates.md)

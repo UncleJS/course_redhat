@@ -161,6 +161,17 @@ sudo ausearch -m avc -c httpd
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [`audit2allow` man page](https://man7.org/linux/man-pages/man1/audit2allow.1.html) | Generate policy modules from AVC denials |
+| [`audit2why` man page](https://man7.org/linux/man-pages/man1/audit2why.1.html) | Explain why a denial occurred in human language |
+| [`sealert` man page](https://linux.die.net/man/8/sealert) | SELinux alert browser — part of `setroubleshoot-server` |
+| [RHEL 10 — Troubleshooting SELinux](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/using_selinux/troubleshooting-problems-related-to-selinux_using-selinux) | Official AVC troubleshooting workflows |
+
+---
+
 ## Next step
 
 → [Lab: Fix a SELinux Label Issue](labs/selinux-label-fix.md)

@@ -142,6 +142,17 @@ sudo userdel -r username
 
 ---
 
+## Further reading
+
+| Resource | Notes |
+|---|---|
+| [RHEL 10 — Configuring basic system settings: Managing sudo](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/configuring_basic_system_settings/index) | Official sudo configuration guide |
+| [`sudoers` man page](https://www.sudo.ws/docs/man/sudoers.man/) | Complete `sudoers` syntax reference |
+| [RHEL 10 — Updating and patching packages](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/managing_software_with_the_dnf_tool/index) | dnf update workflows and security updates |
+| [Red Hat Security Advisories](https://access.redhat.com/security/security-updates/) | Track CVEs and errata for RHEL packages |
+
+---
+
 ## Next step
 
 → [Getting Help](help-system.md)
