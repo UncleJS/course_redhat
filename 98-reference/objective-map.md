@@ -89,10 +89,10 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 
 | Objective | Chapter | Lab |
 |---|---|---|
-| Create, delete, and modify local user accounts | [Shell Basics](../02-foundations/shell-basics.md) | — |
-| Change passwords and adjust password aging | [Shell Basics](../02-foundations/shell-basics.md) | — |
-| Create, delete, and modify local groups | [Permissions](../02-foundations/permissions.md) | — |
-| Configure superuser access | [sudo and Updates](../01-getting-started/sudo-updates.md) | — |
+| Create, delete, and modify local user accounts | [Accounts, sudo, and Updates](../01-getting-started/sudo-updates.md) | — |
+| Change passwords and adjust password aging | [Accounts, sudo, and Updates](../01-getting-started/sudo-updates.md) | — |
+| Create, delete, and modify local groups | [Users, Groups, Permissions](../02-foundations/permissions.md) | — |
+| Configure superuser access | [Accounts, sudo, and Updates](../01-getting-started/sudo-updates.md) | — |
 
 ### Manage security
 

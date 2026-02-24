@@ -133,12 +133,53 @@ sudo passwd username
 # Lock an account
 sudo usermod -L username
 
+# Unlock an account
+sudo usermod -U username
+
 # Delete account (keeps home dir)
 sudo userdel username
 
 # Delete account AND home dir
 sudo userdel -r username
 ```
+
+---
+
+## Password aging with `chage`
+
+Password aging policies control how often users must change their password
+and when accounts expire.
+
+```bash
+# Show password aging info for a user
+sudo chage -l username
+
+# Force password change on next login
+sudo chage -d 0 username
+
+# Set maximum password age (days)
+sudo chage -M 90 username
+
+# Set minimum days before a password can be changed
+sudo chage -m 7 username
+
+# Set password expiry warning period (days before expiry)
+sudo chage -W 14 username
+
+# Set absolute account expiry date
+sudo chage -E 2026-12-31 username
+```
+
+> **💡 chage at a glance**
+> | Flag | Meaning |
+> |---|---|
+> | `-l` | List current aging settings |
+> | `-d 0` | Expire password immediately (force reset at next login) |
+> | `-M` | Max days password is valid |
+> | `-m` | Min days before password can be changed |
+> | `-W` | Days of warning before expiry |
+> | `-E` | Absolute account expiry date (`YYYY-MM-DD` or `-1` to disable) |
+>
 
 ---
 

@@ -89,8 +89,10 @@ When you see an AVC, work through this order:
 5. None of the above? → audit2allow (last resort, with caution)
 ```
 
-See [SELinux Deep Dive](../05-rhca/selinux/fix-taxonomy.md) for full coverage
-of each fix type.
+This taxonomy is enough to solve the vast majority of day-to-day AVC denials.
+When you reach the RHCA track, the [SELinux Deep Dive](../05-rhca/selinux/fix-taxonomy.md)
+chapter expands each fix type with edge cases and `semanage` details — but you
+don't need it yet.
 
 ---
 

@@ -138,6 +138,10 @@ Common zones and their default posture:
 
 ### Assign an interface to a zone
 
+> **💡 Find your interface name first**
+> Run `nmcli device status` to see your interface name (e.g., `ens3`, `eth0`,
+> `enp1s0`). Replace `ens3` below with your actual interface name.
+
 ```bash
 sudo firewall-cmd --permanent --zone=internal --change-interface=ens3
 sudo firewall-cmd --reload

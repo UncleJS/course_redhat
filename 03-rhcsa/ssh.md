@@ -146,6 +146,14 @@ sudo sshd -t && sudo systemctl restart sshd
 > Confirm key login works from another terminal before disabling password
 > auth. Disabling it without working keys will lock you out.
 >
+> **If you do get locked out of a lab VM**, recover via the hypervisor console
+> (no SSH needed):
+> 1. Open the VM console in your hypervisor (virt-manager, VMware, VirtualBox)
+> 2. Log in locally as `root` or your admin user
+> 3. Re-enable password auth: `sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config`
+> 4. Restart sshd: `sudo systemctl restart sshd`
+> 5. SSH back in, add your public key correctly, then re-disable password auth
+>
 
 ---
 
