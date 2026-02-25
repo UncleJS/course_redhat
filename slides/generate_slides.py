@@ -131,9 +131,16 @@ def parse_markdown(path: Path) -> ParsedDoc:
     in_table = False
     table_buf: list[str] = []
 
-    SKIP_HEADINGS = {"further reading", "next step", "next steps"}
+    SKIP_HEADINGS = {"further reading", "next step", "next steps",
+                     "table of contents"}
 
     for line in lines:
+        # Skip TOC anchor and Back-to-TOC nav links — markdown-only navigation
+        if '<a name="toc">' in line:
+            continue
+        if '[↑ Back to TOC]' in line or '[^ Back to TOC]' in line:
+            continue
+
         m1 = re.match(r'^#\s+(.+)', line)
         if m1 and not in_code:
             title = _clean(m1.group(1))
@@ -187,6 +194,8 @@ def parse_markdown(path: Path) -> ParsedDoc:
             continue
         cleaned = _clean(stripped)
         if not cleaned or cleaned.startswith('→') or cleaned.startswith('->'):
+            continue
+        if '↑ Back to TOC' in cleaned or 'Back to TOC' in cleaned:
             continue
         if current is None:
             intro.append(cleaned)
@@ -356,6 +365,9 @@ def _trunc_code(lines: list[str], n: int = 14) -> list[str]:
     return lines
 
 
+COPYRIGHT = "© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0"
+
+
 def _footer_path(pd: ParsedDoc) -> str:
     track_dirs = {'00-preface','01-getting-started','02-foundations',
                   '03-rhcsa','04-rhce','05-rhca','90-labs','98-reference'}
@@ -363,6 +375,12 @@ def _footer_path(pd: ParsedDoc) -> str:
         if part in track_dirs:
             return "/".join(pd.raw_path.parts[i:])
     return pd.raw_path.name
+
+
+def _footer_copyright(page: Page, st: Styles) -> None:
+    """Add copyright line at the bottom of any slide."""
+    tb = _text_frame(page, st.trans_fill, x=MARGIN, y=FOOTER_Y, w=CONTENT_W, h=0.7)
+    _p(tb, COPYRIGHT, st.p_footer)
 
 
 # ---------------------------------------------------------------------------
@@ -419,9 +437,10 @@ def slide_title(doc: OpenDocumentPresentation, pd: ParsedDoc,
         tb = _text_frame(page, st.trans_fill, x=MARGIN, y=8.8, w=CONTENT_W, h=3.5)
         _p(tb, intro, st.p_body)
 
-    # footer path
-    tb = _text_frame(page, st.trans_fill, x=MARGIN, y=FOOTER_Y, w=CONTENT_W, h=0.7)
+    # footer: file path (line 1) + copyright (line 2)
+    tb = _text_frame(page, st.trans_fill, x=MARGIN, y=FOOTER_Y, w=CONTENT_W, h=1.0)
     _p(tb, _footer_path(pd), st.p_footer)
+    _p(tb, COPYRIGHT, st.p_footer)
 
 
 def slide_objectives(doc: OpenDocumentPresentation, pd: ParsedDoc,
@@ -438,6 +457,7 @@ def slide_objectives(doc: OpenDocumentPresentation, pd: ParsedDoc,
                      w=CONTENT_W, h=CONTENT_H)
     for h in headings:
         _p(tb, f"▶  {h}", st.p_bullet)
+    _footer_copyright(page, st)
 
 
 def slide_content(doc: OpenDocumentPresentation, heading: str,
@@ -472,6 +492,8 @@ def slide_content(doc: OpenDocumentPresentation, heading: str,
         for b in _trunc_bullets(bullets):
             _p(tb, f"• {b}", st.p_bullet)
 
+    _footer_copyright(page, st)
+
 
 def slide_summary(doc: OpenDocumentPresentation, pd: ParsedDoc,
                   st: Styles) -> None:
@@ -496,6 +518,7 @@ def slide_summary(doc: OpenDocumentPresentation, pd: ParsedDoc,
                      w=CONTENT_W, h=CONTENT_H)
     for t in takeaways:
         _p(tb, t, st.p_bullet)
+    _footer_copyright(page, st)
 
 
 # ---------------------------------------------------------------------------
@@ -550,90 +573,90 @@ def build_odp(md_path: Path, out_path: Path, root: Path) -> None:
 README_ORDER: list[str] = [
     "README.md",
     # Preface
-    "00-preface/about.md",
-    "00-preface/labs.md",
-    "00-preface/conventions.md",
+    "00-preface/01-about.md",
+    "00-preface/02-labs.md",
+    "00-preface/03-conventions.md",
     # Getting Started
-    "01-getting-started/vm-install.md",
-    "01-getting-started/first-boot.md",
-    "01-getting-started/sudo-updates.md",
-    "01-getting-started/help-system.md",
+    "01-getting-started/01-vm-install.md",
+    "01-getting-started/02-first-boot.md",
+    "01-getting-started/03-sudo-updates.md",
+    "01-getting-started/04-help-system.md",
     # Linux Foundations
-    "02-foundations/shell-basics.md",
-    "02-foundations/files-and-text.md",
-    "02-foundations/pipes-redirection.md",
-    "02-foundations/editors.md",
-    "02-foundations/permissions.md",
-    "02-foundations/acls.md",
-    "02-foundations/labs/shared-team-dir.md",
+    "02-foundations/01-shell-basics.md",
+    "02-foundations/02-files-and-text.md",
+    "02-foundations/03-pipes-redirection.md",
+    "02-foundations/04-editors.md",
+    "02-foundations/05-permissions.md",
+    "02-foundations/06-acls.md",
+    "02-foundations/labs/01-shared-team-dir.md",
     # RHCSA
-    "03-rhcsa/packages-dnf.md",
-    "03-rhcsa/storage-overview.md",
-    "03-rhcsa/filesystems-fstab.md",
-    "03-rhcsa/lvm.md",
-    "03-rhcsa/systemd-basics.md",
-    "03-rhcsa/logging-journald.md",
-    "03-rhcsa/scheduling.md",
-    "03-rhcsa/networking-basics.md",
-    "03-rhcsa/networkmanager-nmcli.md",
-    "03-rhcsa/dns-resolution.md",
-    "03-rhcsa/firewalld.md",
-    "03-rhcsa/ssh.md",
-    "03-rhcsa/selinux-fundamentals.md",
-    "03-rhcsa/selinux-avc-basics.md",
-    "03-rhcsa/labs/static-ip-dns.md",
-    "03-rhcsa/labs/systemd-service.md",
-    "03-rhcsa/labs/lvm-xfs-grow.md",
-    "03-rhcsa/labs/selinux-label-fix.md",
+    "03-rhcsa/01-packages-dnf.md",
+    "03-rhcsa/02-storage-overview.md",
+    "03-rhcsa/03-filesystems-fstab.md",
+    "03-rhcsa/04-lvm.md",
+    "03-rhcsa/05-systemd-basics.md",
+    "03-rhcsa/06-logging-journald.md",
+    "03-rhcsa/07-scheduling.md",
+    "03-rhcsa/08-networking-basics.md",
+    "03-rhcsa/09-networkmanager-nmcli.md",
+    "03-rhcsa/10-dns-resolution.md",
+    "03-rhcsa/11-firewalld.md",
+    "03-rhcsa/12-ssh.md",
+    "03-rhcsa/13-selinux-fundamentals.md",
+    "03-rhcsa/14-selinux-avc-basics.md",
+    "03-rhcsa/labs/01-static-ip-dns.md",
+    "03-rhcsa/labs/02-systemd-service.md",
+    "03-rhcsa/labs/03-lvm-xfs-grow.md",
+    "03-rhcsa/labs/04-selinux-label-fix.md",
     # RHCE
-    "04-rhce/automation-mindset.md",
-    "04-rhce/bash-fundamentals.md",
-    "04-rhce/ansible-setup-inventory.md",
-    "04-rhce/ansible-playbooks.md",
-    "04-rhce/ansible-vars-templates.md",
-    "04-rhce/ansible-roles.md",
-    "04-rhce/ansible-service-deploy.md",
-    "04-rhce/ansible-patching.md",
-    "04-rhce/labs/first-playbook.md",
-    "04-rhce/labs/role-web-deploy.md",
+    "04-rhce/01-automation-mindset.md",
+    "04-rhce/02-bash-fundamentals.md",
+    "04-rhce/03-ansible-setup-inventory.md",
+    "04-rhce/04-ansible-playbooks.md",
+    "04-rhce/05-ansible-vars-templates.md",
+    "04-rhce/06-ansible-roles.md",
+    "04-rhce/07-ansible-service-deploy.md",
+    "04-rhce/08-ansible-patching.md",
+    "04-rhce/labs/01-first-playbook.md",
+    "04-rhce/labs/02-role-web-deploy.md",
     # RHCA — core
-    "05-rhca/troubleshooting-playbook.md",
-    "05-rhca/systemd-advanced.md",
-    "05-rhca/systemd-hardening.md",
-    "05-rhca/journald-retention.md",
+    "05-rhca/01-troubleshooting-playbook.md",
+    "05-rhca/02-systemd-advanced.md",
+    "05-rhca/03-systemd-hardening.md",
+    "05-rhca/04-journald-retention.md",
     # RHCA — SELinux deep dive
-    "05-rhca/selinux/fix-taxonomy.md",
-    "05-rhca/selinux/semanage.md",
-    "05-rhca/selinux/audit-workflow.md",
-    "05-rhca/selinux/labs/nondefault-port.md",
+    "05-rhca/selinux/01-fix-taxonomy.md",
+    "05-rhca/selinux/02-semanage.md",
+    "05-rhca/selinux/03-audit-workflow.md",
+    "05-rhca/selinux/labs/01-nondefault-port.md",
     # RHCA — Networking deep dive
-    "05-rhca/networking/nmcli-profiles.md",
-    "05-rhca/networking/routing-method.md",
-    "05-rhca/networking/tcpdump.md",
-    "05-rhca/networking/l2-concepts.md",
-    "05-rhca/networking/labs/debug-triad.md",
+    "05-rhca/networking/01-nmcli-profiles.md",
+    "05-rhca/networking/02-routing-method.md",
+    "05-rhca/networking/03-tcpdump.md",
+    "05-rhca/networking/04-l2-concepts.md",
+    "05-rhca/networking/labs/01-debug-triad.md",
     # RHCA — Containers
-    "05-rhca/containers/podman-fundamentals.md",
-    "05-rhca/containers/rootless.md",
-    "05-rhca/containers/volumes.md",
-    "05-rhca/containers/secrets.md",
-    "05-rhca/containers/systemd-integration.md",
-    "05-rhca/containers/selinux-containers.md",
-    "05-rhca/containers/labs/rootless-web.md",
-    "05-rhca/containers/labs/secrets-rotate.md",
+    "05-rhca/containers/01-podman-fundamentals.md",
+    "05-rhca/containers/02-rootless.md",
+    "05-rhca/containers/03-volumes.md",
+    "05-rhca/containers/04-secrets.md",
+    "05-rhca/containers/05-systemd-integration.md",
+    "05-rhca/containers/06-selinux-containers.md",
+    "05-rhca/containers/labs/01-rootless-web.md",
+    "05-rhca/containers/labs/02-secrets-rotate.md",
     # RHCA — Performance
-    "05-rhca/perf/resource-triage.md",
-    "05-rhca/perf/tuned.md",
-    "05-rhca/perf/recovery-patterns.md",
+    "05-rhca/perf/01-resource-triage.md",
+    "05-rhca/perf/02-tuned.md",
+    "05-rhca/perf/03-recovery-patterns.md",
     # Lab environments
-    "90-labs/index.md",
-    "90-labs/single-vm.md",
-    "90-labs/multi-vm.md",
+    "90-labs/01-index.md",
+    "90-labs/02-single-vm.md",
+    "90-labs/03-multi-vm.md",
     # Reference
-    "98-reference/objective-map.md",
-    "98-reference/glossary.md",
-    "98-reference/cheatsheets.md",
-    "98-reference/further-reading.md",
+    "98-reference/01-objective-map.md",
+    "98-reference/02-glossary.md",
+    "98-reference/03-cheatsheets.md",
+    "98-reference/04-further-reading.md",
 ]
 
 
