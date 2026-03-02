@@ -1,4 +1,7 @@
 # Conventions
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 Consistent formatting makes commands safe to copy and easy to understand.
 This page defines every convention used throughout the guide.
@@ -169,4 +172,4 @@ Each chapter title includes a track label:
 → [Install a RHEL 10 Lab VM](../01-getting-started/01-vm-install.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

@@ -1,4 +1,7 @@
 # Audit Workflow — ausearch, sealert, audit2why
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 The audit subsystem logs all SELinux denials and security-relevant events.
 A systematic audit workflow lets you diagnose and fix issues quickly and
@@ -211,4 +214,4 @@ sudo setenforce 1            # back to enforcing
 → [Lab: Non-Default Port](labs/01-nondefault-port.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

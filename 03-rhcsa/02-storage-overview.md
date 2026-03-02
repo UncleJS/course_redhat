@@ -1,4 +1,7 @@
 # Storage Overview — lsblk, blkid, mounts
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 Before managing storage, you need to understand what devices exist, how they
 are partitioned, and what is currently mounted.
@@ -236,4 +239,4 @@ UUID=<swap-uuid>  swap  swap  defaults  0 0
 → [Filesystems and fstab](03-filesystems-fstab.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

@@ -365,7 +365,7 @@ def _trunc_code(lines: list[str], n: int = 14) -> list[str]:
     return lines
 
 
-COPYRIGHT = "© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0"
+COPYRIGHT = "© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0"
 
 
 def _footer_path(pd: ParsedDoc) -> str:

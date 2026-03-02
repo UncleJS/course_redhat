@@ -1,4 +1,7 @@
 # Podman Secrets — Create, Use, Rotate
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 Podman secrets let you inject sensitive data (passwords, API keys, TLS
 certs) into containers at runtime without:
@@ -235,4 +238,4 @@ access to your UID. On a shared host, each user's secrets are isolated.
 → [systemd-Managed Containers](05-systemd-integration.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

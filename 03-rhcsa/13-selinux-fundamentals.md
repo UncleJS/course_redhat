@@ -1,4 +1,7 @@
 # SELinux Fundamentals
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 SELinux (Security-Enhanced Linux) is a **Mandatory Access Control (MAC)**
 system built into the Linux kernel. It enforces security policies that go
@@ -207,4 +210,4 @@ These provide `semanage`, `sealert`, and improved audit analysis.
 → [SELinux Troubleshooting (AVCs)](14-selinux-avc-basics.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

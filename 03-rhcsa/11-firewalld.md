@@ -1,4 +1,7 @@
 # Firewalling with firewalld
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 `firewalld` is the default firewall manager on RHEL 10. It uses the concept
 of **zones** to apply rules based on network trust level.
@@ -251,4 +254,4 @@ sudo firewall-cmd --reload
 → [SSH (Keys, Server Basics)](12-ssh.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

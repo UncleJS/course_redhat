@@ -1,4 +1,7 @@
 # Bash Scripting Fundamentals
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 Bash scripts let you automate repetitive tasks. This chapter teaches safe,
 readable, idempotent patterns — not just "how to write Bash", but how to
@@ -278,4 +281,4 @@ log "INFO" "Script started"
 → [Ansible Setup and Inventory](03-ansible-setup-inventory.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

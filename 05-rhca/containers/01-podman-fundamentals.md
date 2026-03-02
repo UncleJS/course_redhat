@@ -1,4 +1,7 @@
 # Container Fundamentals — RHEL View
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 Containers on RHEL use **Podman** — an OCI-compatible, daemonless container
 engine that is the Red Hat default. Unlike Docker, Podman does not require a
@@ -179,4 +182,4 @@ specifically required (e.g., port 80 binding, direct device access).
 → [Rootless Podman](02-rootless.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

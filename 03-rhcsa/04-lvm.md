@@ -1,4 +1,7 @@
 # LVM — Create, Extend, Reduce Safely
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 **Logical Volume Management (LVM)** adds a flexible abstraction layer between
 physical storage and filesystems. It lets you resize, snapshot, and reorganise
@@ -231,4 +234,4 @@ sudo lvdisplay    # logical volumes (detailed)
 → [systemd Essentials](05-systemd-basics.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

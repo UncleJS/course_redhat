@@ -1,4 +1,7 @@
 # Lab: Role-Based Web Service Deploy
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 **Track:** RHCE
 **Estimated time:** 60 minutes
@@ -279,4 +282,4 @@ and MAC policy.
 → [Advanced Infrastructure — RHCA Track](../../05-rhca/01-troubleshooting-playbook.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

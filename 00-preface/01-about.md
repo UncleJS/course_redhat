@@ -1,4 +1,7 @@
 # About This Guide
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 > **Note:** This guide does not promise exam coverage. It teaches the real-world
 > skills that those certifications measure.
@@ -79,4 +82,4 @@ License](https://creativecommons.org/licenses/by/4.0/).
 → [Lab Workflow (Snapshots, Safety)](02-labs.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

@@ -1,4 +1,7 @@
 # systemd Hardening Knobs — Service Sandboxing
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 systemd provides service-level sandboxing directives that limit what a service
 can do — without SELinux and without containers. These are defence-in-depth
@@ -278,4 +281,4 @@ This gives a security score and a list of hardening improvements available.
 → [Journald Retention and Forwarding](04-journald-retention.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

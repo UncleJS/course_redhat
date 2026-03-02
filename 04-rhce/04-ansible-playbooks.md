@@ -1,4 +1,7 @@
 # Ansible Playbooks — Tasks and Handlers
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 A **playbook** is a YAML file that describes the desired state of one or more
 managed nodes. It is the core artifact of Ansible automation.
@@ -271,4 +274,4 @@ ansible-playbook site.yml --skip-tags packages
 → [Variables, Templates, and Files](05-ansible-vars-templates.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

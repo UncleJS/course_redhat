@@ -1,4 +1,7 @@
 # Logs and journalctl
+[![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
+[![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
+[![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 systemd captures all service output in the **journal** — a binary, indexed
 log store. `journalctl` is your primary tool for reading it.
@@ -208,4 +211,4 @@ in `/var/log/` still exist:
 → [Scheduling (timers + cron)](07-scheduling.md)
 ---
 
-© 2026 Jaco Steyn — Licensed under CC BY-SA 4.0
+© 2026 UncleJS — Licensed under CC BY-NC-SA 4.0
