@@ -1,3 +1,18 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Lab - Podman Secrets Rotation
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -43,6 +58,9 @@ Create a containerized application that reads a database password from a Podman 
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Success Criteria
 
 - [ ] Secret created via `podman secret create` (never written to a file)
@@ -53,6 +71,9 @@ Create a containerized application that reads a database password from a Podman 
 - [ ] Old secret version confirmed absent after rotation
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Background
 
@@ -338,6 +359,9 @@ $ rm -rf ~/secret-lab
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Common Failures
 
 | Symptom | Likely Cause | Fix |
@@ -350,6 +374,9 @@ $ rm -rf ~/secret-lab
 | `podman secret rm` fails with "secret in use" | Container still running and using the secret | Stop the container first, then remove the old secret |
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Production Notes
 
@@ -380,6 +407,9 @@ In real environments:
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Recap
 
 You created a secret, injected it into a container via Quadlet, verified it was never exposed on the process list or in environment variables, rotated it to a new version with a constant in-container path, and cleaned up the old version. This complete lifecycle is the production-grade secret management pattern for Podman on RHEL 10.
@@ -392,6 +422,9 @@ You created a secret, injected it into a container via Quadlet, verified it was 
 ## Next step
 
 → [Networking: L2 Concepts](../../networking/04-l2-concepts.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

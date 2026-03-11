@@ -1,3 +1,18 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Lab - Rootless Web Server with Quadlet
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -43,6 +58,9 @@ Deploy a rootless Nginx container as a persistent systemd user service using a Q
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Success Criteria
 
 - [ ] Quadlet `.container` file created under `~/.config/containers/systemd/`
@@ -52,6 +70,9 @@ Deploy a rootless Nginx container as a persistent systemd user service using a Q
 - [ ] Container runs as the student UID (verified with `podman ps`)
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Background
 
@@ -298,6 +319,9 @@ $ sudo firewall-cmd --reload
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Common Failures
 
 | Symptom | Likely Cause | Fix |
@@ -311,6 +335,9 @@ $ sudo firewall-cmd --reload
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Why This Matters in Production
 
 - **Attack surface reduction:** rootless containers cannot escalate to root even if the application is compromised.
@@ -319,6 +346,9 @@ $ sudo firewall-cmd --reload
 - **Separation of duty:** developers ship a container image; the `.container` file is the ops-owned deployment descriptor.
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Recap
 
@@ -336,6 +366,9 @@ You deployed an Nginx container as a rootless systemd user service using Quadlet
 ## Next step
 
 → [Lab: Secrets Rotation](02-secrets-rotate.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

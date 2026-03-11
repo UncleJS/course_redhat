@@ -1,3 +1,6 @@
+
+[↑ Back to TOC](#toc)
+
 # Audit Workflow — ausearch, sealert, audit2why
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -209,9 +212,15 @@ sudo setenforce 1            # back to enforcing
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Lab: Non-Default Port](labs/01-nondefault-port.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

@@ -1,3 +1,15 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Lab: Static IP + DNS Validation
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -30,6 +42,9 @@
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Success criteria
 
 - VM has a manually configured static IP address
@@ -39,6 +54,9 @@
 - Configuration survives a reboot
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Steps
 
@@ -150,6 +168,9 @@ sudo nmcli connection up "<CONNECTION-NAME>"
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Why this matters in production
 
 Servers rarely use DHCP. Static addressing ensures predictable access, stable
@@ -159,9 +180,15 @@ work that follows.
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Lab — Create a systemd Service](02-systemd-service.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

@@ -1,3 +1,6 @@
+
+[↑ Back to TOC](#toc)
+
 # tcpdump Guided Debugging
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -228,9 +231,15 @@ Example:
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [VLAN, Bridge, Bond Concepts](04-l2-concepts.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

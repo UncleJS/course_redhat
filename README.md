@@ -1,3 +1,6 @@
+
+[↑ Back to TOC](#toc)
+
 # Red Hat Enterprise Linux 10 — Beginner to RHCA
 
 > **Note:** This guide does not promise exam coverage. It teaches the real-world
@@ -214,6 +217,9 @@ Read the [Lab Workflow](00-preface/02-labs.md) page before starting your first l
 
 Full details in [Conventions](00-preface/03-conventions.md).
 
+
+
+[↑ Back to TOC](#toc)
 
 ## License
 

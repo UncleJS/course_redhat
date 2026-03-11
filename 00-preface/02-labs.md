@@ -1,3 +1,33 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Lab Workflow — Snapshots and Safety
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -7,6 +37,9 @@
 
 > **Take a VM snapshot before every lab.** If something goes wrong, revert
 > and start over. Snapshots are free and save enormous time.
+
+
+[↑ Back to TOC](#toc)
 
 ## Recommended VM setup
 
@@ -77,12 +110,33 @@ VBoxManage snapshot "rhel10-lab" restore "before-lab-20260223"
 Every lab in this guide has the same structure:
 
 ```
+
+[↑ Back to TOC](#toc)
+
 ## Prerequisites
+
+[↑ Back to TOC](#toc)
+
 ## Estimated time
+
+[↑ Back to TOC](#toc)
+
 ## Success criteria
+
+[↑ Back to TOC](#toc)
+
 ## Steps  (numbered, with Verify checkpoints inline)
+
+[↑ Back to TOC](#toc)
+
 ## Cleanup
+
+[↑ Back to TOC](#toc)
+
 ## Common failures
+
+[↑ Back to TOC](#toc)
+
 ## Why this matters in production
 ```
 
@@ -90,6 +144,9 @@ Read the **Success criteria** section first — it tells you exactly what "done"
 looks like before you start typing.
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Verify checkpoints
 
@@ -150,9 +207,15 @@ single-VM variant where possible.
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Conventions (Prompts, Paths, Editors)](03-conventions.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

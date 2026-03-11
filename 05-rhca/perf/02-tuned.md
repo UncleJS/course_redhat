@@ -1,3 +1,15 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # tuned — Profile-Based System Tuning
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -357,6 +369,9 @@ $ sudo rm -rf /etc/tuned/rhca-latency
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Common Failures
 
 | Symptom | Likely Cause | Fix |
@@ -370,6 +385,9 @@ $ sudo rm -rf /etc/tuned/rhca-latency
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Why This Matters in Production
 
 A server running the wrong `tuned` profile can:
@@ -381,6 +399,9 @@ A server running the wrong `tuned` profile can:
 Setting the correct profile at provisioning time (via Ansible: `community.general.tuned` role or `command: tuned-adm profile`) eliminates an entire class of unexplained performance problems.
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Recap
 
@@ -409,9 +430,15 @@ Setting the correct profile at provisioning time (via Ansible: `community.genera
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Recovery Patterns](03-recovery-patterns.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

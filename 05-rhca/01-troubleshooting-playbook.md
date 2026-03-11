@@ -1,3 +1,6 @@
+
+[↑ Back to TOC](#toc)
+
 # Troubleshooting Playbook — First 10 Minutes
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -265,9 +268,15 @@ Before escalating, document:
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Advanced systemd](02-systemd-advanced.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

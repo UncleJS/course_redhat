@@ -1,3 +1,12 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Single-VM Lab Setup
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -45,6 +54,9 @@ A single RHEL 10 VM covers 95% of the labs in this guide. This page walks throug
 - RHEL 10 ISO downloaded
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Step 1 — Install KVM and virt-install (Host)
 
@@ -304,6 +316,9 @@ Before moving on to Chapter 1:
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Troubleshooting
 
 | Problem | Fix |
@@ -329,9 +344,15 @@ Before moving on to Chapter 1:
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Multi-VM Lab Setup](03-multi-vm.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

@@ -180,6 +180,9 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 ## Next step
 
 → [Glossary](02-glossary.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

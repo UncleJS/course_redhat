@@ -1,3 +1,18 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Lab: Non-Default Port — Correct SELinux Fix
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -32,6 +47,9 @@
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Success criteria
 
 - httpd serves content on port 9090
@@ -40,6 +58,9 @@
 - firewalld is correctly configured for port 9090
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Steps
 
@@ -164,6 +185,9 @@ sudo vim /etc/httpd/conf/httpd.conf   # change Listen 9090 back to Listen 80
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Common failures
 
 | Symptom | Likely cause | Fix |
@@ -175,6 +199,9 @@ sudo vim /etc/httpd/conf/httpd.conf   # change Listen 9090 back to Listen 80
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Why this matters in production
 
 Microservices, custom applications, and legacy software commonly run on
@@ -184,9 +211,15 @@ Skipping either step creates either a security gap or a broken service.
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [RHCA Containers: Podman Fundamentals](../../containers/01-podman-fundamentals.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

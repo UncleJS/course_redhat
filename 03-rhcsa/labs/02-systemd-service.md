@@ -1,3 +1,18 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Lab: Create a systemd Service
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -27,6 +42,9 @@
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Success criteria
 
 - A custom systemd service runs a script on boot
@@ -35,6 +53,9 @@
 - A failure scenario is understood and debugged
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Steps
 
@@ -220,6 +241,9 @@ sudo systemctl daemon-reload
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Common failures
 
 | Symptom | Likely cause | Fix |
@@ -231,6 +255,9 @@ sudo systemctl daemon-reload
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Why this matters in production
 
 This pattern — a script, a service unit, and a timer — is the foundation for
@@ -240,9 +267,15 @@ units is a daily skill for RHEL administrators.
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Lab — LVM + XFS Grow](03-lvm-xfs-grow.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

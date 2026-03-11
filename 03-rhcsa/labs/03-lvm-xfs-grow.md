@@ -1,3 +1,18 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Lab: LVM + XFS Grow
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -31,6 +46,9 @@
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Success criteria
 
 - An LVM volume group `labvg` created on `/dev/vdb`
@@ -39,6 +57,9 @@
 - Mount persists across reboot
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Steps
 
@@ -213,6 +234,9 @@ sudo rmdir /mnt/labdata
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Common failures
 
 | Symptom | Likely cause | Fix |
@@ -224,6 +248,9 @@ sudo rmdir /mnt/labdata
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Why this matters in production
 
 Running out of disk space on a server is one of the most common (and
@@ -233,9 +260,15 @@ This is a fundamental skill for any RHEL admin.
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Lab — Fix a SELinux Label Issue](04-selinux-label-fix.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

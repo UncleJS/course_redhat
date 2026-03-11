@@ -1,3 +1,6 @@
+
+[↑ Back to TOC](#toc)
+
 # Install a RHEL 10 Lab VM
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -145,9 +148,15 @@ Once registered, your system has access to all RHEL 10 repositories.
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [First Boot Checklist](02-first-boot.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

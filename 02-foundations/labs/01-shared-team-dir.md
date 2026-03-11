@@ -1,3 +1,18 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Lab: Shared Team Directory
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -30,6 +45,9 @@
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Success criteria
 
 By the end of this lab:
@@ -41,6 +59,9 @@ By the end of this lab:
 - You can demonstrate each access level works correctly
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Steps
 
@@ -206,6 +227,9 @@ sudo groupdel devteam
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Common failures
 
 | Symptom | Likely cause | Fix |
@@ -217,6 +241,9 @@ sudo groupdel devteam
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Why this matters in production
 
 Shared project directories in development or CI environments need exactly this
@@ -227,9 +254,15 @@ errors, files owned by the wrong user, and security gaps.
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Packages and Repos (dnf)](../../03-rhcsa/01-packages-dnf.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

@@ -1,3 +1,12 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Recovery Patterns
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -440,6 +449,9 @@ $ sudo lvextend -r -L +5G /dev/rhel/root   # -r resizes the filesystem too
 Copy this into your runbook for any new recovery scenario:
 
 ```markdown
+
+[↑ Back to TOC](#toc)
+
 ## Recovery - <Scenario Name>
 
 **Trigger:** What condition makes this runbook active  
@@ -484,6 +496,9 @@ RHCA candidates are expected to execute these procedures quickly and correctly u
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Recap
 
 | Scenario | Entry Point | Key Command |
@@ -513,9 +528,15 @@ RHCA candidates are expected to execute these procedures quickly and correctly u
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Objective Map](../../98-reference/01-objective-map.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

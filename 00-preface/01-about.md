@@ -1,3 +1,21 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # About This Guide
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -12,6 +30,9 @@ This guide exists to give Linux newcomers and experienced admins alike a single,
 structured path through Red Hat Enterprise Linux 10 — from opening a terminal
 for the first time to designing resilient infrastructure.
 
+
+[↑ Back to TOC](#toc)
+
 ## What makes it different
 
 - **Beginner-safe language**: every concept is explained before it is used.
@@ -21,6 +42,9 @@ for the first time to designing resilient infrastructure.
   the correct alternative shown.
 - **RHCA-aligned depth**: the advanced chapters cover the reasoning and design
   thinking expected at architect level — not just "run this command".
+
+
+[↑ Back to TOC](#toc)
 
 ## Scope
 
@@ -32,6 +56,9 @@ for the first time to designing resilient infrastructure.
 | Ansible fundamentals | Advanced Ansible Tower/AAP |
 | Core RHEL networking | SDN / OVN |
 
+
+[↑ Back to TOC](#toc)
+
 ## Versions and testing
 
 Commands in this guide were tested on:
@@ -39,11 +66,17 @@ Commands in this guide were tested on:
 - **RHEL 10.0** (minimal install, 2 vCPU, 2 GB RAM, 20 GB disk)
 - Each lab page lists the exact package versions used.
 
+
+[↑ Back to TOC](#toc)
+
 ## Contributing
 
 Found an error or want to add a lab? Open an issue or pull request in the
 repository. All contributions must follow the [Conventions](03-conventions.md)
 style guide and include a working `Verify` section.
+
+
+[↑ Back to TOC](#toc)
 
 ## License
 
@@ -77,9 +110,15 @@ License](https://creativecommons.org/licenses/by/4.0/).
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Lab Workflow (Snapshots, Safety)](02-labs.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

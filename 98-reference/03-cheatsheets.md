@@ -464,6 +464,9 @@ sudo tuned-adm profile myprofile
 ## Next step
 
 → [Further Reading](04-further-reading.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

@@ -1,3 +1,12 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Multi-VM Lab Setup
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -48,6 +57,9 @@ All three VMs share a private `labnet` libvirt network (192.168.100.0/24) in add
 - RHEL 10 ISO available
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Step 1 — Create the Private Lab Network
 
@@ -346,6 +358,9 @@ $ sudo virsh list --all
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Troubleshooting
 
 | Problem | Fix |
@@ -371,9 +386,15 @@ $ sudo virsh list --all
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [Back to Contents](../README.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

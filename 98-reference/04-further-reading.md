@@ -186,6 +186,9 @@ Curated resources to deepen your understanding beyond this guide. All Red Hat do
 ## Next step
 
 → [Back to Contents](../README.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0

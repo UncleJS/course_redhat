@@ -1,3 +1,18 @@
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
+
+[↑ Back to TOC](#toc)
+
 # Lab: Fix a SELinux Label Issue
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -31,6 +46,9 @@
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Success criteria
 
 - httpd serves content from `/var/www/html/` correctly
@@ -39,6 +57,9 @@
 - AVC denials are visible in audit log before the fix and absent after
 
 ---
+
+
+[↑ Back to TOC](#toc)
 
 ## Steps
 
@@ -205,6 +226,9 @@ sudo systemctl daemon-reload
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Common failures
 
 | Symptom | Likely cause | Fix |
@@ -216,6 +240,9 @@ sudo systemctl daemon-reload
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Why this matters in production
 
 SELinux label problems are the single most common SELinux issue admins
@@ -226,9 +253,15 @@ workflow is always: `semanage fcontext -a` → `restorecon -Rv` — never
 
 ---
 
+
+[↑ Back to TOC](#toc)
+
 ## Next step
 
 → [RHCE: Automation Mindset](../../04-rhce/01-automation-mindset.md)
+
+[↑ Back to TOC](#toc)
+
 ---
 
 © 2026 UncleJS — Licensed under CC BY-NC-SA 4.0
