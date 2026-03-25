@@ -10,6 +10,26 @@
 
 When a system is slow, the instinct is to immediately tune or add hardware. The disciplined approach is **triage first**: identify the constrained resource, confirm the bottleneck, then act. This chapter provides a repeatable triage workflow covering CPU, memory, disk I/O, and network.
 
+Performance triage at the RHCA level is a structured investigation, not
+intuition. Systems that appear CPU-bound are often I/O-bound when examined
+carefully; systems that appear memory-starved are often misconfigured (wrong
+`tuned` profile, huge pages disabled, excessive swap). The Brendan Gregg USE
+Method — measure Utilisation, Saturation, and Errors for every resource — is
+the framework that prevents premature conclusions.
+
+The mental model: every performance problem is a queue building up somewhere.
+CPU saturation means the run queue is longer than the number of CPUs. Memory
+pressure means the page reclaim queue is always active. Disk I/O saturation
+means the device queue depth is sustained at maximum. Network problems mean
+the socket send/receive queues are filling and TCP retransmits are occurring.
+Find the queue. Find what is filling it. Fix the root cause.
+
+Getting triage wrong in production leads to "fixes" that add hardware cost
+without solving the problem, or tuning changes that improve one metric while
+degrading another. RHCA candidates are expected to diagnose bottlenecks from
+first principles using standard RHEL tools — not rely on "add more RAM" as
+the default answer.
+
 
 [↑ Back to TOC](#toc)
 
@@ -19,6 +39,7 @@ When a system is slow, the instinct is to immediately tune or add hardware. The 
 ## Table of contents
 
 - [Overview](#overview)
+- [Triage decision tree](#triage-decision-tree)
 - [The Triage Hierarchy](#the-triage-hierarchy)
 - [Quick Assessment — First 60 Seconds](#quick-assessment-first-60-seconds)
   - [Reading Load Average](#reading-load-average)
@@ -42,14 +63,38 @@ When a system is slow, the instinct is to immediately tune or add hardware. The 
   - [TCP retransmits and errors](#tcp-retransmits-and-errors)
   - [Bandwidth utilization](#bandwidth-utilization)
   - [Connection table saturation](#connection-table-saturation)
+- [Worked example — I/O-bound database server](#worked-example-io-bound-database-server)
+- [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [Putting It Together — Triage Worksheet](#putting-it-together-triage-worksheet)
 - [Useful One-Liners Reference](#useful-one-liners-reference)
 - [Recap](#recap)
 
 
+## Triage decision tree
+
+```mermaid
+flowchart TD
+    A["Slow system reported"] --> B{"Load average<br/>> CPU count?"}
+    B -- "Yes" --> C{"wa column<br/>high in vmstat?"}
+    B -- "No" --> D["Check specific<br/>service logs"]
+    C -- "Yes" --> E["Disk I/O bottleneck<br/>check iostat / iotop"]
+    C -- "No" --> F{"sy column<br/>high?"}
+    F -- "Yes" --> G["Kernel busy<br/>check context switches<br/>strace -c"]
+    F -- "No" --> H{"us column<br/>high?"}
+    H -- "Yes" --> I["User-space CPU<br/>check top / pidstat"]
+    H -- "No" --> J{"Memory:<br/>swap active?"}
+    J -- "Yes" --> K["Memory pressure<br/>check free / vmstat si/so"]
+    J -- "No" --> L["Network issues<br/>check ss / ip -s link"]
+```
+
+
+[↑ Back to TOC](#toc)
+
+---
+
 ## The Triage Hierarchy
 
-```
+```text
 Is the system responding?
   └── Yes → Are processes stuck or thrashing?
         └── Check CPU / Memory first
@@ -354,11 +399,161 @@ $ sysctl net.nf_conntrack_max net.netfilter.nf_conntrack_count
 
 ---
 
+## Worked example — I/O-bound database server
+
+**Scenario:** A PostgreSQL server on RHEL 10 has been experiencing slow query
+times since a bulk data import was run overnight. The DBA reports that queries
+that previously took 50ms now take 2–8 seconds. Load average is 1.8 on a
+4-core host (not CPU saturated).
+
+**Step 1 — quick assessment**
+
+```bash
+uptime
+# load average: 1.82, 1.75, 1.91  (below CPU count of 4 — not CPU bound)
+
+free -m
+#               total   used   free  available
+# Mem:          15823   9412    312      5834
+# Swap:          4095    234   3861
+# Swap is in use — investigate
+```
+
+**Step 2 — CPU breakdown with vmstat**
+
+```bash
+vmstat 1 5
+# r  b  ... us sy id wa st
+# 1  3  ...  8  4 12 76  0
+#            ^         ^
+#            low CPU   HIGH I/O wait (76%)
+```
+
+`wa=76` confirms the bottleneck is disk I/O, not CPU.
+
+**Step 3 — identify the I/O hot spot**
+
+```bash
+iostat -x 1 5
+# Device   r/s   w/s   rkB/s   wkB/s  await  %util
+# vda     0.00  980.0  0.00  62720.0   89.1   99.8
+# vda is 99.8% utilized, await 89ms — severely saturated
+```
+
+```bash
+sudo iotop -o -b -n 3
+# TID  PRIO  USER   DISK READ   DISK WRITE   COMMAND
+# 1842  BE/4 postgres  0 B/s   61.2 MiB/s  postgres: autovacuum
+```
+
+The PostgreSQL autovacuum process is generating 61 MB/s of writes, saturating
+the single vda volume.
+
+**Step 4 — confirm no memory pressure is compounding the issue**
+
+```bash
+vmstat 1 5 | awk 'NR>2 {print "si="$7 " so="$8}'
+# si=0 so=12  ← small amount of swap-out; not the primary driver
+```
+
+**Step 5 — root cause and fix**
+
+The bulk import left dead tuples that triggered aggressive autovacuum. The
+storage is a single HDD with `mq-deadline` scheduler — appropriate, but the
+write load is simply above its throughput ceiling.
+
+```bash
+# Short-term: throttle autovacuum to allow normal queries
+sudo -u postgres psql -c "ALTER TABLE large_table SET (autovacuum_cost_delay = 50);"
+
+# Verify I/O drops
+iostat -x 1 3
+# vda %util drops from 99.8% to 35% — queries resume normal latency
+
+# Long-term: move PostgreSQL data directory to faster storage (NVMe)
+# or use tablespaces to distribute I/O
+```
+
+**Step 6 — document findings**
+
+```text
+Bottleneck: Disk I/O (vda %util 99.8%, await 89ms)
+Root cause: PostgreSQL autovacuum triggered by overnight bulk import
+Short-term fix: autovacuum cost delay throttling
+Long-term fix: migrate data directory to NVMe volume
+Before: query latency 2-8s, iostat await 89ms
+After:  query latency <100ms, iostat await <5ms
+```
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Common mistakes and how to diagnose them
+
+**1. Concluding CPU is the bottleneck because load average is high**
+
+Symptom: Load average is 6 on a 4-core system, so you suspect CPU. But CPU
+`us+sy` is only 20%.
+Diagnosis: `vmstat` shows `wa=75`. The load average includes processes
+waiting on I/O (D-state), not just CPU-runnable processes.
+Fix: Check `iostat -x` for disk saturation. High load + low CPU + high wa =
+I/O bottleneck, not CPU.
+
+**2. Using `free` column instead of `available`**
+
+Symptom: `free -m` shows only 200 MB free. Alarm raised about memory
+starvation. But performance is normal.
+Diagnosis: The `available` column is 4.5 GB — reclaimable cache is abundant.
+Fix: Use the `available` column for capacity decisions, not `free`.
+
+**3. Not checking inode exhaustion**
+
+Symptom: Application fails with "No space left on device" but `df -h` shows
+80% free.
+Diagnosis: `df -ih` shows `IUse% = 100%` on `/var/spool` or `/tmp`.
+Fix: Find and remove the inode hog using
+`find /var/spool -xdev -printf '%h\n' | sort | uniq -c | sort -rn | head`.
+
+**4. Ignoring `st` (stolen CPU time) in VMs**
+
+Symptom: VM appears CPU-saturated but `top` shows no individual process
+consuming high CPU. Mysteriously slow.
+Diagnosis: `vmstat` shows `st > 5%` — the hypervisor is stealing CPU cycles
+from this VM to service other guests.
+Fix: This is a hypervisor scheduling problem, not an OS problem. Escalate to
+the virtualisation team or migrate the VM to a less-contended host.
+
+**5. Using `kill -9` on a process in D state**
+
+Symptom: A process is stuck in uninterruptible sleep (D state). Sending
+SIGKILL does nothing — the process remains.
+Diagnosis: `ps aux | awk '$8=="D"'` — process in D state cannot be killed
+with SIGKILL because it is waiting inside a kernel I/O operation.
+Fix: The underlying I/O must complete or fail. Check `iostat` and
+`dmesg | grep -i error` for storage errors. If NFS, check the NFS server.
+The process will either complete or need a reboot if the storage is
+permanently unavailable.
+
+**6. Tuning before measuring a baseline**
+
+Symptom: After changing `vm.swappiness` and `vm.dirty_ratio`, performance
+is worse. Cannot determine which change caused it.
+Fix: Capture a full triage worksheet (load average, `vmstat`, `iostat`,
+`free`, `ss -s`) before any tuning change. Make one change at a time.
+Measure again. Revert if performance degrades.
+
+
+[↑ Back to TOC](#toc)
+
+---
+
 ## Putting It Together — Triage Worksheet
 
 When responding to a performance issue, capture these data points before making changes:
 
-```
+```text
 Date/Time of investigation:
 Reported symptom:
 

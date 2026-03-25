@@ -9,6 +9,23 @@
 A complete real-world playbook that installs nginx, configures firewalld, and
 handles SELinux correctly — the three pillars of RHEL service deployment.
 
+Service deployment on RHEL is never just "install the package and start the
+service". Two security subsystems gate every service before it can accept
+network connections: **firewalld** controls network access at the packet level,
+and **SELinux** enforces mandatory access control at the process and file level.
+Both must be configured correctly, or the service silently fails — the port
+is open but traffic is blocked by the firewall, or the service starts but
+cannot read its configuration because the file context is wrong.
+
+The patterns in this chapter are the direct answer to the most common RHCE
+practical exam failures: services that the candidate installed and configured
+correctly, but which never became reachable because firewalld or SELinux was
+not handled. Ansible makes this reliable by encoding all three concerns —
+software, firewall, MAC — in the same role. Deploy once, get everything.
+
+Every section of this chapter references the project in chapter 07. Work
+through the lab in `labs/02-role-web-deploy.md` after reading this chapter.
+
 ---
 <a name="toc"></a>
 
@@ -25,11 +42,13 @@ handles SELinux correctly — the three pillars of RHEL service deployment.
 - [`site.yml`](#siteyml)
 - [Run it](#run-it)
 - [Verify](#verify)
+- [SELinux and firewalld reference](#selinux-and-firewalld-reference)
+- [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 
 
 ## Project structure
 
-```
+```text
 web-deploy/
   ansible.cfg
   inventory.ini
@@ -85,9 +104,6 @@ nginx_port=80
 ## `roles/nginx/defaults/main.yml`
 
 ```yaml
-
-[↑ Back to TOC](#toc)
-
 ---
 nginx_port: 80
 nginx_root: /var/www/html
@@ -99,9 +115,6 @@ nginx_user: nginx
 ## `roles/nginx/tasks/main.yml`
 
 ```yaml
-
-[↑ Back to TOC](#toc)
-
 ---
 - name: Install nginx
   ansible.builtin.dnf:
@@ -174,9 +187,6 @@ nginx_user: nginx
 ## `roles/nginx/handlers/main.yml`
 
 ```yaml
-
-[↑ Back to TOC](#toc)
-
 ---
 - name: Reload nginx
   ansible.builtin.service:
@@ -193,7 +203,7 @@ nginx_user: nginx
 
 ## `roles/nginx/templates/nginx.conf.j2`
 
-```nginx
+```jinja2
 user {{ nginx_user }};
 worker_processes auto;
 error_log /var/log/nginx/error.log;
@@ -244,9 +254,6 @@ http {
 ## `site.yml`
 
 ```yaml
-
-[↑ Back to TOC](#toc)
-
 ---
 - name: Deploy nginx web server
   hosts: webservers
@@ -261,8 +268,11 @@ http {
 ## Run it
 
 ```bash
+# Validate YAML syntax before anything else
+ansible-playbook site.yml --syntax-check
+
 # Dry run first
-ansible-playbook site.yml --check
+ansible-playbook site.yml --check --diff
 
 # Apply
 ansible-playbook site.yml
@@ -279,12 +289,110 @@ ansible-playbook site.yml -v
 ## Verify
 
 ```bash
-# From control node
+# HTTP response from control node
 curl http://192.168.1.101/
 ```
 
 Expected: `Deployed by Ansible`
 
+```bash
+# Confirm firewalld rule is active
+ansible webservers -m ansible.builtin.command -a "firewall-cmd --list-all"
+
+# Confirm SELinux context on web root
+ansible webservers -m ansible.builtin.command -a "ls -lZ /var/www/html/"
+
+# Confirm nginx is running and enabled
+ansible webservers -m ansible.builtin.service_facts
+```
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## SELinux and firewalld reference
+
+### SELinux contexts for web services
+
+| Directory / file | Correct SELinux type | Purpose |
+|---|---|---|
+| `/var/www/html` | `httpd_sys_content_t` | Standard web content — read-only for httpd |
+| `/var/www/html/uploads` | `httpd_sys_rw_content_t` | Content httpd can write |
+| `/etc/nginx/nginx.conf` | `httpd_config_t` | Service configuration |
+| `/var/log/nginx/` | `httpd_log_t` | Service log files |
+
+Use `setype:` in `ansible.builtin.file` and `ansible.builtin.copy` tasks to
+set context inline. For directories that already exist, use
+`community.general.sefcontext` plus `ansible.builtin.command: restorecon -Rv`:
+
+```yaml
+- name: Set SELinux context on custom web root
+  community.general.sefcontext:
+    target: '/srv/webapp(/.*)?'
+    setype: httpd_sys_content_t
+    state: present
+
+- name: Apply SELinux context
+  ansible.builtin.command: restorecon -Rv /srv/webapp
+  changed_when: false
+```
+
+### SELinux booleans for common services
+
+| Boolean | Effect |
+|---|---|
+| `httpd_can_network_connect` | Allow nginx/httpd to make outbound network connections |
+| `httpd_can_network_connect_db` | Allow httpd to connect to a database |
+| `httpd_use_nfs` | Allow httpd to serve content from NFS mounts |
+
+```yaml
+- name: Allow nginx to connect to upstream
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+```
+
+### firewalld zones
+
+| Zone | Default trust | Use for |
+|---|---|---|
+| `public` | Untrusted | Internet-facing interfaces |
+| `internal` | Trusted | Internal network interfaces |
+| `dmz` | Partial trust | DMZ hosts |
+
+Always specify the zone in playbooks to avoid relying on the default:
+
+```yaml
+- name: Allow https in the public zone
+  ansible.posix.firewalld:
+    service: https
+    zone: public
+    state: enabled
+    permanent: true
+    immediate: true
+```
+
+> **Exam tip:** If a service is installed and running but not reachable, check
+> firewalld first (`firewall-cmd --list-all`), then SELinux (`ausearch -m
+> AVC -ts recent`). These two are responsible for the majority of "service
+> works locally but not remotely" failures.
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Common mistakes and how to diagnose them
+
+| Mistake | Symptom | Fix |
+|---|---|---|
+| `firewalld` rule added without `immediate: true` | Rule is permanent but not active until next reboot | Always set both `permanent: true` and `immediate: true` |
+| Wrong SELinux type on custom web root | nginx starts, serves 403 Forbidden | Set `setype: httpd_sys_content_t`; run `restorecon -Rv /custom/path` |
+| Non-standard port not registered in SELinux | nginx fails to start; audit log shows AVC denial | Use `community.general.seport` to add the port to `http_port_t` |
+| `validate:` path incorrect in template task | Task fails with "command not found" | Use the full path: `validate: /usr/sbin/nginx -t -c %s` |
+| SELinux in Permissive mode masking real problems | Playbook runs fine in lab, fails in production (Enforcing) | Never test with `setenforce 0`; test in Enforcing mode from the start |
+| `ansible.posix` collection not installed | `ERROR! couldn't resolve module/action 'ansible.posix.firewalld'` | `ansible-galaxy collection install ansible.posix` |
 
 [↑ Back to TOC](#toc)
 

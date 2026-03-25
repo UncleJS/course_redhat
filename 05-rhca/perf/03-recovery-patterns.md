@@ -16,8 +16,24 @@
 
 This chapter covers the systematic recovery procedures an RHCA-level administrator must execute under pressure: boot failures, corrupted filesystems, forgotten root passwords, broken SELinux contexts, and unresponsive systemd services. Each pattern follows a Diagnose → Recover → Verify → Prevent structure.
 
+Recovery procedures are the most time-critical tasks an RHCA engineer faces.
+Unlike configuration or performance work, recovery happens during active
+outages — every minute of uncertainty costs money and erodes stakeholder
+trust. The difference between a 15-minute recovery and a 4-hour outage is
+not technical brilliance; it is practised, documented procedures executed
+without hesitation.
 
-[↑ Back to TOC](#toc)
+The mental model: each recovery pattern is a runbook. A runbook has a
+trigger condition, a set of pre-conditions to verify before proceeding, an
+ordered sequence of commands, and success criteria. Knowing *which* runbook
+to activate — and activating the right one quickly — is the RHCA-level skill.
+Knowing the commands but not the decision tree still leads to wasted time
+trying Pattern 1 when Pattern 3 was indicated.
+
+The recovery patterns in this chapter are ordered by frequency: root password
+resets and filesystem recovery happen in every RHEL environment over time.
+Boot target manipulation and kernel rollbacks are less frequent but more
+severe. All of them appear in the RHCA exam environment.
 
 ---
 <a name="toc"></a>
@@ -50,6 +66,7 @@ This chapter covers the systematic recovery procedures an RHCA-level administrat
 - [Pattern 6 — Boot to Last Known Good Kernel](#pattern-6-boot-to-last-known-good-kernel)
 - [Pattern 7 — Network Unreachable After Config Change](#pattern-7-network-unreachable-after-config-change)
 - [Pattern 8 — Disk Full Recovery](#pattern-8-disk-full-recovery)
+- [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [Recovery Runbook Template](#recovery-runbook-template)
 - [Recovery - <Scenario Name>](#recovery-scenario-name)
   - [Steps](#steps)
@@ -72,7 +89,7 @@ At the GRUB menu, press `e` to edit the default boot entry.
 
 Find the line beginning with `linux` and add `rd.break` at the end:
 
-```
+```text
 linux /vmlinuz-... root=/dev/vda3 ro ... rd.break
 ```
 
@@ -104,6 +121,11 @@ switch_root:/# exit
 The system will perform an SELinux relabel (takes 2–5 minutes on a full disk), then reboot normally.
 
 > **Why `/.autorelabel`?** The `passwd` command was run outside of a running SELinux context. Without relabeling, the `/etc/shadow` file may have the wrong label and logins will fail with a PAM SELinux error.
+
+> **Exam tip:** On RHEL 10, `rd.break` drops you into an initramfs shell
+> where `/sysroot` is the real root filesystem. You must `chroot /sysroot`
+> before `passwd` works on the real `/etc/shadow`. Forgetting the chroot
+> changes the initramfs shadow, not the system shadow.
 
 
 [↑ Back to TOC](#toc)
@@ -139,12 +161,29 @@ $ sudo systemctl isolate rescue.target
 
 ### Recovery decision tree
 
-```
+```text
 System won't boot normally
   ├── Reaches GRUB? → Yes → use rd.break or systemd.unit=emergency.target
   │                   No  → boot from RHEL install media → Troubleshoot mode
   ├── Mounts root?  → No  → filesystem corruption → see Pattern 3
   └── Fails in service start → journalctl -b -1 -p err → disable failing unit
+```
+
+**Diagnosing service failures from emergency target:**
+
+```bash
+# From emergency target, root FS is mounted read-only
+mount -o remount,rw /
+
+# List failed units
+systemctl list-units --failed
+
+# Check the specific failing unit's journal
+journalctl -u <failing-unit> -b
+
+# Temporarily disable the unit to allow normal boot
+systemctl disable <failing-unit>
+reboot
 ```
 
 
@@ -438,6 +477,66 @@ $ sudo lvextend -r -L +5G /dev/rhel/root   # -r resizes the filesystem too
 ```
 
 > **`-r` flag on `lvextend`** resizes the filesystem atomically with the LV expansion — always use it.
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Common mistakes and how to diagnose them
+
+**1. Forgetting `touch /.autorelabel` after root password reset**
+
+Symptom: After the `rd.break` root password reset, the system boots normally
+but all login attempts fail with "Authentication failure" or a PAM error.
+Diagnosis: `/etc/shadow` has been written outside an SELinux context and now
+has a wrong label. `ls -Z /etc/shadow` shows `unlabeled_t` or `default_t`.
+Fix: Boot into emergency target, `chroot /sysroot`, `touch /.autorelabel`,
+reboot. The relabel restores `shadow_t` on `/etc/shadow`.
+
+**2. Running `xfs_repair` on a mounted filesystem**
+
+Symptom: `xfs_repair` reports "filesystem is mounted, cannot repair".
+Diagnosis: `mount | grep /dev/vdX` confirms the filesystem is mounted.
+Fix: `umount /dev/vdX` first. If it is the root filesystem, boot from
+`emergency.target` where root is mounted read-only, or use rescue media.
+
+**3. Masking a unit instead of disabling it**
+
+Symptom: After masking `firewalld.service` to get past a boot issue, the
+firewall is permanently disabled across reboots. No firewall protection.
+Diagnosis: `systemctl is-enabled firewalld` returns `masked`.
+Fix: `systemctl unmask firewalld` to remove the mask, then re-enable and
+investigate the original failure.
+
+**4. Not using `-r` with `lvextend`**
+
+Symptom: `lvextend -L +5G /dev/rhel/root` succeeds but `df -h` still
+shows the old filesystem size.
+Diagnosis: The LV was extended but the XFS filesystem was not resized.
+Fix: `xfs_growfs /` (for XFS root) to grow the filesystem to fill the LV.
+Use `lvextend -r -L +5G /dev/rhel/root` in future — the `-r` flag calls
+`resize2fs` (ext4) or `xfs_growfs` (XFS) automatically.
+
+**5. Attempting `kill -9` on a D-state process**
+
+Symptom: Process stuck in uninterruptible sleep (`D` state in `ps aux`).
+SIGKILL has no effect.
+Diagnosis: The process is waiting inside the kernel on an I/O operation.
+The kernel will not deliver the signal until the I/O completes.
+Fix: Identify the underlying I/O with `lsof -p <pid>` and `dmesg`. If the
+storage device has failed, the process will remain stuck until the storage
+is recovered or the system is rebooted.
+
+**6. Using rescue target when emergency target is needed**
+
+Symptom: Rescue target starts normally but mounts fail because a filesystem
+is corrupt. The rescue shell itself fails to start because it depends on
+filesystems that won't mount.
+Diagnosis: The rescue target mounts all configured filesystems. If one is
+corrupt, the rescue boot can also hang.
+Fix: Use `systemd.unit=emergency.target` instead. Emergency target mounts
+only the root filesystem read-only and starts no additional services.
 
 
 [↑ Back to TOC](#toc)

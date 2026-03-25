@@ -1,15 +1,6 @@
 
 [↑ Back to TOC](#toc)
 
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab: Role-Based Web Service Deploy
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -24,6 +15,9 @@
 
 ## Table of contents
 
+- [Background](#background)
+- [Prerequisites](#prerequisites)
+- [Success criteria](#success-criteria)
 - [Steps](#steps)
   - [1 — Install required collections](#1-install-required-collections)
   - [2 — Create project structure](#2-create-project-structure)
@@ -35,7 +29,31 @@
   - [8 — Write site.yml](#8-write-siteyml)
   - [9 — Run check mode then apply](#9-run-check-mode-then-apply)
   - [10 — Confirm idempotence](#10-confirm-idempotence)
+- [Cleanup](#cleanup)
+- [Troubleshooting guide](#troubleshooting-guide)
+- [Extension tasks](#extension-tasks)
 
+
+## Background
+
+A single-file playbook that deploys a web server works in a single project.
+The moment a second project needs the same web server, you face a choice:
+copy-paste the playbook (and then maintain two diverging copies) or extract
+the logic into a role that both projects share.
+
+Roles are the unit of reuse in production Ansible. A well-written nginx role
+that handles firewalld and SELinux correctly is a security baseline — every
+project that uses it automatically gets the same hardening. When a new
+SELinux policy requirement appears, you update the role once and re-run
+every project's playbook.
+
+This lab mirrors exactly the kind of task you face in the RHCE exam:
+structure a role from scratch, wire it into a playbook, verify that the
+service is accessible and that firewalld/SELinux are correctly configured.
+The three-part check (curl response, semanage port, firewall-cmd) is the
+exam verification pattern.
+
+---
 
 ## Prerequisites
 
@@ -70,12 +88,23 @@ ansible-galaxy collection install ansible.posix
 ansible-galaxy collection install community.general
 ```
 
+> **Hint:** Verify the collections installed successfully:
+> ```bash
+> ansible-galaxy collection list | grep -E 'ansible.posix|community.general'
+> ```
+> Both should appear with a version number.
+
 ### 2 — Create project structure
 
 ```bash
 mkdir ~/role-lab && cd ~/role-lab
 ansible-galaxy role init roles/nginx
 ```
+
+> **Hint:** `ansible-galaxy role init` creates the full skeleton:
+> `defaults/`, `tasks/`, `handlers/`, `templates/`, `files/`, `vars/`,
+> `meta/`. You only need to populate the ones you use — leave the others
+> with their empty `main.yml` stubs.
 
 ### 3 — Create ansible.cfg and inventory
 
@@ -98,13 +127,14 @@ localhost ansible_connection=local nginx_port=8080
 EOF
 ```
 
+> **Hint:** `nginx_port=8080` is a host variable set directly in the
+> inventory line. It overrides the role's default of `80`. This is the
+> correct mechanism for per-host customisation.
+
 ### 4 — Define role defaults
 
 ```bash
 cat > roles/nginx/defaults/main.yml << 'EOF'
-
-[↑ Back to TOC](#toc)
-
 ---
 nginx_port: 80
 nginx_root: /var/www/html
@@ -112,13 +142,14 @@ nginx_user: nginx
 EOF
 ```
 
+> **Hint:** Values in `defaults/main.yml` have the lowest priority of any
+> variable source. They are intentionally overridable. Never put secrets
+> or environment-specific values here.
+
 ### 5 — Write role tasks
 
 ```bash
 cat > roles/nginx/tasks/main.yml << 'EOF'
-
-[↑ Back to TOC](#toc)
-
 ---
 - name: Install nginx
   ansible.builtin.dnf:
@@ -179,13 +210,15 @@ cat > roles/nginx/tasks/main.yml << 'EOF'
 EOF
 ```
 
+> **Hint:** The `when: nginx_port not in [80, 443]` condition ensures
+> SELinux port labelling and the custom firewalld port rule only run when
+> the port is non-standard. SELinux already knows about ports 80 and 443
+> — adding them again is a no-op but clutters the audit log.
+
 ### 6 — Write role handler
 
 ```bash
 cat > roles/nginx/handlers/main.yml << 'EOF'
-
-[↑ Back to TOC](#toc)
-
 ---
 - name: Reload nginx
   ansible.builtin.service:
@@ -221,13 +254,14 @@ http {
 EOF
 ```
 
+> **Hint:** `inventory_hostname` is the name of the current host as it
+> appears in the inventory — here it will be `localhost`. In a production
+> inventory with real hostnames this becomes the actual server name.
+
 ### 8 — Write site.yml
 
 ```bash
 cat > site.yml << 'EOF'
-
-[↑ Back to TOC](#toc)
-
 ---
 - name: Deploy nginx web server
   hosts: webservers
@@ -255,6 +289,15 @@ ansible-playbook site.yml
 > ```
 > Look for: `8080` listed under `http_port_t`
 >
+> ```bash
+> sudo firewall-cmd --list-all | grep 8080
+> ```
+> Look for: `8080/tcp` in the ports list
+
+> **Hint:** If `curl` returns `connection refused`, check the nginx service
+> first: `systemctl status nginx`. If it failed to start, check the config:
+> `nginx -t`. If `curl` returns a response but not the expected content,
+> check the web root: `ls -lZ /var/www/html/`.
 
 ### 10 — Confirm idempotence
 
@@ -263,6 +306,10 @@ ansible-playbook site.yml
 ```
 
 All tasks: `ok`. No changes.
+
+> **Hint:** If the SELinux `seport` task always shows `changed`, confirm
+> that `community.general` is version 7.0.0 or later. Older versions had
+> idempotency bugs in `seport`.
 
 
 [↑ Back to TOC](#toc)
@@ -282,6 +329,99 @@ sudo firewall-cmd --permanent --remove-port=8080/tcp 2>/dev/null || true
 sudo firewall-cmd --reload
 rm -rf ~/role-lab
 ```
+
+---
+
+
+[↑ Back to TOC](#toc)
+
+## Troubleshooting guide
+
+| Symptom | Likely cause | Diagnostic command | Fix |
+|---|---|---|---|
+| `UNREACHABLE! Authentication failed` | SSH key not set up or wrong user | `ssh rhel@<host>` manually | `ssh-copy-id rhel@<host>`; confirm `remote_user` in `ansible.cfg` |
+| `ERROR! couldn't resolve module/action 'ansible.posix.firewalld'` | `ansible.posix` collection not installed | `ansible-galaxy collection list` | `ansible-galaxy collection install ansible.posix` |
+| `ERROR! couldn't resolve module/action 'community.general.seport'` | `community.general` collection not installed | `ansible-galaxy collection list` | `ansible-galaxy collection install community.general` |
+| `curl: (7) Failed to connect to localhost port 8080` | nginx not running, or wrong port, or firewall blocking | `systemctl status nginx` then `nginx -t` | Fix config error and restart nginx; verify `firewall-cmd --list-all` |
+| nginx starts but serves 403 Forbidden | SELinux wrong context on web root | `ls -lZ /var/www/html/` | Run `restorecon -Rv /var/www/html/`; verify `setype: httpd_sys_content_t` in tasks |
+| SELinux AVC denial in audit log | Process type not allowed | `ausearch -m AVC -ts recent` | Identify the denial and fix with `seboolean` or `sefcontext` |
+| `seport` task fails with "Port already defined" | Port 8080 already has a conflicting SELinux label | `semanage port -l \| grep 8080` | Remove the conflicting label: `sudo semanage port -d -t <type> -p tcp 8080` then re-run |
+| Handler not running after config change | Task showing `ok` not `changed` | Check playbook output carefully | Confirm the template actually changed (use `--diff`); handlers only run on `changed` |
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Extension tasks
+
+### Extension 1 — Parameterise the role for HTTPS
+
+1. Add TLS-related defaults to `roles/nginx/defaults/main.yml`:
+
+   ```yaml
+   nginx_tls_enabled: false
+   nginx_tls_port: 443
+   nginx_tls_cert: /etc/nginx/ssl/server.crt
+   nginx_tls_key:  /etc/nginx/ssl/server.key
+   ```
+
+2. Add a task to generate a self-signed certificate when `nginx_tls_enabled`
+   is `true`:
+
+   ```yaml
+   - name: Create SSL directory
+     ansible.builtin.file:
+       path: /etc/nginx/ssl
+       state: directory
+       mode: '0700'
+     when: nginx_tls_enabled | bool
+
+   - name: Generate self-signed certificate
+     ansible.builtin.command:
+       cmd: >
+         openssl req -x509 -nodes -days 365 -newkey rsa:2048
+         -keyout {{ nginx_tls_key }} -out {{ nginx_tls_cert }}
+         -subj "/CN={{ inventory_hostname }}"
+       creates: "{{ nginx_tls_cert }}"
+     when: nginx_tls_enabled | bool
+   ```
+
+3. Update the template to add an SSL server block when `nginx_tls_enabled`
+   is `true`.
+
+4. Update `site.yml` to pass `nginx_tls_enabled: true` and run the playbook.
+   Verify with `curl -k https://localhost/`.
+
+### Extension 2 — Add a second role: `hardening`
+
+1. Create a `hardening` role with `ansible-galaxy role init roles/hardening`.
+
+2. Add tasks to:
+   - Set `PermitRootLogin no` in `/etc/ssh/sshd_config` (use `lineinfile`)
+   - Notify a handler that restarts `sshd`
+   - Set `LoginGraceTime 30` in `/etc/ssh/sshd_config`
+   - Enable the `firewalld` service
+
+3. Update `site.yml` to apply both `nginx` and `hardening` roles.
+
+4. Verify that `sshd` is running and the config changes are applied.
+
+### Extension 3 — Use `group_vars` for environment differentiation
+
+1. Create two inventory groups: `dev` and `production`.
+
+2. Create `group_vars/dev.yml` with `nginx_port: 8080`.
+
+3. Create `group_vars/production.yml` with `nginx_port: 80`.
+
+4. Run the playbook against each group and confirm the correct port is used
+   in each environment's nginx config.
+
+   > **Hint:** Use `ansible-inventory --graph` to visualise the group
+   > structure and `ansible-inventory --host localhost` to see which
+   > variables are resolved for a given host.
+
+[↑ Back to TOC](#toc)
 
 ---
 

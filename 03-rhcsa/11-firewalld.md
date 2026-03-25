@@ -12,12 +12,31 @@
 `firewalld` is the default firewall manager on RHEL 10. It uses the concept
 of **zones** to apply rules based on network trust level.
 
+On RHEL 10, `firewalld` sits in front of the kernel's **nftables** subsystem.
+You never write nftables rules directly — `firewalld` translates zone, service,
+port, and rich-rule definitions into nftables rules at runtime. This separation
+lets you manage firewall policy at a meaningful, human-readable level without
+needing to understand nftables syntax.
+
+The key mental model is: every network packet arriving on an interface is
+assigned to a **zone** based on that interface's zone assignment (or by source
+IP policy). Once in a zone, the packet is checked against that zone's
+allowed services, ports, and rich rules. If nothing matches, the zone's
+default action applies — typically reject or drop.
+
+`firewalld` maintains two distinct rule sets: **runtime** (active now, lost
+on reload/reboot) and **permanent** (saved to disk, loaded on every start).
+They are independent. A common beginner mistake is adding rules without
+`--permanent`, then being surprised when they vanish on reboot. The safest
+workflow is always: add `--permanent`, then `--reload`.
+
 ---
 <a name="toc"></a>
 
 ## Table of contents
 
 - [Core concepts](#core-concepts)
+- [Packet ingress flow diagram](#packet-ingress-flow-diagram)
 - [Check firewalld status](#check-firewalld-status)
 - [Default zone](#default-zone)
 - [Allow a service](#allow-a-service)
@@ -30,6 +49,11 @@ of **zones** to apply rules based on network trust level.
   - [Assign an interface to a zone](#assign-an-interface-to-a-zone)
 - [Rich rules (advanced)](#rich-rules-advanced)
 - [Masquerading (NAT for outbound)](#masquerading-nat-for-outbound)
+- [Worked example](#worked-example)
+- [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Direct rules and the nftables backend](#direct-rules-and-the-nftables-backend)
+- [Firewalld runtime vs permanent — synchronisation](#firewalld-runtime-vs-permanent--synchronisation)
+- [Source-based policies](#source-based-policies)
 
 
 ## Core concepts
@@ -42,6 +66,34 @@ of **zones** to apply rules based on network trust level.
 | **rich rule** | More expressive rule with source/destination/action |
 | **runtime** | Currently active rules (lost on reload) |
 | **permanent** | Rules saved to disk (survive reload/reboot) |
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Packet ingress flow diagram
+
+```mermaid
+flowchart TD
+    A["Packet arrives on interface"]
+    B["Assign to zone<br/>(by interface or source IP)"]
+    C{"Service rule<br/>matches?"}
+    D{"Port rule<br/>matches?"}
+    E{"Rich rule<br/>matches?"}
+    F["Zone default action<br/>(reject / drop)"]
+    G["ACCEPT"]
+
+    A --> B
+    B --> C
+    C -->|"yes"| G
+    C -->|"no"| D
+    D -->|"yes"| G
+    D -->|"no"| E
+    E -->|"accept"| G
+    E -->|"drop/reject"| F
+    E -->|"no match"| F
+```
 
 
 [↑ Back to TOC](#toc)
@@ -75,6 +127,11 @@ sudo firewall-cmd --get-default-zone
 sudo firewall-cmd --set-default-zone=home
 ```
 
+Changing the default zone is permanent automatically — it modifies
+`/etc/firewalld/firewalld.conf` and does not require `--permanent` or
+`--reload`. All interfaces not explicitly assigned elsewhere move to the
+new default immediately.
+
 
 [↑ Back to TOC](#toc)
 
@@ -99,6 +156,10 @@ sudo firewall-cmd --reload
 > reboots and avoids confusion between runtime and permanent state.
 >
 
+> **Exam tip:** Always add `--permanent` AND then run `--reload`. Runtime-only
+> rules vanish on the next `firewall-cmd --reload` or system reboot. The exam
+> tests that rules survive after a reboot — `--permanent` is required.
+
 
 [↑ Back to TOC](#toc)
 
@@ -122,6 +183,10 @@ sudo firewall-cmd --reload
 sudo firewall-cmd --permanent --add-port=8080/tcp
 sudo firewall-cmd --reload
 ```
+
+Use `--add-port` when no predefined service definition exists for the port
+you need to open. The format is `<port>/<protocol>` where protocol is `tcp`
+or `udp`. To open a range: `--add-port=8000-8100/tcp`.
 
 
 [↑ Back to TOC](#toc)
@@ -152,7 +217,15 @@ sudo firewall-cmd --list-services
 
 # List only ports
 sudo firewall-cmd --list-ports
+
+# Show permanent (saved) rules — compare to runtime
+sudo firewall-cmd --permanent --list-all
 ```
+
+Running `--list-all` without `--permanent` shows the **runtime** state.
+Adding `--permanent` shows the **saved** state. If they differ, you have
+either added rules without `--permanent` (runtime only) or added `--permanent`
+rules without `--reload` (permanent but not yet active).
 
 
 [↑ Back to TOC](#toc)
@@ -168,6 +241,22 @@ sudo firewall-cmd --get-services
 # Where service definitions live
 ls /usr/lib/firewalld/services/
 ls /etc/firewalld/services/   # custom overrides go here
+```
+
+A predefined service is an XML file that maps a service name to one or more
+ports. For example, `ssh.xml` defines port 22/tcp. Using service names instead
+of raw port numbers makes `--list-all` output human-readable and reduces the
+chance of opening the wrong port.
+
+To create a custom service:
+
+```bash
+sudo cp /usr/lib/firewalld/services/http.xml /etc/firewalld/services/myapp.xml
+sudo vim /etc/firewalld/services/myapp.xml
+# Change port to match your application
+sudo firewall-cmd --reload
+sudo firewall-cmd --permanent --add-service=myapp
+sudo firewall-cmd --reload
 ```
 
 
@@ -201,6 +290,12 @@ sudo firewall-cmd --permanent --zone=internal --change-interface=ens3
 sudo firewall-cmd --reload
 ```
 
+To verify which zone an interface is in:
+
+```bash
+sudo firewall-cmd --get-zone-of-interface=ens3
+```
+
 
 [↑ Back to TOC](#toc)
 
@@ -217,7 +312,22 @@ sudo firewall-cmd --permanent \
 sudo firewall-cmd --permanent \
   --add-rich-rule='rule family="ipv4" source address="10.0.0.5" drop'
 
+# Rate-limit new connections (e.g., anti-bruteforce)
+sudo firewall-cmd --permanent \
+  --add-rich-rule='rule family="ipv4" service name="ssh" limit value="3/m" accept'
+
 sudo firewall-cmd --reload
+```
+
+Rich rules are evaluated after service and port rules. If a service rule
+already accepts the traffic, the rich rule for the same service is never
+reached. Order of evaluation: service rules → port rules → rich rules →
+zone default.
+
+To list all rich rules:
+
+```bash
+sudo firewall-cmd --list-rich-rules
 ```
 
 
@@ -232,6 +342,10 @@ sudo firewall-cmd --permanent --add-masquerade
 sudo firewall-cmd --reload
 ```
 
+Masquerading is SNAT (Source NAT) — it rewrites the source IP of outgoing
+packets to the interface's public IP. Use this on a router VM or container
+host that forwards traffic from an internal network to the internet.
+
 
 [↑ Back to TOC](#toc)
 
@@ -245,6 +359,178 @@ sudo firewall-cmd --reload
 > Disabling the firewall is not a fix for a connectivity problem. Diagnose
 > the correct port or service to open instead.
 >
+
+---
+
+## Worked example
+
+**Scenario:** Configure a web server to accept only HTTPS (443) and SSH (22)
+traffic. All other inbound connections must be blocked.
+
+```bash
+# Step 1 — check current state
+sudo firewall-cmd --list-all
+# Output shows: services: cockpit dhcpv6-client ssh
+# (http and https are not yet open)
+
+# Step 2 — remove services you don't want
+sudo firewall-cmd --permanent --remove-service=cockpit
+sudo firewall-cmd --permanent --remove-service=dhcpv6-client
+
+# Step 3 — add HTTPS
+sudo firewall-cmd --permanent --add-service=https
+
+# Step 4 — confirm SSH is already present (it is by default in public zone)
+sudo firewall-cmd --permanent --list-services
+# Should show: https ssh
+
+# Step 5 — reload to activate permanent rules
+sudo firewall-cmd --reload
+
+# Step 6 — verify runtime state matches permanent
+sudo firewall-cmd --list-all
+# services: https ssh
+
+# Step 7 — test from another host
+# ssh user@<server-ip>        should succeed
+# curl https://<server-ip>    should succeed
+# curl http://<server-ip>     should fail (no http service)
+# telnet <server-ip> 8080     should fail (not open)
+```
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Common mistakes and how to diagnose them
+
+| Symptom | Likely cause | Diagnosis | Fix |
+|---|---|---|---|
+| Rule vanishes after reboot | Added without `--permanent` | `firewall-cmd --permanent --list-all` — rule absent | Re-add with `--permanent` then `--reload` |
+| `--permanent` rule not active yet | Forgot `--reload` | `firewall-cmd --list-all` vs `--permanent --list-all` differ | `sudo firewall-cmd --reload` |
+| Service still blocked despite rule | Rule in wrong zone | `firewall-cmd --get-active-zones` — check which zone the interface is in | Add rule to the correct zone with `--zone=<zone>` |
+| Port open but service unreachable | Service not listening | `ss -tlnp` — port not in LISTEN state | Fix the application / start the service |
+| Rich rule has no effect | Service rule matches first | `firewall-cmd --list-all` shows service already accepted | Remove the service rule or re-order logic using `--priority` |
+| Cannot ping host but SSH works | ICMP blocked by zone | No `icmp` passthrough in zone | `firewall-cmd --permanent --add-protocol=icmp` + `--reload` |
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Direct rules and the nftables backend
+
+`firewalld` on RHEL 10 uses **nftables** as its backend. You can verify:
+
+```bash
+sudo firewall-cmd --info-zone=public
+sudo nft list ruleset   # view the raw nftables rules firewalld generated
+```
+
+Do not write rules directly with `nft` while `firewalld` is running —
+`firewalld` will overwrite them on the next reload. The only correct way
+to customise firewall rules on a `firewalld`-managed system is through
+`firewall-cmd` or the `firewalld` D-Bus API.
+
+If you need a rule that cannot be expressed with zones/services/rich rules,
+use `--direct` rules as a last resort:
+
+```bash
+# Add a direct nftables rule (permanent)
+sudo firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 \
+  -p tcp --dport 9090 -j ACCEPT
+sudo firewall-cmd --reload
+```
+
+Direct rules are passed as-is to nftables and are evaluated before zone rules.
+They bypass the zone model entirely — use with caution and document thoroughly.
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Firewalld runtime vs permanent — synchronisation
+
+A common source of confusion is the two independent rule stores:
+
+```bash
+# Show RUNTIME state (currently active)
+sudo firewall-cmd --list-all
+
+# Show PERMANENT state (what survives reload/reboot)
+sudo firewall-cmd --permanent --list-all
+```
+
+These can diverge:
+
+| Scenario | Runtime | Permanent | What happens on reload |
+|---|---|---|---|
+| Added with `--permanent` only | old rules | new rules | Rules become active |
+| Added without `--permanent` | new rules | old rules | Rules disappear |
+| Added both ways correctly | new rules | new rules | No change |
+
+To synchronise (make permanent match runtime, if you made runtime-only changes
+and want to keep them):
+
+```bash
+sudo firewall-cmd --runtime-to-permanent
+```
+
+To synchronise (make runtime match permanent, discarding any runtime-only
+changes):
+
+```bash
+sudo firewall-cmd --reload
+```
+
+> **Exam tip:** On the RHCSA exam, always use `--permanent` and then
+> `--reload`. Never rely on runtime-only rules — the exam tests that your
+> configuration persists after a reboot.
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Source-based policies
+
+In addition to interface-based zone assignment, firewalld supports assigning
+a zone based on the **source IP** of the packet. This is useful when a single
+interface carries traffic from multiple subnets with different trust levels.
+
+```bash
+# Assign all traffic from the management subnet to the trusted zone
+sudo firewall-cmd --permanent --zone=trusted --add-source=10.0.0.0/24
+
+# Assign traffic from a specific IP to the block zone (block all from this IP)
+sudo firewall-cmd --permanent --zone=block --add-source=192.168.99.55
+
+sudo firewall-cmd --reload
+
+# Verify
+sudo firewall-cmd --list-all --zone=trusted
+```
+
+Source-based rules take precedence over interface-based rules. If a packet
+arrives from `10.0.0.5` and `10.0.0.0/24` is assigned to `trusted`, the
+packet is evaluated in the `trusted` zone regardless of which interface it
+arrived on.
+
+This is commonly used for:
+- Management networks that need unrestricted access from admin subnets
+- Blocking specific known-bad IP ranges (use `drop` zone)
+- Allowing monitoring agents (Prometheus, SNMP) from a specific monitoring subnet
+
+```bash
+# Remove a source assignment
+sudo firewall-cmd --permanent --zone=trusted --remove-source=10.0.0.0/24
+sudo firewall-cmd --reload
+```
+
+
+[↑ Back to TOC](#toc)
 
 ---
 

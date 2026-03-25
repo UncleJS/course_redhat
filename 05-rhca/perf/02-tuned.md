@@ -19,6 +19,27 @@
 
 `tuned` is a systemd service that applies kernel parameter and device setting profiles appropriate for a given workload. On RHEL 10 it is the **first-line tuning tool** — apply the right profile before manually touching any `sysctl` knobs.
 
+At the RHCA level, profile selection is a deliberate architectural decision,
+not a default-accept. Every RHEL host has a workload class — batch compute,
+latency-sensitive API server, database backend, hypervisor host — and each
+class has a corresponding or derivable `tuned` profile. Applying the wrong
+profile (or leaving it at the installer default `virtual-guest` when the
+workload is a latency-sensitive database) introduces a measurable and
+unnecessary performance floor.
+
+The mental model: `tuned` is a configuration management system for kernel
+parameters and hardware settings. Just as Ansible enforces software
+configuration state, `tuned` enforces kernel tuning state. It is idempotent
+(re-applying the same profile is safe), composable (custom profiles can
+inherit and override base profiles), and verifiable (you can confirm what it
+applied by reading the actual kernel parameters it set).
+
+A server running the wrong `tuned` profile can halve throughput, double
+latency, or cause periodic GC pauses in JVM applications (from Transparent
+Huge Pages). These problems appear as mysterious performance regressions
+that don't correlate with obvious system metrics — the kind that RHCA-level
+engineers are expected to diagnose and fix.
+
 
 [↑ Back to TOC](#toc)
 
@@ -38,6 +59,8 @@
 - [Dynamic Tuning](#dynamic-tuning)
 - [Recommend Profile with tuned-adm](#recommend-profile-with-tuned-adm)
 - [Persistent Custom sysctl (Supplement to tuned)](#persistent-custom-sysctl-supplement-to-tuned)
+- [Worked example — latency-sensitive application tuning](#worked-example-latency-sensitive-application-tuning)
+- [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [Lab — Profile Switch and Verification](#lab-profile-switch-and-verification)
   - [Steps](#steps)
 - [Recap](#recap)
@@ -45,7 +68,7 @@
 
 ## How tuned Works
 
-```
+```text
 tuned daemon
   ├── reads /etc/tuned/tuned-main.conf
   ├── loads active profile from /etc/tuned/active_profile
@@ -56,6 +79,13 @@ tuned daemon
 Profile directories:
 - `/usr/lib/tuned/` — shipped profiles (read-only)
 - `/etc/tuned/` — custom profiles (override or extend shipped ones)
+
+Each profile is a directory containing at minimum a `tuned.conf` file.
+The `[main]` section may include an `include=` directive to inherit from
+another profile. The included profile's settings are applied first; the
+inheriting profile's settings override them. This inheritance model allows
+you to express "throughput-performance, plus these two extra tweaks"
+without duplicating the base profile.
 
 
 [↑ Back to TOC](#toc)
@@ -127,6 +157,11 @@ Current active profile: throughput-performance
 $ tuned-adm profile_info throughput-performance
 ```
 
+> **Exam tip:** `tuned-adm recommend` outputs a profile name based on the
+> detected hardware and virtualisation layer. Use it as a starting point,
+> then customise. The recommended profile is not always the best choice for
+> the specific workload.
+
 
 [↑ Back to TOC](#toc)
 
@@ -166,6 +201,18 @@ net.core.somaxconn=65536
 net.core.rmem_max=16777216
 net.core.wmem_max=16777216
 ```
+
+Available `tuned.conf` plugins and what they configure:
+
+| Plugin | Controls |
+|---|---|
+| `[cpu]` | CPU governor, frequency scaling, C-state latency |
+| `[vm]` | Transparent Huge Pages, page clustering |
+| `[disk]` | Read-ahead, I/O scheduler per device |
+| `[sysctl]` | Kernel parameters (same as `/etc/sysctl.d/`) |
+| `[net]` | NIC ring buffer sizes, IRQ coalescing |
+| `[scheduler]` | Process scheduling policy, IRQ thread priorities |
+| `[script]` | Custom shell scripts run on profile activate/deactivate |
 
 
 [↑ Back to TOC](#toc)
@@ -308,6 +355,145 @@ $ sudo sysctl --system
 
 ---
 
+## Worked example — latency-sensitive application tuning
+
+**Scenario:** A financial trading application runs on RHEL 10 on bare metal.
+It processes market data with a strict 1ms latency budget. After initial
+deployment, P99 latency is 4–6ms. The VM was provisioned with the default
+`virtual-guest` profile (from an earlier VM image), but this is now a bare
+metal host.
+
+**Step 1 — assess current state**
+
+```bash
+tuned-adm active
+# Current active profile: virtual-guest  ← wrong for bare metal
+
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+# powersave  ← CPU is throttling to save power
+
+cat /sys/kernel/mm/transparent_hugepage/enabled
+# [always] madvise never  ← THP enabled, causes latency spikes
+```
+
+**Step 2 — apply latency-performance**
+
+```bash
+sudo tuned-adm profile latency-performance
+
+# Verify
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+# performance  ← CPU now runs at full speed
+
+cat /sys/kernel/mm/transparent_hugepage/enabled
+# always madvise [never]  ← THP disabled
+
+# Measure P99 latency after change (application-specific tool)
+# P99 drops from 5.2ms to 1.8ms — closer to budget but still over
+```
+
+**Step 3 — create a custom profile with additional tuning**
+
+```bash
+sudo mkdir /etc/tuned/trading-latency
+sudo tee /etc/tuned/trading-latency/tuned.conf <<'EOF'
+[main]
+summary=Trading application — minimum latency
+include=latency-performance
+
+[sysctl]
+# Minimize scheduler granularity for tighter wakeup latency
+kernel.sched_min_granularity_ns=1000000
+kernel.sched_wakeup_granularity_ns=1500000
+
+# Disable swap to prevent swap-in latency spikes
+vm.swappiness=0
+
+# Pin NIC interrupt handling (if using specific CPUs for network)
+# Done via irqbalance or manual IRQ affinity — not a sysctl
+
+[cpu]
+force_latency=1         # Force CPU to shallowest C-state (C1) only
+governor=performance
+
+[vm]
+transparent_hugepages=never
+
+[net]
+# Reduce NIC interrupt coalescing for lower receive latency
+channels=combined 1     # single combined queue (if NIC supports it)
+EOF
+
+sudo tuned-adm profile trading-latency
+```
+
+**Step 4 — verify and measure**
+
+```bash
+tuned-adm active
+# Current active profile: trading-latency
+
+sysctl kernel.sched_min_granularity_ns
+# kernel.sched_min_granularity_ns = 1000000
+
+sysctl vm.swappiness
+# vm.swappiness = 0
+
+# Re-measure P99 latency
+# P99 drops to 0.8ms — within 1ms budget
+```
+
+**Step 5 — automate via Ansible**
+
+```yaml
+- name: Apply trading-latency tuned profile
+  ansible.builtin.command: tuned-adm profile trading-latency
+  changed_when: false
+```
+
+> **Exam tip:** In the exam, demonstrating that you checked the current
+> profile with `tuned-adm active` before switching shows systematic
+> methodology. Always verify the change took effect with `tuned-adm active`
+> and confirm the affected kernel parameter directly.
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Common mistakes and how to diagnose them
+
+| Symptom | Likely Cause | Fix |
+|---|---|---|
+| `tuned-adm: command not found` | Package not installed | `sudo dnf install -y tuned` |
+| Profile switch silently has no effect | tuned service not running | `sudo systemctl start tuned` |
+| Custom profile not listed | Syntax error in `tuned.conf` | Check `journalctl -u tuned` |
+| `include=` profile not found | Typo in base profile name | `tuned-adm list` to verify exact name |
+| CPU governor stays at `powersave` after switch | CPU frequency scaling driver doesn't support governor change | Check `cpupower frequency-info` |
+| Settings revert on reboot | Custom `/etc/sysctl.d/` file conflicts with tuned | Remove duplicates; let tuned own the knob |
+| THP change not applied | tuned applied but kernel parameter not updated | Verify with `cat /sys/kernel/mm/transparent_hugepage/enabled`; check `journalctl -u tuned` for errors |
+| `vm.swappiness=0` has no effect | Setting conflicts with tuned's `vm` plugin | Explicitly set `transparent_hugepages=` and `swappiness=` in the custom profile's `[vm]` section |
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Why This Matters in Production
+
+A server running the wrong `tuned` profile can:
+
+- Leave CPU in `powersave` mode, halving throughput under load
+- Keep Transparent Huge Pages enabled for Redis or MongoDB (causing latency spikes and OOM behavior)
+- Use default socket buffers that cannot sustain 10 GbE line rate
+
+Setting the correct profile at provisioning time (via Ansible: `community.general.tuned` role or `command: tuned-adm profile`) eliminates an entire class of unexplained performance problems.
+
+---
+
+
+[↑ Back to TOC](#toc)
+
 ## Lab — Profile Switch and Verification
 
 **Goal:** Switch to `latency-performance`, verify the CPU governor and THP change, then create a custom profile that inherits it.
@@ -366,37 +552,6 @@ kernel.sched_min_granularity_ns = 3000000
 $ sudo tuned-adm profile virtual-guest   # or whatever was active before
 $ sudo rm -rf /etc/tuned/rhca-latency
 ```
-
----
-
-
-[↑ Back to TOC](#toc)
-
-## Common Failures
-
-| Symptom | Likely Cause | Fix |
-|---|---|---|
-| `tuned-adm: command not found` | Package not installed | `sudo dnf install -y tuned` |
-| Profile switch silently has no effect | tuned service not running | `sudo systemctl start tuned` |
-| Custom profile not listed | Syntax error in `tuned.conf` | Check `journalctl -u tuned` |
-| `include=` profile not found | Typo in base profile name | `tuned-adm list` to verify exact name |
-| CPU governor stays at `powersave` after switch | CPU frequency scaling driver doesn't support governor change | Check `cpupower frequency-info` |
-| Settings revert on reboot | Custom `/etc/sysctl.d/` file conflicts with tuned | Remove duplicates; let tuned own the knob |
-
----
-
-
-[↑ Back to TOC](#toc)
-
-## Why This Matters in Production
-
-A server running the wrong `tuned` profile can:
-
-- Leave CPU in `powersave` mode, halving throughput under load
-- Keep Transparent Huge Pages enabled for Redis or MongoDB (causing latency spikes and OOM behavior)
-- Use default socket buffers that cannot sustain 10 GbE line rate
-
-Setting the correct profile at provisioning time (via Ansible: `community.general.tuned` role or `command: tuned-adm profile`) eliminates an entire class of unexplained performance problems.
 
 ---
 

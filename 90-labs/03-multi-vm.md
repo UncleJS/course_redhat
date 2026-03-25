@@ -18,7 +18,7 @@ Some labs require multiple machines: Ansible (controller + managed nodes), netwo
 
 **Topology:**
 
-```
+```text
 KVM Host
 ├── controller.lab.local  (4 GB RAM, 20 GB disk) — Ansible control node
 ├── node1.lab.local       (2 GB RAM, 20 GB disk) — managed node
