@@ -1,12 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Recovery Patterns
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -41,38 +32,37 @@ severe. All of them appear in the RHCA exam environment.
 ## Table of contents
 
 - [Overview](#overview)
-- [Pattern 1 — Root Password Reset (RHEL 10)](#pattern-1-root-password-reset-rhel-10)
+- [Pattern 1 — Root Password Reset (RHEL 10)](#pattern-1--root-password-reset-rhel-10)
   - [Procedure](#procedure)
-- [Pattern 2 — Emergency and Rescue Targets](#pattern-2-emergency-and-rescue-targets)
+- [Pattern 2 — Emergency and Rescue Targets](#pattern-2--emergency-and-rescue-targets)
   - [Emergency target](#emergency-target)
   - [Rescue target](#rescue-target)
   - [Recovery decision tree](#recovery-decision-tree)
-- [Pattern 3 — Filesystem Corruption Recovery](#pattern-3-filesystem-corruption-recovery)
+- [Pattern 3 — Filesystem Corruption Recovery](#pattern-3--filesystem-corruption-recovery)
   - [Detecting corruption](#detecting-corruption)
   - [XFS recovery](#xfs-recovery)
   - [ext4 recovery](#ext4-recovery)
   - [LVM volume not appearing](#lvm-volume-not-appearing)
-- [Pattern 4 — Broken SELinux Context Recovery](#pattern-4-broken-selinux-context-recovery)
+- [Pattern 4 — Broken SELinux Context Recovery](#pattern-4--broken-selinux-context-recovery)
   - [Relabel a specific file or directory](#relabel-a-specific-file-or-directory)
   - [Relabel a non-standard path](#relabel-a-non-standard-path)
   - [Full system relabel](#full-system-relabel)
   - [SELinux in permissive mode left over from troubleshooting](#selinux-in-permissive-mode-left-over-from-troubleshooting)
-- [Pattern 5 — Unresponsive systemd Service](#pattern-5-unresponsive-systemd-service)
+- [Pattern 5 — Unresponsive systemd Service](#pattern-5--unresponsive-systemd-service)
   - [Diagnose](#diagnose)
   - [Clear a start-limit and restart](#clear-a-start-limit-and-restart)
   - [Force-kill a stuck service](#force-kill-a-stuck-service)
   - [Service hangs on stop (taking too long)](#service-hangs-on-stop-taking-too-long)
-  - [Broken unit file — system won't boot past a target](#broken-unit-file-system-wont-boot-past-a-target)
-- [Pattern 6 — Boot to Last Known Good Kernel](#pattern-6-boot-to-last-known-good-kernel)
-- [Pattern 7 — Network Unreachable After Config Change](#pattern-7-network-unreachable-after-config-change)
-- [Pattern 8 — Disk Full Recovery](#pattern-8-disk-full-recovery)
+  - [Broken unit file — system won't boot past a target](#broken-unit-file--system-wont-boot-past-a-target)
+- [Pattern 6 — Boot to Last Known Good Kernel](#pattern-6--boot-to-last-known-good-kernel)
+- [Pattern 7 — Network Unreachable After Config Change](#pattern-7--network-unreachable-after-config-change)
+- [Pattern 8 — Disk Full Recovery](#pattern-8--disk-full-recovery)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [Recovery Runbook Template](#recovery-runbook-template)
-- [Recovery - <Scenario Name>](#recovery-scenario-name)
-  - [Steps](#steps)
-  - [Post-recovery](#post-recovery)
-  - [Escalation](#escalation)
+- [Why This Matters in Production](#why-this-matters-in-production)
 - [Recap](#recap)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Pattern 1 — Root Password Reset (RHEL 10)
@@ -548,9 +538,6 @@ only the root filesystem read-only and starts no additional services.
 Copy this into your runbook for any new recovery scenario:
 
 ```markdown
-
-[↑ Back to TOC](#toc)
-
 ## Recovery - <Scenario Name>
 
 **Trigger:** What condition makes this runbook active  

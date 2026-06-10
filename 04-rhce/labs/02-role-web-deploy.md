@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Lab: Role-Based Web Service Deploy
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -19,19 +16,21 @@
 - [Prerequisites](#prerequisites)
 - [Success criteria](#success-criteria)
 - [Steps](#steps)
-  - [1 — Install required collections](#1-install-required-collections)
-  - [2 — Create project structure](#2-create-project-structure)
-  - [3 — Create ansible.cfg and inventory](#3-create-ansiblecfg-and-inventory)
-  - [4 — Define role defaults](#4-define-role-defaults)
-  - [5 — Write role tasks](#5-write-role-tasks)
-  - [6 — Write role handler](#6-write-role-handler)
-  - [7 — Write nginx config template](#7-write-nginx-config-template)
-  - [8 — Write site.yml](#8-write-siteyml)
-  - [9 — Run check mode then apply](#9-run-check-mode-then-apply)
-  - [10 — Confirm idempotence](#10-confirm-idempotence)
+  - [1 — Install required collections](#1--install-required-collections)
+  - [2 — Create project structure](#2--create-project-structure)
+  - [3 — Create ansible.cfg and inventory](#3--create-ansiblecfg-and-inventory)
+  - [4 — Define role defaults](#4--define-role-defaults)
+  - [5 — Write role tasks](#5--write-role-tasks)
+  - [6 — Write role handler](#6--write-role-handler)
+  - [7 — Write nginx config template](#7--write-nginx-config-template)
+  - [8 — Write site.yml](#8--write-siteyml)
+  - [9 — Run check mode then apply](#9--run-check-mode-then-apply)
+  - [10 — Confirm idempotence](#10--confirm-idempotence)
 - [Cleanup](#cleanup)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Extension tasks](#extension-tasks)
+- [Why this matters in production](#why-this-matters-in-production)
+- [Next step](#next-step)
 
 
 ## Background

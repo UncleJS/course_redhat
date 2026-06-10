@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Routing + Troubleshooting Method
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -35,16 +32,18 @@ connected route for a destination, the kernel drops the packet with `EHOSTUNREAC
 - [Routing decision diagram](#routing-decision-diagram)
 - [Route lookup](#route-lookup)
 - [Add and remove static routes](#add-and-remove-static-routes)
-- [The routing + connectivity troubleshooting method](#the-routing-connectivity-troubleshooting-method)
-  - [Step 1 — Is the interface up?](#step-1-is-the-interface-up)
-  - [Step 2 — Does the interface have an IP?](#step-2-does-the-interface-have-an-ip)
-  - [Step 3 — Can we reach the default gateway?](#step-3-can-we-reach-the-default-gateway)
-  - [Step 4 — Can we reach an external IP (bypass DNS)?](#step-4-can-we-reach-an-external-ip-bypass-dns)
-  - [Step 5 — Can we resolve names?](#step-5-can-we-resolve-names)
-  - [Step 6 — Can we reach the target service?](#step-6-can-we-reach-the-target-service)
+- [The routing + connectivity troubleshooting method](#the-routing--connectivity-troubleshooting-method)
+  - [Step 1 — Is the interface up?](#step-1--is-the-interface-up)
+  - [Step 2 — Does the interface have an IP?](#step-2--does-the-interface-have-an-ip)
+  - [Step 3 — Can we reach the default gateway?](#step-3--can-we-reach-the-default-gateway)
+  - [Step 4 — Can we reach an external IP (bypass DNS)?](#step-4--can-we-reach-an-external-ip-bypass-dns)
+  - [Step 5 — Can we resolve names?](#step-5--can-we-resolve-names)
+  - [Step 6 — Can we reach the target service?](#step-6--can-we-reach-the-target-service)
 - [Useful tools](#useful-tools)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The Linux routing table
@@ -426,7 +425,7 @@ Fix: distinguish timeout (firewall drop) from refused (port closed):
 ```bash
 nc -zv 10.50.0.10 8080
 # "Connection refused" → port closed → routing works, app problem
-# Timeout          → firewall dropping → check iptables/firewalld
+# Timeout          → firewall dropping → check firewalld (nftables backend)
 ```
 
 ---

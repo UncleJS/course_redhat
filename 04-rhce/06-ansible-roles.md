@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Roles and Collections
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -44,9 +41,11 @@ rather than writing your own implementation.
 - [Ansible Collections](#ansible-collections)
   - [Install a collection](#install-a-collection)
   - [RHEL System Roles](#rhel-system-roles)
-- [`requirements.yml` — declare dependencies](#requirementsyml-declare-dependencies)
+- [`requirements.yml` — declare dependencies](#requirementsyml--declare-dependencies)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Role directory structure

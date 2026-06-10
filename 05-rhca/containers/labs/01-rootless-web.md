@@ -1,18 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab - Rootless Web Server with Quadlet
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -39,20 +24,22 @@ Deploy a rootless Nginx container as a persistent systemd user service using a Q
 - [Prerequisites](#prerequisites)
 - [Success Criteria](#success-criteria)
 - [Steps](#steps)
-  - [1 — Prepare the user environment](#1-prepare-the-user-environment)
-  - [2 — Create the content directory and a custom index page](#2-create-the-content-directory-and-a-custom-index-page)
-  - [3 — Pull the image first (optional but recommended)](#3-pull-the-image-first-optional-but-recommended)
-  - [4 — Create the Quadlet `.container` file](#4-create-the-quadlet-container-file)
-  - [5 — Reload systemd and start the service](#5-reload-systemd-and-start-the-service)
-  - [6 — Open the firewall port](#6-open-the-firewall-port)
-  - [7 — Test from the host](#7-test-from-the-host)
-  - [8 — Enable auto-start and reboot test](#8-enable-auto-start-and-reboot-test)
+  - [1 — Prepare the user environment](#1--prepare-the-user-environment)
+  - [2 — Create the content directory and a custom index page](#2--create-the-content-directory-and-a-custom-index-page)
+  - [3 — Pull the image first (optional but recommended)](#3--pull-the-image-first-optional-but-recommended)
+  - [4 — Create the Quadlet `.container` file](#4--create-the-quadlet-container-file)
+  - [5 — Reload systemd and start the service](#5--reload-systemd-and-start-the-service)
+  - [6 — Open the firewall port](#6--open-the-firewall-port)
+  - [7 — Test from the host](#7--test-from-the-host)
+  - [8 — Enable auto-start and reboot test](#8--enable-auto-start-and-reboot-test)
 - [Verify Checkpoints](#verify-checkpoints)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Extension tasks](#extension-tasks)
 - [Cleanup](#cleanup)
+- [Common Failures](#common-failures)
 - [Why This Matters in Production](#why-this-matters-in-production)
 - [Recap](#recap)
+- [Next step](#next-step)
 
 
 ## Prerequisites

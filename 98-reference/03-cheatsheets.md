@@ -10,11 +10,11 @@ Quick-reference cards for the most-used command groups. Each section is designed
 
 ## Table of contents
 
-- [dnf — Package Management](#dnf-package-management)
-- [systemctl — Service Management](#systemctl-service-management)
-- [journalctl — Log Inspection](#journalctl-log-inspection)
-- [nmcli — Network Management](#nmcli-network-management)
-- [firewall-cmd — Firewall Management](#firewall-cmd-firewall-management)
+- [dnf — Package Management](#dnf--package-management)
+- [systemctl — Service Management](#systemctl--service-management)
+- [journalctl — Log Inspection](#journalctl--log-inspection)
+- [nmcli — Network Management](#nmcli--network-management)
+- [firewall-cmd — Firewall Management](#firewall-cmd--firewall-management)
 - [SELinux](#selinux)
 - [LVM](#lvm)
 - [Podman](#podman)
@@ -22,6 +22,7 @@ Quick-reference cards for the most-used command groups. Each section is designed
 - [SSH](#ssh)
 - [Performance Triage Quick Reference](#performance-triage-quick-reference)
 - [tuned Quick Reference](#tuned-quick-reference)
+- [Next step](#next-step)
 
 
 ## dnf — Package Management

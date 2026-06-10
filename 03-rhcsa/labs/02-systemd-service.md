@@ -1,18 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab: Create a systemd Service
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -27,16 +12,19 @@
 
 ## Table of contents
 
+- [Prerequisites](#prerequisites)
 - [Background](#background)
+- [Success criteria](#success-criteria)
 - [Steps](#steps)
-  - [1 — Create the script](#1-create-the-script)
-  - [2 — Create the service unit](#2-create-the-service-unit)
-  - [3 — Enable and start the service](#3-enable-and-start-the-service)
-  - [4 — Add a systemd timer to run it every 5 minutes](#4-add-a-systemd-timer-to-run-it-every-5-minutes)
-  - [5 — Simulate a failure and debug it](#5-simulate-a-failure-and-debug-it)
+  - [1 — Create the script](#1--create-the-script)
+  - [2 — Create the service unit](#2--create-the-service-unit)
+  - [3 — Enable and start the service](#3--enable-and-start-the-service)
+  - [4 — Add a systemd timer to run it every 5 minutes](#4--add-a-systemd-timer-to-run-it-every-5-minutes)
+  - [5 — Simulate a failure and debug it](#5--simulate-a-failure-and-debug-it)
 - [Cleanup](#cleanup)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Extension tasks](#extension-tasks)
+- [Next step](#next-step)
 - [Why this matters in production](#why-this-matters-in-production)
 
 

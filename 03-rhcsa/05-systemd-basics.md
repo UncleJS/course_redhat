@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # systemd Essentials
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -47,7 +44,7 @@ directives without touching the vendor file.
 - [System state (targets)](#system-state-targets)
 - [Unit files](#unit-files)
   - [View a unit file](#view-a-unit-file)
-  - [Edit a unit (use systemctl — not vim directly)](#edit-a-unit-use-systemctl-not-vim-directly)
+  - [Edit a unit (use systemctl — not vim directly)](#edit-a-unit-use-systemctl--not-vim-directly)
   - [Reload after editing](#reload-after-editing)
 - [Creating a simple service unit](#creating-a-simple-service-unit)
 - [Service types](#service-types)
@@ -55,6 +52,8 @@ directives without touching the vendor file.
 - [Power management](#power-management)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Key concepts

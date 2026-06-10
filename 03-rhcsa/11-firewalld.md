@@ -1,9 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Firewalling with firewalld
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -54,6 +48,8 @@ workflow is always: add `--permanent`, then `--reload`.
 - [Direct rules and the nftables backend](#direct-rules-and-the-nftables-backend)
 - [Firewalld runtime vs permanent — synchronisation](#firewalld-runtime-vs-permanent--synchronisation)
 - [Source-based policies](#source-based-policies)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Core concepts

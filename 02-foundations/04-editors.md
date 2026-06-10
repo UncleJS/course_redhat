@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Editing Files — nano and vim
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -23,9 +20,9 @@ The key mental model for vim: the editor has **modes**. In Normal mode, every ke
 
 ## Table of contents
 
-- [nano — the beginner's editor](#nano-the-beginners-editor)
+- [nano — the beginner's editor](#nano--the-beginners-editor)
   - [Key shortcuts](#key-shortcuts)
-- [vim — the editor you will need](#vim-the-editor-you-will-need)
+- [vim — the editor you will need](#vim--the-editor-you-will-need)
   - [Install vim on a minimal system](#install-vim-on-a-minimal-system)
   - [The two modes you must know](#the-two-modes-you-must-know)
   - [Getting started](#getting-started)
@@ -37,6 +34,8 @@ The key mental model for vim: the editor has **modes**. In Normal mode, every ke
 - [Editing system files safely — visudo and systemctl edit](#editing-system-files-safely)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## nano — the beginner's editor

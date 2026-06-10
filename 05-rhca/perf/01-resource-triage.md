@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Performance Resource Triage
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -41,20 +38,20 @@ the default answer.
 - [Overview](#overview)
 - [Triage decision tree](#triage-decision-tree)
 - [The Triage Hierarchy](#the-triage-hierarchy)
-- [Quick Assessment — First 60 Seconds](#quick-assessment-first-60-seconds)
+- [Quick Assessment — First 60 Seconds](#quick-assessment--first-60-seconds)
   - [Reading Load Average](#reading-load-average)
 - [CPU Triage](#cpu-triage)
   - [Identify CPU consumers](#identify-cpu-consumers)
   - [Distinguish user-space vs kernel-space](#distinguish-user-space-vs-kernel-space)
   - [Syscall overhead](#syscall-overhead)
-  - [CPU throttling in containers / cgroups](#cpu-throttling-in-containers-cgroups)
+  - [CPU throttling in containers / cgroups](#cpu-throttling-in-containers--cgroups)
 - [Memory Triage](#memory-triage)
   - [Baseline memory usage](#baseline-memory-usage)
   - [Detect swapping](#detect-swapping)
   - [OOM kill history](#oom-kill-history)
   - [Memory overcommit settings](#memory-overcommit-settings)
 - [Disk I/O Triage](#disk-io-triage)
-  - [iostat — the primary tool](#iostat-the-primary-tool)
+  - [iostat — the primary tool](#iostat--the-primary-tool)
   - [Identify the process causing I/O](#identify-the-process-causing-io)
   - [Filesystem saturation](#filesystem-saturation)
   - [I/O scheduler](#io-scheduler)
@@ -63,11 +60,13 @@ the default answer.
   - [TCP retransmits and errors](#tcp-retransmits-and-errors)
   - [Bandwidth utilization](#bandwidth-utilization)
   - [Connection table saturation](#connection-table-saturation)
-- [Worked example — I/O-bound database server](#worked-example-io-bound-database-server)
+- [Worked example — I/O-bound database server](#worked-example--io-bound-database-server)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
-- [Putting It Together — Triage Worksheet](#putting-it-together-triage-worksheet)
+- [Putting It Together — Triage Worksheet](#putting-it-together--triage-worksheet)
 - [Useful One-Liners Reference](#useful-one-liners-reference)
 - [Recap](#recap)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Triage decision tree

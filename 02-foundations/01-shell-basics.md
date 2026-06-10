@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Shell Basics — pwd, ls, cd
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -21,9 +18,9 @@ On RHEL, Bash inherits configuration from `/etc/profile`, `/etc/profile.d/*.sh`,
 ## Table of contents
 
 - [The prompt](#the-prompt)
-- [Where am I? — `pwd`](#where-am-i-pwd)
-- [What is here? — `ls`](#what-is-here-ls)
-- [Moving around — `cd`](#moving-around-cd)
+- [Where am I? — `pwd`](#where-am-i--pwd)
+- [What is here? — `ls`](#what-is-here--ls)
+- [Moving around — `cd`](#moving-around--cd)
 - [Absolute vs relative paths](#absolute-vs-relative-paths)
 - [Important directories to know](#important-directories-to-know)
 - [Filesystem layout diagram](#filesystem-layout-diagram)
@@ -31,6 +28,8 @@ On RHEL, Bash inherits configuration from `/etc/profile`, `/etc/profile.d/*.sh`,
 - [Command history and recall](#command-history-and-recall)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The prompt

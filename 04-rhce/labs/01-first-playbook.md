@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Lab: Write Your First Playbook
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -19,17 +16,19 @@
 - [Prerequisites](#prerequisites)
 - [Success criteria](#success-criteria)
 - [Steps](#steps)
-  - [1 — Create the project directory](#1-create-the-project-directory)
-  - [2 — Create the inventory](#2-create-the-inventory)
-  - [3 — Create the playbook](#3-create-the-playbook)
-  - [4 — Create the template](#4-create-the-template)
-  - [5 — Run in check mode first](#5-run-in-check-mode-first)
-  - [6 — Apply the playbook](#6-apply-the-playbook)
-  - [7 — Run again to confirm idempotence](#7-run-again-to-confirm-idempotence)
-  - [8 — Trigger the handler](#8-trigger-the-handler)
+  - [1 — Create the project directory](#1--create-the-project-directory)
+  - [2 — Create the inventory](#2--create-the-inventory)
+  - [3 — Create the playbook](#3--create-the-playbook)
+  - [4 — Create the template](#4--create-the-template)
+  - [5 — Run in check mode first](#5--run-in-check-mode-first)
+  - [6 — Apply the playbook](#6--apply-the-playbook)
+  - [7 — Run again to confirm idempotence](#7--run-again-to-confirm-idempotence)
+  - [8 — Trigger the handler](#8--trigger-the-handler)
 - [Cleanup](#cleanup)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Extension tasks](#extension-tasks)
+- [Why this matters in production](#why-this-matters-in-production)
+- [Next step](#next-step)
 
 
 ## Background

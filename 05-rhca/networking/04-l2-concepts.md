@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # VLAN, Bridge, Bond Concepts (Optional)
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -44,17 +41,19 @@ a bridge → virtual machines connect to the bridges.
 
 ## Table of contents
 
-- [Bonding — link aggregation](#bonding-link-aggregation)
+- [Bonding — link aggregation](#bonding--link-aggregation)
   - [Bonding modes](#bonding-modes)
   - [Create a bond with nmcli](#create-a-bond-with-nmcli)
-- [VLANs — logical network segmentation](#vlans-logical-network-segmentation)
+- [VLANs — logical network segmentation](#vlans--logical-network-segmentation)
   - [Create a VLAN interface](#create-a-vlan-interface)
-- [Bridges — software layer 2 switch](#bridges-software-layer-2-switch)
+- [Bridges — software layer 2 switch](#bridges--software-layer-2-switch)
   - [Create a bridge](#create-a-bridge)
-- [Combining: bond + VLAN + bridge](#combining-bond-vlan-bridge)
+- [Combining: bond + VLAN + bridge](#combining-bond--vlan--bridge)
 - [Verify layer 2 config](#verify-layer-2-config)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Bonding — link aggregation

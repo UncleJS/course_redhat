@@ -1,18 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab: Shared Team Directory
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -27,16 +12,23 @@
 
 ## Table of contents
 
+- [Prerequisites](#prerequisites)
+- [Success criteria](#success-criteria)
+- [Background](#background)
 - [Steps](#steps)
-  - [1 — Create users and group](#1-create-users-and-group)
-  - [2 — Create the shared directory](#2-create-the-shared-directory)
-  - [3 — Set default ACL for auditor](#3-set-default-acl-for-auditor)
-  - [4 — Test alice (devteam member)](#4-test-alice-devteam-member)
-  - [5 — Test bob (devteam member)](#5-test-bob-devteam-member)
-  - [6 — Test auditor (read-only via ACL)](#6-test-auditor-read-only-via-acl)
-  - [7 — Confirm new files inherit the ACL](#7-confirm-new-files-inherit-the-acl)
-  - [8 — Verify SGID persistence](#8-verify-sgid-persistence)
-  - [9 — Simulate a permission regression and recover](#9-simulate-a-permission-regression-and-recover)
+  - [1 — Create users and group](#1--create-users-and-group)
+  - [2 — Create the shared directory](#2--create-the-shared-directory)
+  - [3 — Set default ACL for auditor](#3--set-default-acl-for-auditor)
+  - [4 — Test alice (devteam member)](#4--test-alice-devteam-member)
+  - [5 — Test bob (devteam member)](#5--test-bob-devteam-member)
+  - [6 — Test auditor (read-only via ACL)](#6--test-auditor-read-only-via-acl)
+  - [7 — Confirm new files inherit the ACL](#7--confirm-new-files-inherit-the-acl)
+  - [8 — Verify SGID persistence](#8--verify-sgid-persistence)
+  - [9 — Simulate a permission regression and recover](#9--simulate-a-permission-regression-and-recover)
+- [Cleanup](#cleanup)
+- [Common failures](#common-failures)
+- [Why this matters in production](#why-this-matters-in-production)
+- [Next step](#next-step)
 
 
 ## Prerequisites

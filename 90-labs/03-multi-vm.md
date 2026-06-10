@@ -1,12 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Multi-VM Lab Setup
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -36,17 +27,21 @@ All three VMs share a private `labnet` libvirt network (192.168.100.0/24) in add
 ## Table of contents
 
 - [Overview](#overview)
-- [Step 1 — Create the Private Lab Network](#step-1-create-the-private-lab-network)
-- [Step 2 — Create the Three VMs](#step-2-create-the-three-vms)
-- [Step 3 — Install RHEL 10 on Each VM](#step-3-install-rhel-10-on-each-vm)
-- [Step 4 — Configure Static IPs on the lab Network](#step-4-configure-static-ips-on-the-lab-network)
-- [Step 5 — /etc/hosts on All Three VMs](#step-5-etchosts-on-all-three-vms)
-- [Step 6 — SSH Key Distribution from controller](#step-6-ssh-key-distribution-from-controller)
-- [Step 7 — Install Ansible on controller](#step-7-install-ansible-on-controller)
-- [Step 8 — Baseline Ansible Inventory](#step-8-baseline-ansible-inventory)
-- [Step 9 — Snapshot All Three VMs](#step-9-snapshot-all-three-vms)
-- [Quick Reference — Multi-VM Management](#quick-reference-multi-vm-management)
+- [Prerequisites](#prerequisites)
+- [Step 1 — Create the Private Lab Network](#step-1--create-the-private-lab-network)
+- [Step 2 — Create the Three VMs](#step-2--create-the-three-vms)
+- [Step 3 — Install RHEL 10 on Each VM](#step-3--install-rhel-10-on-each-vm)
+- [Step 4 — Configure Static IPs on the lab Network](#step-4--configure-static-ips-on-the-lab-network)
+- [Step 5 — /etc/hosts on All Three VMs](#step-5--etchosts-on-all-three-vms)
+- [Step 6 — SSH Key Distribution from controller](#step-6--ssh-key-distribution-from-controller)
+- [Step 7 — Install Ansible on controller](#step-7--install-ansible-on-controller)
+- [Step 8 — Baseline Ansible Inventory](#step-8--baseline-ansible-inventory)
+- [Step 9 — Snapshot All Three VMs](#step-9--snapshot-all-three-vms)
+- [Quick Reference — Multi-VM Management](#quick-reference--multi-vm-management)
+- [Success Criteria](#success-criteria)
 - [Troubleshooting](#troubleshooting)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Prerequisites
@@ -87,9 +82,6 @@ $ sudo virsh net-autostart labnet
 # Verify
 $ sudo virsh net-list
  Name      State    Autostart   Persistent
-
-[↑ Back to TOC](#toc)
-
 --------------------------------------------
  default   active   yes         yes
  labnet    active   yes         yes

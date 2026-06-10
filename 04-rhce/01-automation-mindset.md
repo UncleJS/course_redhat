@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Automation Mindset — Idempotence
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -45,11 +42,13 @@ host at 3 AM or whether it makes things worse.
   - [Imperative vs Declarative](#imperative-vs-declarative)
 - [Idempotence](#idempotence)
 - [Why idempotence matters](#why-idempotence-matters)
-- [The "set -euo pipefail" habit for Bash](#the-set-euo-pipefail-habit-for-bash)
+- [The "set -euo pipefail" habit for Bash](#the-set--euo-pipefail-habit-for-bash)
 - [Infrastructure as Code (IaC) principles](#infrastructure-as-code-iac-principles)
 - [The 4-stage automation workflow](#the-4-stage-automation-workflow)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The manual administration trap

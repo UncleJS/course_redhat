@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Audit Workflow — ausearch, sealert, audit2why
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -35,16 +32,18 @@ A systematic workflow prevents both errors.
 ## Table of contents
 
 - [The audit subsystem](#the-audit-subsystem)
-- [ausearch — targeted queries](#ausearch-targeted-queries)
+- [ausearch — targeted queries](#ausearch--targeted-queries)
 - [Read an AVC record](#read-an-avc-record)
-- [audit2why — explain denials](#audit2why-explain-denials)
-- [aureport — summary statistics](#aureport-summary-statistics)
-- [sealert — rich analysis](#sealert-rich-analysis)
+- [audit2why — explain denials](#audit2why--explain-denials)
+- [aureport — summary statistics](#aureport--summary-statistics)
+- [sealert — rich analysis](#sealert--rich-analysis)
 - [The systematic workflow](#the-systematic-workflow)
 - [AVC denial decision tree (Mermaid)](#avc-denial-decision-tree-mermaid)
 - [Logging permissive denials (don't miss them)](#logging-permissive-denials-dont-miss-them)
-- [Worked example — diagnosing a multi-step AVC chain](#worked-example-diagnosing-a-multi-step-avc-chain)
+- [Worked example — diagnosing a multi-step AVC chain](#worked-example--diagnosing-a-multi-step-avc-chain)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The audit subsystem

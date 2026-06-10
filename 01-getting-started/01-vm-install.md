@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Install a RHEL 10 Lab VM
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -24,11 +21,13 @@
 ## Table of contents
 
 - [What you need](#what-you-need)
-- [Step 1 — Get a RHEL 10 ISO](#step-1-get-a-rhel-10-iso)
-- [Step 2 — Create the VM](#step-2-create-the-vm)
-- [Step 3 — RHEL 10 installer (Anaconda)](#step-3-rhel-10-installer-anaconda)
-- [Step 4 — First login](#step-4-first-login)
-- [Step 5 — Register with Red Hat](#step-5-register-with-red-hat)
+- [Step 1 — Get a RHEL 10 ISO](#step-1--get-a-rhel-10-iso)
+- [Step 2 — Create the VM](#step-2--create-the-vm)
+- [Step 3 — RHEL 10 installer (Anaconda)](#step-3--rhel-10-installer-anaconda)
+- [Step 4 — First login](#step-4--first-login)
+- [Step 5 — Register with Red Hat](#step-5--register-with-red-hat)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Step 1 — Get a RHEL 10 ISO

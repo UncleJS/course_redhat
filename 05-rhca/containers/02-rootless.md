@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Rootless Podman — Storage and Networking
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -41,12 +38,14 @@ to redirect host port 80 to the container's port 8080.
 - [User namespace mapping in practice](#user-namespace-mapping-in-practice)
 - [Rootless storage](#rootless-storage)
 - [Rootless networking](#rootless-networking)
-  - [Port redirect for port 80 → 8080](#port-redirect-for-port-80-8080)
+  - [Port redirect for port 80 → 8080](#port-redirect-for-port-80--8080)
 - [Rootless networking: container-to-container](#rootless-networking-container-to-container)
 - [Inspect networking](#inspect-networking)
 - [Clean up rootless storage](#clean-up-rootless-storage)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## How rootless works

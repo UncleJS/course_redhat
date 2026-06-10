@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Pipes and Redirection
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -22,7 +19,7 @@ Pipes are implemented by the kernel as a small in-memory buffer. The writing pro
 
 - [Output redirection](#output-redirection)
 - [Input redirection](#input-redirection)
-- [Pipes — `|`](#pipes)
+- [Pipes — `|`](#pipes--)
 - [Pipe data flow diagram](#pipe-data-flow-diagram)
 - [Useful commands for pipes](#useful-commands-for-pipes)
   - [`sort`](#sort)
@@ -36,6 +33,8 @@ Pipes are implemented by the kernel as a small in-memory buffer. The writing pro
 - [Process substitution](#process-substitution)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Output redirection

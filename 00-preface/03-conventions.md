@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Conventions
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -21,6 +18,8 @@ This page defines every convention used throughout the guide.
 - [Admonition types](#admonition-types)
 - [Track badges](#track-badges)
 - [Terminology](#terminology)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Shell prompts

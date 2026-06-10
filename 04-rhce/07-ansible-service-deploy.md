@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Deploy a Service with Ansible — Firewall + SELinux
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -44,6 +41,8 @@ through the lab in `labs/02-role-web-deploy.md` after reading this chapter.
 - [Verify](#verify)
 - [SELinux and firewalld reference](#selinux-and-firewalld-reference)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Project structure

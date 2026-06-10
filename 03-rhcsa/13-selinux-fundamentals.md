@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # SELinux Fundamentals
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -42,13 +39,15 @@ administrators.
   - [Temporarily switch modes (no reboot, not persistent)](#temporarily-switch-modes-no-reboot-not-persistent)
   - [Permanent mode (requires reboot)](#permanent-mode-requires-reboot)
 - [SELinux contexts](#selinux-contexts)
-- [File contexts — `restorecon`](#file-contexts-restorecon)
+- [File contexts — `restorecon`](#file-contexts--restorecon)
 - [SELinux booleans](#selinux-booleans)
 - [Install SELinux tools](#install-selinux-tools)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [semanage — persistent policy management](#semanage--persistent-policy-management)
 - [File context database operations](#file-context-database-operations)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## MAC vs DAC

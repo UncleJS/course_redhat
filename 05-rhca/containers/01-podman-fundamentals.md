@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Container Fundamentals — RHEL View
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -47,6 +44,8 @@ lets you trace a failure to its source quickly.
 - [Rootless vs rootful](#rootless-vs-rootful)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Key concepts

@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Accounts, sudo, and Updates
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -42,6 +39,8 @@ mechanism. You should almost never need to log in as `root` directly.
 - [Automatic updates (optional for a lab VM)](#automatic-updates-optional-for-a-lab-vm)
 - [Creating additional user accounts](#creating-additional-user-accounts)
 - [Password aging with `chage`](#password-aging-with-chage)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Check your sudo access

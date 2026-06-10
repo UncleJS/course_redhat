@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Ansible Setup and Inventory
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -44,6 +41,8 @@ can run a single playbook.
 - [Ad-hoc commands](#ad-hoc-commands)
 - [Ansible modules (essential)](#ansible-modules-essential)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Architecture

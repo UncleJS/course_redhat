@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Troubleshooting Playbook — First 10 Minutes
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -35,18 +32,20 @@ wastes time and produces errors that are hard to detect before time runs out.
 - [The mindset](#the-mindset)
 - [Triage flow diagram](#triage-flow-diagram)
 - [The First 10 Minutes Checklist](#the-first-10-minutes-checklist)
-  - [0 — What is the reported symptom?](#0-what-is-the-reported-symptom)
-  - [1 — System health (30 seconds)](#1-system-health-30-seconds)
-  - [2 — Recent changes (1 minute)](#2-recent-changes-1-minute)
-  - [3 — Service status (2 minutes)](#3-service-status-2-minutes)
-  - [4 — SELinux check (1 minute)](#4-selinux-check-1-minute)
-  - [5 — Network connectivity (2 minutes)](#5-network-connectivity-2-minutes)
-  - [6 — The "DNS vs routing vs firewall" decision tree](#6-the-dns-vs-routing-vs-firewall-decision-tree)
-  - [7 — Resource exhaustion (1 minute)](#7-resource-exhaustion-1-minute)
-  - [8 — Log files (catch-all)](#8-log-files-catch-all)
-- [Worked example — diagnosing a 502 Bad Gateway](#worked-example-diagnosing-a-502-bad-gateway)
+  - [0 — What is the reported symptom?](#0--what-is-the-reported-symptom)
+  - [1 — System health (30 seconds)](#1--system-health-30-seconds)
+  - [2 — Recent changes (1 minute)](#2--recent-changes-1-minute)
+  - [3 — Service status (2 minutes)](#3--service-status-2-minutes)
+  - [4 — SELinux check (1 minute)](#4--selinux-check-1-minute)
+  - [5 — Network connectivity (2 minutes)](#5--network-connectivity-2-minutes)
+  - [6 — The "DNS vs routing vs firewall" decision tree](#6--the-dns-vs-routing-vs-firewall-decision-tree)
+  - [7 — Resource exhaustion (1 minute)](#7--resource-exhaustion-1-minute)
+  - [8 — Log files (catch-all)](#8--log-files-catch-all)
+- [Worked example — diagnosing a 502 Bad Gateway](#worked-example--diagnosing-a-502-bad-gateway)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [Escalation checklist](#escalation-checklist)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The mindset

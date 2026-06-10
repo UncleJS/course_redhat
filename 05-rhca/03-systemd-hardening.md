@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # systemd Hardening Knobs — Service Sandboxing
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -48,8 +45,10 @@ is contained to its designated directories and syscall surface.
   - [Protect kernel and host configuration](#protect-kernel-and-host-configuration)
 - [Full example: hardened web service](#full-example-hardened-web-service)
 - [Verify restrictions with systemd-analyze security](#verify-restrictions-with-systemd-analyze-security)
-- [Worked example — hardening an nginx unit step by step](#worked-example-hardening-an-nginx-unit-step-by-step)
+- [Worked example — hardening an nginx unit step by step](#worked-example--hardening-an-nginx-unit-step-by-step)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Why sandbox services?

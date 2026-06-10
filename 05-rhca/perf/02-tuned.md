@@ -1,15 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # tuned — Profile-Based System Tuning
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -59,11 +47,14 @@ engineers are expected to diagnose and fix.
 - [Dynamic Tuning](#dynamic-tuning)
 - [Recommend Profile with tuned-adm](#recommend-profile-with-tuned-adm)
 - [Persistent Custom sysctl (Supplement to tuned)](#persistent-custom-sysctl-supplement-to-tuned)
-- [Worked example — latency-sensitive application tuning](#worked-example-latency-sensitive-application-tuning)
+- [Worked example — latency-sensitive application tuning](#worked-example--latency-sensitive-application-tuning)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
-- [Lab — Profile Switch and Verification](#lab-profile-switch-and-verification)
+- [Why This Matters in Production](#why-this-matters-in-production)
+- [Lab — Profile Switch and Verification](#lab--profile-switch-and-verification)
   - [Steps](#steps)
 - [Recap](#recap)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## How tuned Works

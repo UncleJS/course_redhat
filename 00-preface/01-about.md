@@ -1,21 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # About This Guide
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -97,6 +79,8 @@ License](https://creativecommons.org/licenses/by/4.0/).
 - [Versions and testing](#versions-and-testing)
 - [Contributing](#contributing)
 - [License](#license)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Further reading

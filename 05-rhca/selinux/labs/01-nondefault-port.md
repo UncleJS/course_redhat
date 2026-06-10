@@ -1,18 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab: Non-Default Port — Correct SELinux Fix
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -31,17 +16,19 @@
 - [Prerequisites](#prerequisites)
 - [Success criteria](#success-criteria)
 - [Steps](#steps)
-  - [1 — Configure httpd to listen on port 9090](#1-configure-httpd-to-listen-on-port-9090)
-  - [2 — Try to start httpd (expect failure)](#2-try-to-start-httpd-expect-failure)
-  - [3 — Read the audit log](#3-read-the-audit-log)
-  - [4 — Confirm with audit2why](#4-confirm-with-audit2why)
-  - [5 — Apply the correct fix](#5-apply-the-correct-fix)
-  - [6 — Open port 9090 in firewalld](#6-open-port-9090-in-firewalld)
-  - [7 — Start httpd and verify](#7-start-httpd-and-verify)
-  - [8 — Confirm with ss](#8-confirm-with-ss)
+  - [1 — Configure httpd to listen on port 9090](#1--configure-httpd-to-listen-on-port-9090)
+  - [2 — Try to start httpd (expect failure)](#2--try-to-start-httpd-expect-failure)
+  - [3 — Read the audit log](#3--read-the-audit-log)
+  - [4 — Confirm with audit2why](#4--confirm-with-audit2why)
+  - [5 — Apply the correct fix](#5--apply-the-correct-fix)
+  - [6 — Open port 9090 in firewalld](#6--open-port-9090-in-firewalld)
+  - [7 — Start httpd and verify](#7--start-httpd-and-verify)
+  - [8 — Confirm with ss](#8--confirm-with-ss)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Extension tasks](#extension-tasks)
 - [Cleanup](#cleanup)
+- [Why this matters in production](#why-this-matters-in-production)
+- [Next step](#next-step)
 
 
 ## Background

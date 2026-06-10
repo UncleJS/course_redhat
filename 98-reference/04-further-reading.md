@@ -21,6 +21,7 @@ Curated resources to deepen your understanding beyond this guide. All Red Hat do
 - [Networking](#networking)
 - [Practice Environments](#practice-environments)
 - [Community](#community)
+- [Next step](#next-step)
 
 
 ## Official Red Hat Documentation

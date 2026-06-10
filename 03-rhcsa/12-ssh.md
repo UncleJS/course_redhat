@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # SSH — Keys, Server Basics
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -40,7 +37,7 @@ correct remediation.
   - [Generate a key pair](#generate-a-key-pair)
   - [Copy public key to a remote host](#copy-public-key-to-a-remote-host)
   - [Test key login](#test-key-login)
-- [SSH config file — `~/.ssh/config`](#ssh-config-file-sshconfig)
+- [SSH config file — `~/.ssh/config`](#ssh-config-file--sshconfig)
 - [SSH agent (avoid repeated passphrase entry)](#ssh-agent-avoid-repeated-passphrase-entry)
 - [sshd configuration](#sshd-configuration)
   - [Recommended hardening settings](#recommended-hardening-settings)
@@ -49,7 +46,9 @@ correct remediation.
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [Host key management](#host-key-management)
-- [sshd_config drop-in files](#sshdconfig-drop-in-files)
+- [sshd_config drop-in files](#sshd_config-drop-in-files)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Connect to a remote host

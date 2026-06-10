@@ -1,15 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab: Debug DNS vs Routing vs Firewall
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -27,18 +15,18 @@
 - [Overview](#overview)
 - [Background](#background)
 - [Prerequisites](#prerequisites)
-- [Setup — install a simple web service](#setup-install-a-simple-web-service)
-- [Fault 1 — DNS broken](#fault-1-dns-broken)
+- [Setup — install a simple web service](#setup--install-a-simple-web-service)
+- [Fault 1 — DNS broken](#fault-1--dns-broken)
   - [Introduce the fault](#introduce-the-fault)
   - [Observe the symptom](#observe-the-symptom)
   - [Troubleshoot it](#troubleshoot-it)
   - [Fix it](#fix-it)
-- [Fault 2 — Firewall blocking HTTP](#fault-2-firewall-blocking-http)
+- [Fault 2 — Firewall blocking HTTP](#fault-2--firewall-blocking-http)
   - [Introduce the fault](#introduce-the-fault-1)
   - [Observe the symptom](#observe-the-symptom-1)
   - [Troubleshoot it](#troubleshoot-it-1)
   - [Fix it](#fix-it-1)
-- [Fault 3 — SELinux context broken on web content](#fault-3-selinux-context-broken-on-web-content)
+- [Fault 3 — SELinux context broken on web content](#fault-3--selinux-context-broken-on-web-content)
   - [Introduce the fault](#introduce-the-fault-2)
   - [Observe the symptom](#observe-the-symptom-2)
   - [Troubleshoot it](#troubleshoot-it-2)
@@ -46,7 +34,9 @@
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Extension tasks](#extension-tasks)
 - [Cleanup](#cleanup)
+- [Common failures](#common-failures)
 - [Why this matters in production](#why-this-matters-in-production)
+- [Next step](#next-step)
 
 
 ## Prerequisites

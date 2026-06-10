@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Files and Text — cp, mv, rm, less
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -18,17 +15,19 @@ The mental model: files exist in a directory tree, each identified by a path. Ev
 ## Table of contents
 
 - [Viewing files](#viewing-files)
-- [Copying files — `cp`](#copying-files-cp)
-- [Moving and renaming — `mv`](#moving-and-renaming-mv)
-- [Removing files — `rm`](#removing-files-rm)
-- [Creating directories — `mkdir`](#creating-directories-mkdir)
-- [Creating links — `ln`](#creating-links-ln)
-- [Finding files — `find`](#finding-files-find)
-- [Searching inside files — `grep`](#searching-inside-files-grep)
-- [Counting lines, words, characters — `wc`](#counting-lines-words-characters-wc)
-- [File details — `stat` and `file`](#file-details-stat-and-file)
+- [Copying files — `cp`](#copying-files--cp)
+- [Moving and renaming — `mv`](#moving-and-renaming--mv)
+- [Removing files — `rm`](#removing-files--rm)
+- [Creating directories — `mkdir`](#creating-directories--mkdir)
+- [Creating links — `ln`](#creating-links--ln)
+- [Finding files — `find`](#finding-files--find)
+- [Searching inside files — `grep`](#searching-inside-files--grep)
+- [Counting lines, words, characters — `wc`](#counting-lines-words-characters--wc)
+- [File details — `stat` and `file`](#file-details--stat-and-file)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Viewing files

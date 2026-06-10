@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # SELinux Troubleshooting — AVCs
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -34,8 +31,8 @@ any SELinux issue in under five minutes.
 
 - [Where AVC denials are logged](#where-avc-denials-are-logged)
 - [Reading an AVC denial](#reading-an-avc-denial)
-- [`audit2why` — plain-language explanation](#audit2why-plain-language-explanation)
-- [`sealert` — richer analysis](#sealert-richer-analysis)
+- [`audit2why` — plain-language explanation](#audit2why--plain-language-explanation)
+- [`sealert` — richer analysis](#sealert--richer-analysis)
 - [The fix taxonomy (choose the right fix)](#the-fix-taxonomy-choose-the-right-fix)
 - [Common AVC scenarios and fixes](#common-avc-scenarios-and-fixes)
   - [Web content in wrong location](#web-content-in-wrong-location)
@@ -46,6 +43,8 @@ any SELinux issue in under five minutes.
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [Permissive domains](#permissive-domains)
 - [AVC denial patterns quick reference](#avc-denial-patterns-quick-reference)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Where AVC denials are logged

@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Red Hat Enterprise Linux 10 — Beginner to RHCA
 
 > **Note:** This guide does not promise exam coverage. It teaches the real-world
@@ -53,7 +50,7 @@ on the **RHEL infrastructure** track — with hands-on labs every step of the wa
 
 The guide is split into four progressive tracks:
 
-```
+```text
 Onramp  →  RHCSA  →  RHCE  →  RHCA
 ```
 

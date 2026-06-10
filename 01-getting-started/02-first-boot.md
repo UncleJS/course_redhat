@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # First Boot Checklist
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -14,16 +11,18 @@ Each step takes under a minute.
 
 ## Table of contents
 
-- [1 — Confirm you are NOT logged in as root](#1-confirm-you-are-not-logged-in-as-root)
-- [2 — Check network connectivity](#2-check-network-connectivity)
-- [3 — Check DNS resolution](#3-check-dns-resolution)
-- [4 — Register the system (if not done during install)](#4-register-the-system-if-not-done-during-install)
-- [5 — Apply all available updates](#5-apply-all-available-updates)
-- [6 — Confirm SELinux is enforcing](#6-confirm-selinux-is-enforcing)
-- [7 — Confirm firewalld is running](#7-confirm-firewalld-is-running)
-- [8 — Check system time](#8-check-system-time)
-- [9 — Set a hostname (if not done during install)](#9-set-a-hostname-if-not-done-during-install)
-- [10 — Take a VM snapshot](#10-take-a-vm-snapshot)
+- [1 — Confirm you are NOT logged in as root](#1--confirm-you-are-not-logged-in-as-root)
+- [2 — Check network connectivity](#2--check-network-connectivity)
+- [3 — Check DNS resolution](#3--check-dns-resolution)
+- [4 — Register the system (if not done during install)](#4--register-the-system-if-not-done-during-install)
+- [5 — Apply all available updates](#5--apply-all-available-updates)
+- [6 — Confirm SELinux is enforcing](#6--confirm-selinux-is-enforcing)
+- [7 — Confirm firewalld is running](#7--confirm-firewalld-is-running)
+- [8 — Check system time](#8--check-system-time)
+- [9 — Set a hostname (if not done during install)](#9--set-a-hostname-if-not-done-during-install)
+- [10 — Take a VM snapshot](#10--take-a-vm-snapshot)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## 1 — Confirm you are NOT logged in as root

@@ -1,33 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab Workflow — Snapshots and Safety
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -98,44 +68,29 @@ VBoxManage snapshot "rhel10-lab" restore "before-lab-20260223"
   - [Take a snapshot before each lab](#take-a-snapshot-before-each-lab)
   - [Restore a snapshot](#restore-a-snapshot)
 - [Lab page anatomy](#lab-page-anatomy)
-- [Estimated time](#estimated-time)
-- [Steps  (numbered, with Verify checkpoints inline)](#steps-numbered-with-verify-checkpoints-inline)
 - [Verify checkpoints](#verify-checkpoints)
 - [Safety conventions](#safety-conventions)
 - [Single-VM vs Multi-VM labs](#single-vm-vs-multi-vm-labs)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Lab page anatomy
 
 Every lab in this guide has the same structure:
 
-```
-
-[↑ Back to TOC](#toc)
-
+```markdown
 ## Prerequisites
-
-[↑ Back to TOC](#toc)
 
 ## Estimated time
 
-[↑ Back to TOC](#toc)
-
 ## Success criteria
-
-[↑ Back to TOC](#toc)
 
 ## Steps  (numbered, with Verify checkpoints inline)
 
-[↑ Back to TOC](#toc)
-
 ## Cleanup
 
-[↑ Back to TOC](#toc)
-
 ## Common failures
-
-[↑ Back to TOC](#toc)
 
 ## Why this matters in production
 ```

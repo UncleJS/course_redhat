@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Users, Groups, and Permissions
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -24,16 +21,18 @@ On top of DAC, RHEL 10 runs **SELinux** in enforcing mode. SELinux is a **Mandat
 - [The permission model](#the-permission-model)
   - [Permission bits](#permission-bits)
 - [DAC permission check flow](#dac-permission-check-flow)
-- [Viewing permissions — `ls -l`](#viewing-permissions-ls-l)
-- [Changing permissions — `chmod`](#changing-permissions-chmod)
+- [Viewing permissions — `ls -l`](#viewing-permissions--ls--l)
+- [Changing permissions — `chmod`](#changing-permissions--chmod)
   - [Common permission patterns](#common-permission-patterns)
-- [Changing ownership — `chown`](#changing-ownership-chown)
-- [Changing group — `chgrp`](#changing-group-chgrp)
+- [Changing ownership — `chown`](#changing-ownership--chown)
+- [Changing group — `chgrp`](#changing-group--chgrp)
 - [Managing groups](#managing-groups)
-- [umask — default permissions](#umask-default-permissions)
+- [umask — default permissions](#umask--default-permissions)
 - [Special permission bits](#special-permission-bits)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The permission model

@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # ACLs — When and How
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -24,14 +21,16 @@ The critical insight is that ACLs **augment** standard permissions — they do n
 - [When to use ACLs](#when-to-use-acls)
 - [Check if ACLs are supported](#check-if-acls-are-supported)
 - [Install ACL tools](#install-acl-tools)
-- [View ACLs — `getfacl`](#view-acls-getfacl)
-- [Set ACLs — `setfacl`](#set-acls-setfacl)
-- [Default ACLs — directory inheritance](#default-acls-directory-inheritance)
+- [View ACLs — `getfacl`](#view-acls--getfacl)
+- [Set ACLs — `setfacl`](#set-acls--setfacl)
+- [Default ACLs — directory inheritance](#default-acls--directory-inheritance)
 - [Remove ACLs](#remove-acls)
 - [The ACL mask](#the-acl-mask)
 - [Preserve ACLs when copying](#preserve-acls-when-copying)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## When to use ACLs

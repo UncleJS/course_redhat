@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Getting Help — man, --help, apropos
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -14,15 +11,17 @@ answers without leaving the terminal.
 
 ## Table of contents
 
-- [The `--help` flag](#the-help-flag)
+- [The `--help` flag](#the---help-flag)
 - [man pages](#man-pages)
   - [Navigating a man page](#navigating-a-man-page)
   - [Man page sections](#man-page-sections)
-- [`apropos` — search by keyword](#apropos-search-by-keyword)
+- [`apropos` — search by keyword](#apropos--search-by-keyword)
 - [`info` pages](#info-pages)
 - [`/usr/share/doc`](#usrsharedoc)
 - [Online resources (official)](#online-resources-official)
 - [Quick reference: help commands](#quick-reference-help-commands)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The `--help` flag

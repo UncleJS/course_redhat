@@ -1,12 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Single-VM Lab Setup
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -28,22 +19,26 @@ A single RHEL 10 VM covers 95% of the labs in this guide. This page walks throug
 ## Table of contents
 
 - [Overview](#overview)
-- [Step 1 — Install KVM and virt-install (Host)](#step-1-install-kvm-and-virt-install-host)
-- [Step 2 — Create the VM](#step-2-create-the-vm)
-- [Step 3 — RHEL 10 Installation (Anaconda)](#step-3-rhel-10-installation-anaconda)
+- [Prerequisites](#prerequisites)
+- [Step 1 — Install KVM and virt-install (Host)](#step-1--install-kvm-and-virt-install-host)
+- [Step 2 — Create the VM](#step-2--create-the-vm)
+- [Step 3 — RHEL 10 Installation (Anaconda)](#step-3--rhel-10-installation-anaconda)
   - [Installation Destination](#installation-destination)
   - [Software Selection](#software-selection)
   - [Network and Host Name](#network-and-host-name)
   - [Root Password](#root-password)
-- [Step 4 — First Boot](#step-4-first-boot)
+- [Step 4 — First Boot](#step-4--first-boot)
   - [Confirm SSH access](#confirm-ssh-access)
   - [Register the system](#register-the-system)
-- [Step 5 — Baseline Configuration](#step-5-baseline-configuration)
-- [Step 6 — SSH Key Setup (Recommended)](#step-6-ssh-key-setup-recommended)
-- [Step 7 — Snapshot the VM (Strongly Recommended)](#step-7-snapshot-the-vm-strongly-recommended)
+- [Step 5 — Baseline Configuration](#step-5--baseline-configuration)
+- [Step 6 — SSH Key Setup (Recommended)](#step-6--ssh-key-setup-recommended)
+- [Step 7 — Snapshot the VM (Strongly Recommended)](#step-7--snapshot-the-vm-strongly-recommended)
 - [Disk Layout for Storage Labs](#disk-layout-for-storage-labs)
-- [Quick Reference — VM Management](#quick-reference-vm-management)
+- [Quick Reference — VM Management](#quick-reference--vm-management)
+- [Success Criteria](#success-criteria)
 - [Troubleshooting](#troubleshooting)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Prerequisites
@@ -69,9 +64,6 @@ $ sudo systemctl enable --now libvirtd
 # Verify KVM is functional
 $ sudo virsh list --all
  Id   Name   State
-
-[↑ Back to TOC](#toc)
-
 --------------------
 ```
 
@@ -153,9 +145,6 @@ After reboot, log in as `student` via the console or SSH.
 # From the KVM host, get the VM's IP
 $ sudo virsh domifaddr rhel10-lab
  Name       MAC address          Protocol     Address
-
-[↑ Back to TOC](#toc)
-
 -------------------------------------------------------------------------------
  vnet0      52:54:00:xx:xx:xx    ipv4         192.168.122.10/24
 

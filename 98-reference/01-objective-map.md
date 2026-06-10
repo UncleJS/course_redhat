@@ -12,7 +12,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 
 ## Table of contents
 
-- [RHCSA (EX200) — RHEL 10](#rhcsa-ex200-rhel-10)
+- [RHCSA (EX200) — RHEL 10](#rhcsa-ex200--rhel-10)
   - [Understand and use essential tools](#understand-and-use-essential-tools)
   - [Create simple shell scripts](#create-simple-shell-scripts)
   - [Operate running systems](#operate-running-systems)
@@ -22,8 +22,9 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
   - [Manage basic networking](#manage-basic-networking)
   - [Manage users and groups](#manage-users-and-groups)
   - [Manage security](#manage-security)
-- [RHCE (EX294) — Ansible on RHEL 10](#rhce-ex294-ansible-on-rhel-10)
+- [RHCE (EX294) — Ansible on RHEL 10](#rhce-ex294--ansible-on-rhel-10)
 - [RHCA Infrastructure Concentration (indicative topics)](#rhca-infrastructure-concentration-indicative-topics)
+- [Next step](#next-step)
 
 
 ## RHCSA (EX200) — RHEL 10

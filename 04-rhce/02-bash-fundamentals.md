@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Bash Scripting Fundamentals
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -48,6 +45,8 @@ the `validate` parameters of file modules.
 - [Logging output](#logging-output)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Script template (always start with this)

@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Storage Overview — lsblk, blkid, mounts
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -37,8 +34,8 @@ always use UUIDs in `/etc/fstab`.
 
 - [Block device hierarchy](#block-device-hierarchy)
 - [Storage stack diagram](#storage-stack-diagram)
-- [List block devices — `lsblk`](#list-block-devices-lsblk)
-- [Identify filesystems — `blkid`](#identify-filesystems-blkid)
+- [List block devices — `lsblk`](#list-block-devices--lsblk)
+- [Identify filesystems — `blkid`](#identify-filesystems--blkid)
 - [View current mounts](#view-current-mounts)
 - [Partition tools](#partition-tools)
   - [`fdisk` (MBR and GPT, interactive)](#fdisk-mbr-and-gpt-interactive)
@@ -50,6 +47,8 @@ always use UUIDs in `/etc/fstab`.
 - [Swap](#swap)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Block device hierarchy

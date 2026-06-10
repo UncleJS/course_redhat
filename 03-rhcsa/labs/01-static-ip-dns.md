@@ -1,15 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab: Static IP + DNS Validation
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -24,17 +12,21 @@
 
 ## Table of contents
 
+- [Prerequisites](#prerequisites)
 - [Background](#background)
+- [Success criteria](#success-criteria)
 - [Steps](#steps)
-  - [1 — Identify your interface and current connection](#1-identify-your-interface-and-current-connection)
-  - [2 — Choose a static IP](#2-choose-a-static-ip)
-  - [3 — Configure static addressing](#3-configure-static-addressing)
-  - [4 — Activate the new config](#4-activate-the-new-config)
-  - [5 — Test connectivity](#5-test-connectivity)
-  - [6 — Test persistence across reboot](#6-test-persistence-across-reboot)
+  - [1 — Identify your interface and current connection](#1--identify-your-interface-and-current-connection)
+  - [2 — Choose a static IP](#2--choose-a-static-ip)
+  - [3 — Configure static addressing](#3--configure-static-addressing)
+  - [4 — Activate the new config](#4--activate-the-new-config)
+  - [5 — Test connectivity](#5--test-connectivity)
+  - [6 — Test persistence across reboot](#6--test-persistence-across-reboot)
 - [Cleanup (restore DHCP)](#cleanup-restore-dhcp)
 - [Troubleshooting guide](#troubleshooting-guide)
+- [Why this matters in production](#why-this-matters-in-production)
 - [Extension tasks](#extension-tasks)
+- [Next step](#next-step)
 
 
 ## Prerequisites

@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # LVM — Create, Extend, Reduce Safely
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -37,19 +34,21 @@ will extend these LVs constantly in production work.
 - [LVM concepts](#lvm-concepts)
 - [LVM layer diagram](#lvm-layer-diagram)
 - [Create an LVM setup from scratch](#create-an-lvm-setup-from-scratch)
-  - [1 — Initialise the PV](#1-initialise-the-pv)
-  - [2 — Create a VG](#2-create-a-vg)
-  - [3 — Create an LV](#3-create-an-lv)
-  - [4 — Format and mount](#4-format-and-mount)
-  - [5 — Add to fstab](#5-add-to-fstab)
+  - [1 — Initialise the PV](#1--initialise-the-pv)
+  - [2 — Create a VG](#2--create-a-vg)
+  - [3 — Create an LV](#3--create-an-lv)
+  - [4 — Format and mount](#4--format-and-mount)
+  - [5 — Add to fstab](#5--add-to-fstab)
 - [Extend an LV (online, no downtime)](#extend-an-lv-online-no-downtime)
-- [Reduce an LV (ext4 only — not XFS)](#reduce-an-lv-ext4-only-not-xfs)
+- [Reduce an LV (ext4 only — not XFS)](#reduce-an-lv-ext4-only--not-xfs)
 - [Add a new PV to an existing VG](#add-a-new-pv-to-an-existing-vg)
 - [Remove a PV from a VG (pvmove)](#remove-a-pv-from-a-vg-pvmove)
 - [LVM snapshot (basics)](#lvm-snapshot-basics)
 - [LVM status commands](#lvm-status-commands)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## LVM concepts

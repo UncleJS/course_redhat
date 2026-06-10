@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # SELinux Fix Taxonomy — Label vs Boolean vs Port vs Policy
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -44,8 +41,10 @@ The taxonomy forces you to ask the right diagnostic question first.
 - [Fix type 3: Port label](#fix-type-3-port-label)
 - [Fix type 4: audit2allow (last resort)](#fix-type-4-audit2allow-last-resort)
 - [Fix type 5: The application is wrong](#fix-type-5-the-application-is-wrong)
-- [Worked example — new custom app needing port label and file context](#worked-example-new-custom-app-needing-port-label-and-file-context)
+- [Worked example — new custom app needing port label and file context](#worked-example--new-custom-app-needing-port-label-and-file-context)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The fix decision tree

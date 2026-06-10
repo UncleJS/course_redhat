@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # DNS and Name Resolution
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -38,7 +35,7 @@ running, or the upstream server itself is unavailable.
 - [`/etc/hosts`](#etchosts)
 - [`/etc/resolv.conf`](#etcresolvconf)
 - [Check DNS resolution](#check-dns-resolution)
-- [`resolvectl` — systemd-resolved control](#resolvectl-systemd-resolved-control)
+- [`resolvectl` — systemd-resolved control](#resolvectl--systemd-resolved-control)
 - [Set DNS servers per connection](#set-dns-servers-per-connection)
 - [Search domains](#search-domains)
 - [`/etc/nsswitch.conf`](#etcnsswitchconf)
@@ -48,6 +45,8 @@ running, or the upstream server itself is unavailable.
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [systemd-resolved advanced configuration](#systemd-resolved-advanced-configuration)
 - [DNS tools comparison](#dns-tools-comparison)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Resolution order

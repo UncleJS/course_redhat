@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Lab Environments
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -29,6 +26,8 @@ The labs in this guide are designed for hands-on practice in a safe, isolated en
 - [RHEL 10 Installation Media](#rhel-10-installation-media)
 - [Lab VM Conventions](#lab-vm-conventions)
 - [Quick-Start Checklist](#quick-start-checklist)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## What You Need

@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Networking Basics — ip, ss
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -38,7 +35,7 @@ next chapter).
   - [View ARP/neighbour cache](#view-arpneighbour-cache)
 - [Network interface states](#network-interface-states)
 - [The `ss` command](#the-ss-command)
-  - [Output columns (ss -tlnp)](#output-columns-ss-tlnp)
+  - [Output columns (ss -tlnp)](#output-columns-ss--tlnp)
 - [Common patterns](#common-patterns)
 - [Checking connectivity](#checking-connectivity)
 - [Hostname](#hostname)
@@ -48,6 +45,8 @@ next chapter).
 - [Reading `ip link show` output in depth](#reading-ip-link-show-output-in-depth)
 - [Reading `ip addr show` output in depth](#reading-ip-addr-show-output-in-depth)
 - [Routing table deep dive](#routing-table-deep-dive)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The `ip` command

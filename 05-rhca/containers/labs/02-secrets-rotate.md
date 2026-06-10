@@ -1,18 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab - Podman Secrets Rotation
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -39,19 +24,23 @@ Create a containerized application that reads a database password from a Podman 
 - [Prerequisites](#prerequisites)
 - [Success Criteria](#success-criteria)
 - [Steps](#steps)
-  - [1 — Create the initial secret](#1-create-the-initial-secret)
-  - [2 — Build a minimal test image](#2-build-a-minimal-test-image)
-  - [3 — Write the Quadlet `.container` file](#3-write-the-quadlet-container-file)
-  - [4 — Start the service and verify the initial secret](#4-start-the-service-and-verify-the-initial-secret)
-  - [5 — Verify the secret is NOT in the process list](#5-verify-the-secret-is-not-in-the-process-list)
-  - [6 — Rotate the secret](#6-rotate-the-secret)
-  - [7 — Remove the old secret](#7-remove-the-old-secret)
-  - [8 — Simulate a second rotation (practice)](#8-simulate-a-second-rotation-practice)
+  - [1 — Create the initial secret](#1--create-the-initial-secret)
+  - [2 — Build a minimal test image](#2--build-a-minimal-test-image)
+  - [3 — Write the Quadlet `.container` file](#3--write-the-quadlet-container-file)
+  - [4 — Start the service and verify the initial secret](#4--start-the-service-and-verify-the-initial-secret)
+  - [5 — Verify the secret is NOT in the process list](#5--verify-the-secret-is-not-in-the-process-list)
+  - [6 — Rotate the secret](#6--rotate-the-secret)
+  - [7 — Remove the old secret](#7--remove-the-old-secret)
+  - [8 — Simulate a second rotation (practice)](#8--simulate-a-second-rotation-practice)
 - [Verify Checkpoints](#verify-checkpoints)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Extension tasks](#extension-tasks)
+- [Cleanup](#cleanup)
+- [Common Failures](#common-failures)
 - [Production Notes](#production-notes)
+- [Why This Matters in Production](#why-this-matters-in-production)
 - [Recap](#recap)
+- [Next step](#next-step)
 
 
 ## Prerequisites

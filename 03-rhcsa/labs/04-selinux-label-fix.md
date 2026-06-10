@@ -1,18 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab: Fix a SELinux Label Issue
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -27,18 +12,22 @@
 
 ## Table of contents
 
+- [Prerequisites](#prerequisites)
 - [Background](#background)
+- [Success criteria](#success-criteria)
 - [Steps](#steps)
-  - [1 — Start httpd and confirm SELinux is enforcing](#1-start-httpd-and-confirm-selinux-is-enforcing)
-  - [2 — Create content in the standard location (should work)](#2-create-content-in-the-standard-location-should-work)
-  - [3 — Create a custom web root with wrong context](#3-create-a-custom-web-root-with-wrong-context)
-  - [4 — Configure httpd to serve from the custom path](#4-configure-httpd-to-serve-from-the-custom-path)
-  - [5 — Test — observe the failure](#5-test-observe-the-failure)
-  - [6 — Apply the correct SELinux fix](#6-apply-the-correct-selinux-fix)
-  - [7 — Test again — confirm fix works](#7-test-again-confirm-fix-works)
+  - [1 — Start httpd and confirm SELinux is enforcing](#1--start-httpd-and-confirm-selinux-is-enforcing)
+  - [2 — Create content in the standard location (should work)](#2--create-content-in-the-standard-location-should-work)
+  - [3 — Create a custom web root with wrong context](#3--create-a-custom-web-root-with-wrong-context)
+  - [4 — Configure httpd to serve from the custom path](#4--configure-httpd-to-serve-from-the-custom-path)
+  - [5 — Test — observe the failure](#5--test--observe-the-failure)
+  - [6 — Apply the correct SELinux fix](#6--apply-the-correct-selinux-fix)
+  - [7 — Test again — confirm fix works](#7--test-again--confirm-fix-works)
 - [Cleanup](#cleanup)
 - [Troubleshooting guide](#troubleshooting-guide)
+- [Why this matters in production](#why-this-matters-in-production)
 - [Extension tasks](#extension-tasks)
+- [Next step](#next-step)
 
 
 ## Prerequisites

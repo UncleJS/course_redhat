@@ -1,18 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
-
-[↑ Back to TOC](#toc)
-
 # Lab: LVM + XFS Grow
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -27,19 +12,23 @@
 
 ## Table of contents
 
+- [Prerequisites](#prerequisites)
 - [Background](#background)
+- [Success criteria](#success-criteria)
 - [Steps](#steps)
-  - [1 — Confirm the second disk is present](#1-confirm-the-second-disk-is-present)
-  - [2 — Initialise the PV and create VG](#2-initialise-the-pv-and-create-vg)
-  - [3 — Create a 4 GB LV](#3-create-a-4-gb-lv)
-  - [4 — Format with XFS and mount](#4-format-with-xfs-and-mount)
-  - [5 — Write test data](#5-write-test-data)
-  - [6 — Add to fstab for persistent mount](#6-add-to-fstab-for-persistent-mount)
-  - [7 — Extend the LV and grow the filesystem](#7-extend-the-lv-and-grow-the-filesystem)
-  - [8 — Reboot and verify persistence](#8-reboot-and-verify-persistence)
+  - [1 — Confirm the second disk is present](#1--confirm-the-second-disk-is-present)
+  - [2 — Initialise the PV and create VG](#2--initialise-the-pv-and-create-vg)
+  - [3 — Create a 4 GB LV](#3--create-a-4-gb-lv)
+  - [4 — Format with XFS and mount](#4--format-with-xfs-and-mount)
+  - [5 — Write test data](#5--write-test-data)
+  - [6 — Add to fstab for persistent mount](#6--add-to-fstab-for-persistent-mount)
+  - [7 — Extend the LV and grow the filesystem](#7--extend-the-lv-and-grow-the-filesystem)
+  - [8 — Reboot and verify persistence](#8--reboot-and-verify-persistence)
 - [Cleanup](#cleanup)
 - [Troubleshooting guide](#troubleshooting-guide)
+- [Why this matters in production](#why-this-matters-in-production)
 - [Extension tasks](#extension-tasks)
+- [Next step](#next-step)
 
 
 ## Prerequisites

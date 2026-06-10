@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Patch Workflow + Reporting
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -40,11 +37,13 @@ error message instead of silently continuing to the next host.
 - [Check available updates (ad-hoc)](#check-available-updates-ad-hoc)
 - [Patch playbook](#patch-playbook)
 - [Run the patch playbook](#run-the-patch-playbook)
-- [Check mode — preview without applying](#check-mode-preview-without-applying)
+- [Check mode — preview without applying](#check-mode--preview-without-applying)
 - [Reporting: view the patch log](#reporting-view-the-patch-log)
 - [Security patches only](#security-patches-only)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The patch workflow

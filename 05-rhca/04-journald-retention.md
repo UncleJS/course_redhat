@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Journald Retention and Forwarding
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -33,15 +30,17 @@ dropped without any error visible to operators.
 ## Table of contents
 
 - [Journal storage location](#journal-storage-location)
-- [`journald.conf` — configuration file](#journaldconf-configuration-file)
+- [`journald.conf` — configuration file](#journaldconf--configuration-file)
 - [Check current journal disk usage](#check-current-journal-disk-usage)
 - [Manual vacuum (immediate cleanup)](#manual-vacuum-immediate-cleanup)
 - [Forwarding to syslog (rsyslog)](#forwarding-to-syslog-rsyslog)
 - [Forwarding to a remote journal (systemd-journal-remote)](#forwarding-to-a-remote-journal-systemd-journal-remote)
 - [Per-service log namespaces](#per-service-log-namespaces)
-- [Forwarding to a SIEM (rsyslog → remote)](#forwarding-to-a-siem-rsyslog-remote)
-- [Worked example — designing retention for a web server](#worked-example-designing-retention-for-a-web-server)
+- [Forwarding to a SIEM (rsyslog → remote)](#forwarding-to-a-siem-rsyslog--remote)
+- [Worked example — designing retention for a web server](#worked-example--designing-retention-for-a-web-server)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Journal storage location

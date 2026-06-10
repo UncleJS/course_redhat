@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # Container SELinux Gotchas — Volumes and Labels
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -49,6 +46,8 @@ When debugging a container SELinux denial, the workflow is:
 - [Audit containers specifically](#audit-containers-specifically)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## The core issue: volume mount labeling

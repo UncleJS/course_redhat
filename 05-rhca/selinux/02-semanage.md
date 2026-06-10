@@ -1,6 +1,3 @@
-
-[↑ Back to TOC](#toc)
-
 # semanage — fcontext, port, boolean
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -44,8 +41,10 @@ service still fails" in both production and exam environments.
 - [semanage boolean](#semanage-boolean)
 - [semanage login and user](#semanage-login-and-user)
 - [Export and import policy customisations](#export-and-import-policy-customisations)
-- [Worked example — applying multiple semanage customisations](#worked-example-applying-multiple-semanage-customisations)
+- [Worked example — applying multiple semanage customisations](#worked-example--applying-multiple-semanage-customisations)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Further reading](#further-reading)
+- [Next step](#next-step)
 
 
 ## Install
