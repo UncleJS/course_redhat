@@ -55,7 +55,7 @@ All 74 ODP decks rebuilt with `python3 slides/generate_slides.py` from the post-
 
 ## How to re-verify
 
-- Anchors + TOC completeness: re-run a GitHub-slugger audit over all `[...](#...)` links and H2 headings (fence-aware). Expected: 0 broken, 0 missing.
+- Anchors + TOC completeness: `bun tools/md_audit.js .` — fence-aware GitHub-slugger audit over all `[...](#...)` links and H2 headings. Expected: 0 broken, 0 missing. Auto-fix with `bun tools/md_fix.js . --write`.
 - Fence hygiene: `awk` scan for unlabelled opening fences and for `Back to TOC` lines inside fences or before the H1. Expected: 0 / 0 / 0.
 - Slides: `python3 slides/generate_slides.py` regenerates 74 decks; the script removes stale decks itself.
 
