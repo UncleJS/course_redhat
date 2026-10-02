@@ -60,8 +60,8 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 |---|---|---|
 | Boot, reboot, shut down | [systemd Basics](../03-rhcsa/05-systemd-basics.md) | — |
 | Interrupt the boot process to gain access to a system | [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md) | — |
-| Identify CPU/memory intensive processes and kill | [Resource Triage](../05-rhca/perf/01-resource-triage.md) | — |
-| Adjust process scheduling | [Resource Triage](../05-rhca/perf/01-resource-triage.md) | — |
+| Identify CPU/memory intensive processes and kill | **Partial** — identify in [Resource Triage](../05-rhca/perf/01-resource-triage.md); **`kill` / `pkill` not taught** | — |
+| Adjust process scheduling | **Not covered** (`nice` / `renice` / `chrt`) | — |
 | Manage tuning profiles | [tuned](../05-rhca/perf/02-tuned.md) | — |
 | Locate and interpret system log files and journals | [Logging and journald](../03-rhcsa/06-logging-journald.md) | — |
 | Preserve system journals across reboots | [journald Retention](../05-rhca/04-journald-retention.md) | — |
@@ -95,7 +95,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | Schedule tasks using at and cron | [Scheduling](../03-rhcsa/07-scheduling.md) | — |
 | Start and stop services, configure services to start automatically | [systemd Basics](../03-rhcsa/05-systemd-basics.md) | [Systemd Service](../03-rhcsa/labs/02-systemd-service.md) |
 | Configure systems to boot into a specific target | [systemd Advanced](../05-rhca/02-systemd-advanced.md) | — |
-| Configure time service clients | [Networking Basics](../03-rhcsa/08-networking-basics.md) | — |
+| Configure time service clients | **Partial** — [First Boot](../01-getting-started/02-first-boot.md) (`timedatectl set-ntp`); **no chrony.conf howto** | — |
 | Install and update software packages from a repository | [Packages and DNF](../03-rhcsa/01-packages-dnf.md) | — |
 | Modify the system bootloader | [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md) | — |
 
@@ -103,7 +103,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 
 | Objective | Chapter | Lab |
 |---|---|---|
-| Configure IPv4 and IPv6 addresses | [NetworkManager and nmcli](../03-rhcsa/09-networkmanager-nmcli.md) | [Static IP & DNS](../03-rhcsa/labs/01-static-ip-dns.md) |
+| Configure IPv4 and IPv6 addresses | [NetworkManager and nmcli](../03-rhcsa/09-networkmanager-nmcli.md) (**IPv4 focus**; IPv6 mostly `method=ignore`) | [Static IP & DNS](../03-rhcsa/labs/01-static-ip-dns.md) (IPv4) |
 | Configure hostname resolution | [DNS Resolution](../03-rhcsa/10-dns-resolution.md) | — |
 | Configure network services to start automatically | [NetworkManager and nmcli](../03-rhcsa/09-networkmanager-nmcli.md) | — |
 | Restrict network access using firewall-cmd | [firewalld](../03-rhcsa/11-firewalld.md) | — |

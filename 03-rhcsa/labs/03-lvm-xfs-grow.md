@@ -523,12 +523,21 @@ sudo lvcreate -L 1G -s -n lablv_snap /dev/labvg/lablv
 sudo rm /mnt/labdata/file-*.txt
 ls /mnt/labdata/   # files gone
 
-# Restore: unmount, merge snapshot, reboot
+# Restore: unmount origin, merge snapshot, then reactivate before remounting
 sudo umount /mnt/labdata
 sudo lvconvert --merge /dev/labvg/lablv_snap
-sudo mount /mnt/labdata   # after lvconvert triggers restore on next activation
+# Merge often waits until the origin is inactive; if mount still shows
+# pre-merge data, deactivate/reactivate (or reboot), then mount:
+sudo lvchange -an /dev/labvg/lablv
+sudo lvchange -ay /dev/labvg/lablv
+sudo mount /mnt/labdata
 ls /mnt/labdata/   # files restored
 ```
+
+> **💡 Pro tip**
+> `lvconvert --merge` schedules the merge; if the origin was open, the merge
+> may complete only after deactivate/reactivate or reboot. Do not assume an
+> immediate remount already shows restored content.
 
 **Extension 3 — Use UUID in fstab instead of device path**
 

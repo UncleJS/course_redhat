@@ -313,9 +313,10 @@ sudo pvremove /dev/vdb
 
 ```bash
 # Create a read-only snapshot of datalv (2G COW space)
-sudo lvcreate -L 2G -s -n datalv-snap /dev/datavg/datalv
+# -pr / --permission r makes the snapshot LV itself read-only
+sudo lvcreate -L 2G -s -pr -n datalv-snap /dev/datavg/datalv
 
-# Mount the snapshot read-only
+# Mount the snapshot (also use -o ro as defense in depth)
 sudo mount -o ro /dev/datavg/datalv-snap /mnt/snap
 
 # Remove when done
@@ -323,9 +324,10 @@ sudo umount /mnt/snap
 sudo lvremove /dev/datavg/datalv-snap
 ```
 
-The snapshot only stores blocks that change after creation (copy-on-write).
-Size the snapshot COW space generously — if it fills up, the snapshot becomes
-invalid. Monitor with `lvs -a -o +snap_percent`.
+Without `-pr`, `lvcreate -s` creates a **writable** snapshot LV; mounting
+`-o ro` only makes that mount read-only. Size the snapshot COW space
+generously — if it fills up, the snapshot becomes invalid. Monitor with
+`lvs -a -o +snap_percent`.
 
 
 [↑ Back to TOC](#toc)

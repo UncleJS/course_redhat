@@ -126,9 +126,12 @@ than a UUID. Use `LABEL=appdata` as the device field.
 | dump | `0` | `0` = do not back up with dump |
 | pass | `0` | `0` = no fsck at boot (XFS handles its own recovery) |
 
-For XFS, always use `pass 0` — XFS replays its journal automatically and
-does not use `fsck`. Using `pass 1` or `2` on XFS triggers `xfs_repair`,
-which is slower and designed for corrupted filesystems, not routine checks.
+For XFS, always use `pass 0`. At boot, systemd still invokes the fsck helper
+for any non-zero pass, but **`fsck.xfs` is a no-op stub** — it exits
+successfully without repairing. XFS recovers via its journal on mount; real
+repairs use explicit `xfs_repair` on an **unmounted** filesystem (or
+force-fsck boot flags). Prefer `pass 0` so you do not imply that boot runs a
+useful XFS check.
 
 ### Add an entry
 
@@ -358,7 +361,7 @@ sudo systemctl reload httpd
 | Mistake | Symptom | Fix |
 |---|---|---|
 | Wrong UUID in fstab | System drops to emergency mode at boot | Boot rescue, edit `/etc/fstab`, verify UUID with `blkid` |
-| `pass` set to `1` or `2` for XFS | `xfs_repair` runs unnecessarily at boot, causing delays | Set `pass` to `0` for all XFS filesystems |
+| `pass` set to `1` or `2` for XFS | Looks like a boot fsck will run; `fsck.xfs` still does nothing useful | Set `pass` to `0`; use `xfs_repair` only when deliberately repairing (unmounted) |
 | Mount point does not exist | `mount: /mnt/data: mount point does not exist` | `sudo mkdir -p /mnt/data` before mounting |
 | Forgot `partprobe` after `parted` | Partition invisible; `mkfs` fails with "no such file" | `sudo partprobe /dev/vdb` |
 | Running `xfs_growfs` before extending the LV/partition | `xfs_growfs: XFS_IOC_FSGROWFSDATA ioctl: Invalid argument` | Extend the LV first (`lvextend`), then run `xfs_growfs` |

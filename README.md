@@ -5,7 +5,8 @@
 
 Welcome. This guide takes you from your very first login on a RHEL 10 system
 all the way through the skills expected of a Red Hat Certified Architect (RHCA)
-on the **RHEL infrastructure** track — with hands-on labs every step of the way.
+on the **RHEL infrastructure** track — with hands-on labs at key milestones
+in each track.
 
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
@@ -54,8 +55,10 @@ The guide is split into four progressive tracks:
 Onramp  →  RHCSA  →  RHCE  →  RHCA
 ```
 
-You can read start-to-finish or jump directly to any chapter. Each chapter is
-self-contained and lists its prerequisites up front.
+You can read start-to-finish or jump directly to any chapter. Use each
+chapter’s **Next step** link for the recommended path (RHCE labs are
+interleaved after playbooks and roles). The TOC below is a catalog; labs
+also appear listed after their track’s theory chapters.
 
 | Track | Covers |
 |---|---|

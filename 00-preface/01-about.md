@@ -89,7 +89,7 @@ License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 | Resource | Notes |
 |---|---|
 | [RHCSA EX200 Exam Objectives](https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam) | Official exam objectives — the authoritative scope definition |
-| [RHCE EX294 Exam Objectives](https://www.redhat.com/en/services/training/ex294-red-hat-certified-engineer-rhce-exam-red-hat-enterprise-linux-9) | Ansible automation exam objectives |
+| [RHCE EX294 Exam Objectives](https://www.redhat.com/en/services/training/ex294-red-hat-certified-engineer-rhce-exam) | Ansible automation exam objectives (verify current RHEL version on the page) |
 | [Red Hat Learning Subscription](https://www.redhat.com/en/services/training/learning-subscription) | Video courses and cloud-based hands-on labs |
 | [RHEL 10 Product Documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10) | Authoritative reference for every topic in this guide |
 

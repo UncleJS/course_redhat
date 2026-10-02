@@ -22,7 +22,7 @@ The mental model has three pillars. **Idempotency** means running the same
 automation ten times produces the same result as running it once — the system
 converges to the desired state and stays there. **Desired state** means you
 declare what you want (`nginx is installed and running`) rather than scripting
-steps (`apt-get install nginx; systemctl start nginx`). **Push vs pull** is
+steps (`dnf install nginx; systemctl start nginx`). **Push vs pull** is
 the architectural choice: Ansible pushes configuration from a control node
 outward over SSH; tools like Puppet and Chef use agents that pull from a
 central server. RHCE focuses on the push model.

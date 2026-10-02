@@ -167,19 +167,19 @@ The symbolic form is safer for interactive use because you only change what you 
 
 ```bash
 # Change user owner
-sudo chown rhel file.txt
+sudo chown student file.txt
 
 # Change user and group owner
-sudo chown rhel:developers file.txt
+sudo chown student:developers file.txt
 
 # Change group only
 sudo chown :developers file.txt
 
 # Recursive (directory and all contents)
-sudo chown -R rhel:developers /srv/project/
+sudo chown -R student:developers /srv/project/
 
-# Only regular users can give away their own files if --preserve-root is respected
-# root can assign any UID/GID
+# Only root can change the owning user; --preserve-root refuses chown on /
+# (guards against recursive mistakes on the filesystem root)
 ```
 
 > **Exam tip:** Only `root` can change a file's owning user. A regular user can change the owning group of a file they own — but only to a group they belong to.
