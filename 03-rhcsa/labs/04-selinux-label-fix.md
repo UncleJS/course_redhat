@@ -527,7 +527,7 @@ curl http://localhost:8080/     # 200 OK
 
 ## Next step
 
-→ [RHCE: Automation Mindset](../../04-rhce/01-automation-mindset.md)
+→ [Lab: firewalld Basics](05-firewalld-basics.md)
 
 [↑ Back to TOC](#toc)
 

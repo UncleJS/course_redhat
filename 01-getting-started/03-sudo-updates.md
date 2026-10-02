@@ -30,6 +30,7 @@ mechanism. You should almost never need to log in as `root` directly.
 - [Check your sudo access](#check-your-sudo-access)
 - [Add a user to the wheel group](#add-a-user-to-the-wheel-group)
 - [sudo patterns](#sudo-patterns)
+  - [Switch users with `su`](#switch-users-with-su)
 - [The sudoers file](#the-sudoers-file)
 - [Package updates with dnf](#package-updates-with-dnf)
   - [Check for available updates](#check-for-available-updates)
@@ -95,6 +96,27 @@ sudo -u nginx id
 > Prefer `sudo -i` over `sudo su -`. It is audited, respects sudoers policy,
 > and does not require the root password.
 >
+
+### Switch users with `su`
+
+`su` changes to another account. Prefer `sudo` for root; still know `su` for
+exams and for switching to non-root service accounts.
+
+```bash
+# Switch to root (asks for *root* password unless already root)
+su -
+su - root
+
+# Switch to another user (asks for that user's password)
+su - student
+su - nginx
+
+# Run one command as another user
+su - student -c 'whoami; id'
+```
+
+`su -` (or `su -l`) starts a **login** shell (loads the target user's profile).
+Plain `su student` keeps your environment — usually wrong for admin work.
 
 
 [↑ Back to TOC](#toc)

@@ -43,6 +43,7 @@ faster to script and is what exam questions expect.
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [nmcli field reference](#nmcli-field-reference)
+- [Configure IPv6 addresses](#configure-ipv6-addresses)
 - [Bonding and teaming (overview)](#bonding-and-teaming-overview)
 - [Further reading](#further-reading)
 - [Next step](#next-step)
@@ -419,6 +420,40 @@ sudo nmcli connection modify "Wired connection 1" \
 # Remove a specific route (- prefix removes from list)
 sudo nmcli connection modify "Wired connection 1" \
   -ipv4.routes "10.10.0.0/24 192.168.1.1"
+```
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Configure IPv6 addresses
+
+Disable IPv6 on a profile when unused:
+
+```bash
+sudo nmcli connection modify "Wired connection 1" ipv6.method ignore
+```
+
+Static IPv6 (manual):
+
+```bash
+sudo nmcli connection modify "lab-static" \
+  ipv6.method manual \
+  ipv6.addresses "2001:db8:1::10/64" \
+  ipv6.gateway "2001:db8:1::1" \
+  ipv6.dns "2001:db8:1::53"
+
+sudo nmcli connection up "lab-static"
+ip -6 addr show
+ip -6 route
+```
+
+SLAAC / DHCPv6 when the LAN provides it:
+
+```bash
+sudo nmcli connection modify "lab-static" ipv6.method auto
+sudo nmcli connection up "lab-static"
 ```
 
 

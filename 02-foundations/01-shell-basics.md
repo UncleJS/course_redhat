@@ -37,7 +37,7 @@ On RHEL, Bash inherits configuration from `/etc/profile`, `/etc/profile.d/*.sh`,
 When you log in you see a prompt like:
 
 ```text
-[rhel@rhel10-lab ~]$
+[student@rhel10-lab ~]$
 ```
 
 | Part | Meaning |
@@ -62,7 +62,7 @@ The prompt is defined by the `PS1` environment variable. On RHEL the default val
 $ pwd
 ```
 
-Output: `/home/rhel` (or wherever you are)
+Output: `/home/student` (or wherever you are)
 
 `pwd` = **p**rint **w**orking **d**irectory.
 
@@ -297,7 +297,7 @@ echo 'export HISTFILESIZE=10000' >> ~/.bashrc
 ```bash
 # 1. Where am I?
 pwd
-# /home/rhel
+# /home/student
 
 # 2. Who am I, and what groups do I belong to?
 id
@@ -318,7 +318,7 @@ ls -lt /var/log/ | head -10
 
 # 6. Go back to where I came from
 cd -
-# Returns to /home/rhel
+# Returns to /home/student
 
 # 7. Review what I just did
 history 10

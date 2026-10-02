@@ -586,6 +586,7 @@ README_ORDER: list[str] = [
     # Linux Foundations
     "02-foundations/01-shell-basics.md",
     "02-foundations/02-files-and-text.md",
+    "02-foundations/07-archives.md",
     "02-foundations/03-pipes-redirection.md",
     "02-foundations/04-editors.md",
     "02-foundations/05-permissions.md",
@@ -606,10 +607,15 @@ README_ORDER: list[str] = [
     "03-rhcsa/12-ssh.md",
     "03-rhcsa/13-selinux-fundamentals.md",
     "03-rhcsa/14-selinux-avc-basics.md",
+    "03-rhcsa/15-process-management.md",
+    "03-rhcsa/16-nfs-automount.md",
+    "03-rhcsa/17-time-chrony.md",
     "03-rhcsa/labs/01-static-ip-dns.md",
     "03-rhcsa/labs/02-systemd-service.md",
     "03-rhcsa/labs/03-lvm-xfs-grow.md",
     "03-rhcsa/labs/04-selinux-label-fix.md",
+    "03-rhcsa/labs/05-firewalld-basics.md",
+    "03-rhcsa/labs/06-ssh-keys-transfer.md",
     # RHCE
     "04-rhce/01-automation-mindset.md",
     "04-rhce/02-bash-fundamentals.md",
@@ -621,10 +627,12 @@ README_ORDER: list[str] = [
     "04-rhce/08-ansible-patching.md",
     "04-rhce/labs/01-first-playbook.md",
     "04-rhce/labs/02-role-web-deploy.md",
+    "04-rhce/labs/03-multi-node-playbook.md",
     # RHCA — core
     "05-rhca/01-troubleshooting-playbook.md",
     "05-rhca/02-systemd-advanced.md",
     "05-rhca/03-systemd-hardening.md",
+    "05-rhca/labs/01-systemd-dropin-harden.md",
     "05-rhca/04-journald-retention.md",
     # RHCA — SELinux deep dive
     "05-rhca/selinux/01-fix-taxonomy.md",
@@ -650,6 +658,7 @@ README_ORDER: list[str] = [
     "05-rhca/perf/01-resource-triage.md",
     "05-rhca/perf/02-tuned.md",
     "05-rhca/perf/03-recovery-patterns.md",
+    "05-rhca/perf/labs/01-triage-and-tuned.md",
     # Lab environments
     "90-labs/01-index.md",
     "90-labs/02-single-vm.md",

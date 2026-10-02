@@ -460,7 +460,7 @@ ansible all -m ansible.builtin.fetch \
 
 ## Next step
 
-→ [Advanced Infrastructure — RHCA Track](../05-rhca/01-troubleshooting-playbook.md)
+→ [Lab: Multi-Node Ansible Playbook](labs/03-multi-node-playbook.md)
 
 [↑ Back to TOC](#toc)
 

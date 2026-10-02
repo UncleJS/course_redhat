@@ -222,13 +222,13 @@ don't need it yet.
 
 ```bash
 ls -Z /var/www/html/        # should show httpd_sys_content_t
-ls -Z /home/rhel/myapp/     # shows user_home_t — wrong location for web content
+ls -Z /home/student/myapp/     # shows user_home_t — wrong location for web content
 ```
 
 **Fix — option A:** move content to `/var/www/html/` (preferred):
 
 ```bash
-sudo cp -r /home/rhel/myapp/* /var/www/html/
+sudo cp -r /home/student/myapp/* /var/www/html/
 sudo restorecon -Rv /var/www/html/
 ```
 
@@ -516,7 +516,7 @@ or `semanage fcontext -a -t <type> <path>` + `restorecon`.
 
 ## Next step
 
-→ [Lab: Static IP + DNS Validation](labs/01-static-ip-dns.md)
+→ [Process Management](15-process-management.md)
 
 [↑ Back to TOC](#toc)
 

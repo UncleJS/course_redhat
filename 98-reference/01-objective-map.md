@@ -6,8 +6,6 @@
 This page maps each chapter and lab to the official Red Hat exam objectives for RHCSA (EX200), RHCE (EX294), and the RHCA infrastructure concentration exams.
 
 > **Disclaimer:** Exam objectives change. Always cross-reference with the current Red Hat exam page at [access.redhat.com/training/exam-objectives](https://access.redhat.com/training/exam-objectives).
->
-> Rows marked **Not covered** are real exam-shaped topics this guide does not yet teach — do not treat the map as a complete study checklist.
 
 ---
 <a name="toc"></a>
@@ -38,9 +36,9 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | Access a shell prompt and issue commands with correct syntax | [Shell Basics](../02-foundations/01-shell-basics.md) | — |
 | Use input-output redirection | [Pipes and Redirection](../02-foundations/03-pipes-redirection.md) | — |
 | Use grep and regular expressions to analyze text | [Files and Text](../02-foundations/02-files-and-text.md) | — |
-| Access remote systems using SSH | [SSH](../03-rhcsa/12-ssh.md) | [Static IP & DNS](../03-rhcsa/labs/01-static-ip-dns.md) |
-| Log in and switch users in multiuser targets | **Not covered** (`su` / switch-user) | — |
-| Archive, compress, unpack, and uncompress files | **Not covered** (`tar` / `gzip` / `xz`) | — |
+| Access remote systems using SSH | [SSH](../03-rhcsa/12-ssh.md) | [SSH Keys and Transfer](../03-rhcsa/labs/06-ssh-keys-transfer.md) |
+| Log in and switch users in multiuser targets | [Accounts, sudo, and Updates](../01-getting-started/03-sudo-updates.md) (`su`) | — |
+| Archive, compress, unpack, and uncompress files | [Archives](../02-foundations/07-archives.md) | — |
 | Create and edit text files | [Editors](../02-foundations/04-editors.md) | — |
 | Create, delete, copy, and move files and directories | [Files and Text](../02-foundations/02-files-and-text.md) | — |
 | Create hard and soft links | [Files and Text](../02-foundations/02-files-and-text.md) | — |
@@ -60,13 +58,13 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 |---|---|---|
 | Boot, reboot, shut down | [systemd Basics](../03-rhcsa/05-systemd-basics.md) | — |
 | Interrupt the boot process to gain access to a system | [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md) | — |
-| Identify CPU/memory intensive processes and kill | **Partial** — identify in [Resource Triage](../05-rhca/perf/01-resource-triage.md); **`kill` / `pkill` not taught** | — |
-| Adjust process scheduling | **Not covered** (`nice` / `renice` / `chrt`) | — |
-| Manage tuning profiles | [tuned](../05-rhca/perf/02-tuned.md) | — |
+| Identify CPU/memory intensive processes and kill | [Process Management](../03-rhcsa/15-process-management.md), [Resource Triage](../05-rhca/perf/01-resource-triage.md) | [Triage and tuned](../05-rhca/perf/labs/01-triage-and-tuned.md) |
+| Adjust process scheduling | [Process Management](../03-rhcsa/15-process-management.md) (`nice` / `renice`) | — |
+| Manage tuning profiles | [tuned](../05-rhca/perf/02-tuned.md) | [Triage and tuned](../05-rhca/perf/labs/01-triage-and-tuned.md) |
 | Locate and interpret system log files and journals | [Logging and journald](../03-rhcsa/06-logging-journald.md) | — |
 | Preserve system journals across reboots | [journald Retention](../05-rhca/04-journald-retention.md) | — |
 | Start, stop, and check status of services | [systemd Basics](../03-rhcsa/05-systemd-basics.md) | [Systemd Service](../03-rhcsa/labs/02-systemd-service.md) |
-| Securely transfer files | **Not covered** (`scp` / `sftp` / `rsync` over SSH) | — |
+| Securely transfer files | [SSH](../03-rhcsa/12-ssh.md) (`scp` / `sftp` / `rsync`) | [SSH Keys and Transfer](../03-rhcsa/labs/06-ssh-keys-transfer.md) |
 
 ### Configure local storage
 
@@ -82,9 +80,9 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 
 | Objective | Chapter | Lab |
 |---|---|---|
-| Create, mount, unmount, and use vfat, ext4, xfs file systems | [Filesystems and fstab](../03-rhcsa/03-filesystems-fstab.md) (XFS/ext4 focus; **vfat not covered**) | — |
-| Mount and unmount network file systems using NFS | **Not covered** (only `_netdev` mentioned) | — |
-| Configure automount | **Not covered** (no autofs howto) | — |
+| Create, mount, unmount, and use vfat, ext4, xfs file systems | [Filesystems and fstab](../03-rhcsa/03-filesystems-fstab.md) | — |
+| Mount and unmount network file systems using NFS | [NFS and automount](../03-rhcsa/16-nfs-automount.md) | — |
+| Configure automount | [NFS and automount](../03-rhcsa/16-nfs-automount.md) | — |
 | Extend existing LVs | [LVM](../03-rhcsa/04-lvm.md) | [LVM XFS Grow](../03-rhcsa/labs/03-lvm-xfs-grow.md) |
 | Create and configure set-GID directories for collaboration | [Permissions](../02-foundations/05-permissions.md) | [Shared Team Dir](../02-foundations/labs/01-shared-team-dir.md) |
 
@@ -95,7 +93,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | Schedule tasks using at and cron | [Scheduling](../03-rhcsa/07-scheduling.md) | — |
 | Start and stop services, configure services to start automatically | [systemd Basics](../03-rhcsa/05-systemd-basics.md) | [Systemd Service](../03-rhcsa/labs/02-systemd-service.md) |
 | Configure systems to boot into a specific target | [systemd Advanced](../05-rhca/02-systemd-advanced.md) | — |
-| Configure time service clients | **Partial** — [First Boot](../01-getting-started/02-first-boot.md) (`timedatectl set-ntp`); **no chrony.conf howto** | — |
+| Configure time service clients | [Time Synchronization (chrony)](../03-rhcsa/17-time-chrony.md) | — |
 | Install and update software packages from a repository | [Packages and DNF](../03-rhcsa/01-packages-dnf.md) | — |
 | Modify the system bootloader | [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md) | — |
 
@@ -103,10 +101,10 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 
 | Objective | Chapter | Lab |
 |---|---|---|
-| Configure IPv4 and IPv6 addresses | [NetworkManager and nmcli](../03-rhcsa/09-networkmanager-nmcli.md) (**IPv4 focus**; IPv6 mostly `method=ignore`) | [Static IP & DNS](../03-rhcsa/labs/01-static-ip-dns.md) (IPv4) |
+| Configure IPv4 and IPv6 addresses | [NetworkManager and nmcli](../03-rhcsa/09-networkmanager-nmcli.md) | [Static IP & DNS](../03-rhcsa/labs/01-static-ip-dns.md) |
 | Configure hostname resolution | [DNS Resolution](../03-rhcsa/10-dns-resolution.md) | — |
 | Configure network services to start automatically | [NetworkManager and nmcli](../03-rhcsa/09-networkmanager-nmcli.md) | — |
-| Restrict network access using firewall-cmd | [firewalld](../03-rhcsa/11-firewalld.md) | — |
+| Restrict network access using firewall-cmd | [firewalld](../03-rhcsa/11-firewalld.md) | [firewalld Basics](../03-rhcsa/labs/05-firewalld-basics.md) |
 
 ### Manage users and groups
 
@@ -121,7 +119,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 
 | Objective | Chapter | Lab |
 |---|---|---|
-| Configure firewall settings using firewall-cmd | [firewalld](../03-rhcsa/11-firewalld.md) | — |
+| Configure firewall settings using firewall-cmd | [firewalld](../03-rhcsa/11-firewalld.md) | [firewalld Basics](../03-rhcsa/labs/05-firewalld-basics.md) |
 | Manage default file permissions | [Permissions](../02-foundations/05-permissions.md) | — |
 | Configure key-based authentication for SSH | [SSH](../03-rhcsa/12-ssh.md) | — |
 | Set enforcing and permissive modes for SELinux | [SELinux Fundamentals](../03-rhcsa/13-selinux-fundamentals.md) | — |
@@ -143,7 +141,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | Automation mindset and idempotence | [Automation Mindset](../04-rhce/01-automation-mindset.md) | — |
 | Install and configure Ansible on a control node | [Ansible Setup and Inventory](../04-rhce/03-ansible-setup-inventory.md) | — |
 | Create and use static inventories | [Ansible Setup and Inventory](../04-rhce/03-ansible-setup-inventory.md) | [First Playbook](../04-rhce/labs/01-first-playbook.md) |
-| Create and use playbooks | [Ansible Playbooks](../04-rhce/04-ansible-playbooks.md) | [First Playbook](../04-rhce/labs/01-first-playbook.md) |
+| Create and use playbooks | [Ansible Playbooks](../04-rhce/04-ansible-playbooks.md) | [First Playbook](../04-rhce/labs/01-first-playbook.md), [Multi-Node Playbook](../04-rhce/labs/03-multi-node-playbook.md) |
 | Create and use variables, facts, and templates | [Ansible Vars and Templates](../04-rhce/05-ansible-vars-templates.md) | — |
 | Create and use roles | [Ansible Roles](../04-rhce/06-ansible-roles.md) | [Role Web Deploy](../04-rhce/labs/02-role-web-deploy.md) |
 | Create and use logic in playbooks | [Ansible Playbooks](../04-rhce/04-ansible-playbooks.md) | — |
@@ -151,7 +149,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | Download and use roles from Ansible Galaxy | [Ansible Roles](../04-rhce/06-ansible-roles.md) | — |
 | Use Ansible Vault for secrets | [Ansible Vars and Templates](../04-rhce/05-ansible-vars-templates.md) | — |
 | Manage content with collections | [Ansible Roles](../04-rhce/06-ansible-roles.md) | — |
-| Automate patching and updates | [Ansible Patching](../04-rhce/08-ansible-patching.md) | — |
+| Automate patching and updates | [Ansible Patching](../04-rhce/08-ansible-patching.md) | [Multi-Node Playbook](../04-rhce/labs/03-multi-node-playbook.md) |
 
 
 [↑ Back to TOC](#toc)
@@ -162,7 +160,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 
 | Topic | Chapter |
 |---|---|
-| Advanced systemd unit configuration and hardening | [systemd Advanced](../05-rhca/02-systemd-advanced.md), [systemd Hardening](../05-rhca/03-systemd-hardening.md) |
+| Advanced systemd unit configuration and hardening | [systemd Advanced](../05-rhca/02-systemd-advanced.md), [systemd Hardening](../05-rhca/03-systemd-hardening.md), [Lab — Drop-in Harden](../05-rhca/labs/01-systemd-dropin-harden.md) |
 | SELinux audit workflow and policy development | [SELinux Audit Workflow](../05-rhca/selinux/03-audit-workflow.md), [semanage](../05-rhca/selinux/02-semanage.md) |
 | Advanced networking — multiple profiles, routing | [nmcli Profiles](../05-rhca/networking/01-nmcli-profiles.md), [Routing Method](../05-rhca/networking/02-routing-method.md) |
 | Network diagnostics — tcpdump | [tcpdump](../05-rhca/networking/03-tcpdump.md) |
@@ -170,7 +168,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | Container secrets management and rotation | [Secrets](../05-rhca/containers/04-secrets.md), [Lab - Secrets Rotate](../05-rhca/containers/labs/02-secrets-rotate.md) |
 | Quadlet / systemd container integration | [systemd Integration](../05-rhca/containers/05-systemd-integration.md), [Lab - Rootless Web](../05-rhca/containers/labs/01-rootless-web.md) |
 | SELinux for containers | [SELinux Containers](../05-rhca/containers/06-selinux-containers.md) |
-| Performance triage | [Resource Triage](../05-rhca/perf/01-resource-triage.md) |
+| Performance triage | [Resource Triage](../05-rhca/perf/01-resource-triage.md), [Lab — Triage and tuned](../05-rhca/perf/labs/01-triage-and-tuned.md) |
 | tuned profile management | [tuned](../05-rhca/perf/02-tuned.md) |
 | System recovery procedures | [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md) |
 | journald retention and forwarding | [journald Retention](../05-rhca/04-journald-retention.md) |

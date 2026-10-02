@@ -10,7 +10,7 @@ The labs in this guide are designed for hands-on practice in a safe, isolated en
 | Configuration | Best For |
 |---|---|
 | [Single-VM](02-single-vm.md) | Working through all chapters sequentially; most exercises |
-| [Multi-VM](03-multi-vm.md) | Ansible labs, networking labs, replication, multi-node scenarios |
+| [Multi-VM](03-multi-vm.md) | Multi-node Ansible lab, optional networking/replication scenarios |
 
 
 [↑ Back to TOC](#toc)

@@ -579,7 +579,7 @@ values manually. A low score is a good start, not a guarantee.
 
 ## Next step
 
-→ [Journald Retention and Forwarding](04-journald-retention.md)
+→ [Lab: systemd Drop-in and Hardening](labs/01-systemd-dropin-harden.md)
 
 [↑ Back to TOC](#toc)
 

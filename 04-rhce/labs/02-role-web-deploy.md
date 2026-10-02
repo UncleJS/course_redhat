@@ -338,7 +338,7 @@ rm -rf ~/role-lab
 
 | Symptom | Likely cause | Diagnostic command | Fix |
 |---|---|---|---|
-| `UNREACHABLE! Authentication failed` | SSH key not set up or wrong user | `ssh rhel@<host>` manually | `ssh-copy-id rhel@<host>`; confirm `remote_user` in `ansible.cfg` |
+| `UNREACHABLE! Authentication failed` | SSH key not set up or wrong user | `ssh student@<host>` manually | `ssh-copy-id student@<host>`; confirm `remote_user` in `ansible.cfg` |
 | `ERROR! couldn't resolve module/action 'ansible.posix.firewalld'` | `ansible.posix` collection not installed | `ansible-galaxy collection list` | `ansible-galaxy collection install ansible.posix` |
 | `ERROR! couldn't resolve module/action 'community.general.seport'` | `community.general` collection not installed | `ansible-galaxy collection list` | `ansible-galaxy collection install community.general` |
 | `curl: (7) Failed to connect to localhost port 8080` | nginx not running, or wrong port, or firewall blocking | `systemctl status nginx` then `nginx -t` | Fix config error and restart nginx; verify `firewall-cmd --list-all` |

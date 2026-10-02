@@ -91,6 +91,7 @@ also appear listed after their track’s theory chapters.
 
 - [Shell Basics (pwd, ls, cd)](02-foundations/01-shell-basics.md)
 - [Files and Text (cp, mv, rm, less)](02-foundations/02-files-and-text.md)
+- [Archives and Compression (tar, gzip, xz)](02-foundations/07-archives.md)
 - [Pipes and Redirection](02-foundations/03-pipes-redirection.md)
 - [Editing Files (nano + vim intro)](02-foundations/04-editors.md)
 - [Users, Groups, Permissions](02-foundations/05-permissions.md)
@@ -113,10 +114,15 @@ also appear listed after their track’s theory chapters.
 - [SSH (Keys, Server Basics)](03-rhcsa/12-ssh.md)
 - [SELinux Fundamentals (Contexts, Booleans)](03-rhcsa/13-selinux-fundamentals.md)
 - [SELinux Troubleshooting (AVCs)](03-rhcsa/14-selinux-avc-basics.md)
+- [Process Management (ps, kill, nice)](03-rhcsa/15-process-management.md)
+- [NFS Client and automount](03-rhcsa/16-nfs-automount.md)
+- [Time Synchronization (chrony)](03-rhcsa/17-time-chrony.md)
 - [Lab — Static IP + DNS Validation](03-rhcsa/labs/01-static-ip-dns.md)
 - [Lab — Create a systemd Service](03-rhcsa/labs/02-systemd-service.md)
 - [Lab — LVM + XFS Grow](03-rhcsa/labs/03-lvm-xfs-grow.md)
 - [Lab — Fix a SELinux Label Issue](03-rhcsa/labs/04-selinux-label-fix.md)
+- [Lab — firewalld Basics](03-rhcsa/labs/05-firewalld-basics.md)
+- [Lab — SSH Keys and File Transfer](03-rhcsa/labs/06-ssh-keys-transfer.md)
 
 ### Automation (RHCE Track)
 
@@ -130,12 +136,14 @@ also appear listed after their track’s theory chapters.
 - [Patch Workflow + Reporting](04-rhce/08-ansible-patching.md)
 - [Lab — Write Your First Playbook](04-rhce/labs/01-first-playbook.md)
 - [Lab — Role-Based Web Service Deploy](04-rhce/labs/02-role-web-deploy.md)
+- [Lab — Multi-Node Ansible Playbook](04-rhce/labs/03-multi-node-playbook.md)
 
 ### Advanced Infrastructure (RHCA Track)
 
 - [Troubleshooting Playbook (First 10 Minutes)](05-rhca/01-troubleshooting-playbook.md)
 - [Advanced systemd (Dependencies, Drop-ins)](05-rhca/02-systemd-advanced.md)
 - [systemd Hardening (Service Sandboxing)](05-rhca/03-systemd-hardening.md)
+- [Lab — systemd Drop-in and Hardening](05-rhca/labs/01-systemd-dropin-harden.md)
 - [Journald Retention and Forwarding](05-rhca/04-journald-retention.md)
 
 **SELinux Deep Dive**
@@ -165,7 +173,7 @@ also appear listed after their track’s theory chapters.
 - [Resource Triage (CPU, Mem, Disk, IO)](05-rhca/perf/01-resource-triage.md)
 - [tuned Basics](05-rhca/perf/02-tuned.md)
 - [Recovery Patterns](05-rhca/perf/03-recovery-patterns.md)
-
+- [Lab — Resource Triage and tuned](05-rhca/perf/labs/01-triage-and-tuned.md)
 ### Lab Environments
 
 - [Lab Environments Overview](90-labs/01-index.md)

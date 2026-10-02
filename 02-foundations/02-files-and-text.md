@@ -107,19 +107,19 @@ cp -v /etc/hosts /tmp/hosts.bak
 
 ```bash
 # Move file to another directory
-mv /tmp/hosts.bak /home/rhel/
+mv /tmp/hosts.bak /home/student/
 
 # Rename a file
-mv /home/rhel/hosts.bak /home/rhel/hosts.old
+mv /home/student/hosts.bak /home/student/hosts.old
 
 # Move directory
-mv /tmp/sysconfig-bak /home/rhel/
+mv /tmp/sysconfig-bak /home/student/
 
 # Prompt before overwriting
-mv -i /tmp/hosts.bak /home/rhel/
+mv -i /tmp/hosts.bak /home/student/
 
 # Do not overwrite if destination exists
-mv -n /tmp/hosts.bak /home/rhel/
+mv -n /tmp/hosts.bak /home/student/
 ```
 
 `mv` within the same filesystem is a metadata-only operation (rename the directory entry); it completes instantly regardless of file size. `mv` across filesystems copies the data and then removes the source — equivalent to `cp` + `rm`.
@@ -433,7 +433,7 @@ wc -l /etc/ssh/sshd_config.rpmsave 2>/dev/null
 
 ## Next step
 
-→ [Pipes and Redirection](03-pipes-redirection.md)
+→ [Archives and Compression](07-archives.md)
 
 [↑ Back to TOC](#toc)
 

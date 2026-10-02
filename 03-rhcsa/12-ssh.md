@@ -47,6 +47,7 @@ correct remediation.
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
 - [Host key management](#host-key-management)
 - [sshd_config drop-in files](#sshd_config-drop-in-files)
+- [Secure file transfer — scp, sftp, rsync](#secure-file-transfer--scp-sftp-rsync)
 - [Further reading](#further-reading)
 - [Next step](#next-step)
 
@@ -58,13 +59,13 @@ correct remediation.
 ssh 192.168.1.100
 
 # Connect as a specific user
-ssh rhel@192.168.1.100
+ssh student@192.168.1.100
 
 # Connect on a non-default port
-ssh -p 2222 rhel@192.168.1.100
+ssh -p 2222 student@192.168.1.100
 
 # Connect with a specific key
-ssh -i ~/.ssh/id_lab rhel@192.168.1.100
+ssh -i ~/.ssh/id_lab student@192.168.1.100
 ```
 
 
@@ -127,7 +128,7 @@ passphrase repeatedly during a work session.
 ### Copy public key to a remote host
 
 ```bash
-ssh-copy-id -i ~/.ssh/id_ed25519.pub rhel@192.168.1.100
+ssh-copy-id -i ~/.ssh/id_ed25519.pub student@192.168.1.100
 ```
 
 Or manually:
@@ -148,7 +149,7 @@ when keys don't work.
 ### Test key login
 
 ```bash
-ssh -i ~/.ssh/id_ed25519 rhel@192.168.1.100
+ssh -i ~/.ssh/id_ed25519 student@192.168.1.100
 ```
 
 
@@ -319,13 +320,13 @@ sudo firewall-cmd --reload
 
 ```bash
 # Local port forwarding: forward local 8080 to remote 80
-ssh -L 8080:localhost:80 rhel@192.168.1.100
+ssh -L 8080:localhost:80 student@192.168.1.100
 
 # SOCKS proxy
-ssh -D 1080 rhel@192.168.1.100
+ssh -D 1080 student@192.168.1.100
 
 # Jump host (ProxyJump)
-ssh -J admin@bastion.example.com rhel@10.0.0.50
+ssh -J admin@bastion.example.com student@10.0.0.50
 ```
 
 Local port forwarding (`-L`) is useful for accessing a service on the remote
@@ -504,6 +505,35 @@ sudo systemctl reload sshd   # apply without dropping existing sessions
 `reload` (SIGHUP) makes sshd re-read its config for new connections while
 keeping existing sessions alive. `restart` terminates all connections.
 Use `reload` in production to avoid dropping active administrative sessions.
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Secure file transfer — scp, sftp, rsync
+
+```bash
+# Copy a file to a remote host (scp)
+scp ~/report.txt student@192.168.122.11:/home/student/
+scp -r ~/project/ student@node1:~/project/
+
+# Copy from remote to local
+scp student@node1:/var/tmp/app.log ~/Downloads/
+
+# Interactive SFTP session
+sftp student@node1
+# sftp> put local.file
+# sftp> get remote.file
+# sftp> bye
+
+# Efficient sync over SSH (prefer for trees / repeated sync)
+rsync -av -e ssh ~/web/ student@node1:/var/www/html/
+rsync -av -e ssh --delete ~/web/ student@node1:/var/www/html/
+```
+
+`rsync` only transfers differences and can preserve permissions with `-a`.
+Use SSH keys so non-interactive sync works in scripts and Ansible.
 
 
 [↑ Back to TOC](#toc)

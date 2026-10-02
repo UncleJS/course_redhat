@@ -137,15 +137,15 @@ Ansible connects via SSH. Copy your SSH key to managed nodes first:
 ssh-keygen -t ed25519 -C "ansible-control"
 
 # Copy to managed nodes
-ssh-copy-id rhel@192.168.1.101
-ssh-copy-id rhel@192.168.1.102
+ssh-copy-id student@192.168.1.101
+ssh-copy-id student@192.168.1.102
 ```
 
 Verify connectivity before running any playbook:
 
 ```bash
 # Manual SSH test
-ssh rhel@192.168.1.101 "hostname"
+ssh student@192.168.1.101 "hostname"
 
 # Ansible connectivity test
 ansible all -m ansible.builtin.ping -i inventory.ini

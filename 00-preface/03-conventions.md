@@ -16,7 +16,7 @@ This page defines every convention used throughout the guide.
 - [Expected output](#expected-output)
 - [File paths and interface names](#file-paths-and-interface-names)
 - [Admonition types](#admonition-types)
-- [Track badges](#track-badges)
+- [Track labels](#track-labels)
 - [Terminology](#terminology)
 - [Further reading](#further-reading)
 - [Next step](#next-step)
@@ -131,16 +131,11 @@ sudo nmcli con mod <CONNECTION-NAME> ipv4.addresses 192.168.1.10/24
 
 ---
 
-## Track badges
+## Track labels
 
-Each chapter title includes a track label:
-
-| Badge | Meaning |
-|---|---|
-| `(Onramp)` | Absolute beginner content |
-| `(RHCSA)` | Day-to-day system administration |
-| `(RHCE)` | Automation-first operations |
-| `(RHCA)` | Architecture-level depth |
+Labs declare a track in metadata (`**Track:** RHCSA`). Theory chapters live
+under numbered track directories (`02-foundations`, `03-rhcsa`, …) instead of
+parenthetical badges in the H1 title.
 
 
 [↑ Back to TOC](#toc)

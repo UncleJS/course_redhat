@@ -42,6 +42,7 @@ so the workflow of edit → `mount -a` → verify is critical discipline.
 - [Diagnosing full filesystems](#diagnosing-full-filesystems)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [vfat (FAT) filesystems](#vfat-fat-filesystems)
 - [Further reading](#further-reading)
 - [Next step](#next-step)
 
@@ -366,6 +367,31 @@ sudo systemctl reload httpd
 | Forgot `partprobe` after `parted` | Partition invisible; `mkfs` fails with "no such file" | `sudo partprobe /dev/vdb` |
 | Running `xfs_growfs` before extending the LV/partition | `xfs_growfs: XFS_IOC_FSGROWFSDATA ioctl: Invalid argument` | Extend the LV first (`lvextend`), then run `xfs_growfs` |
 | Disk full due to deleted-but-open files | `df` shows 100% but `du` finds far less | `sudo lsof +L1` to find culprit process, restart it to release handles |
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## vfat (FAT) filesystems
+
+UEFI systems use a **vfat** ESP (often `/boot/efi`). USB sticks and exam
+tasks may also ask you to create and mount vfat.
+
+```bash
+# Create a vfat filesystem on a partition (destroys data on that partition)
+sudo mkfs.vfat -F 32 /dev/vdb1
+
+# Mount
+sudo mkdir -p /mnt/usb
+sudo mount -t vfat /dev/vdb1 /mnt/usb
+
+# fstab example (prefer UUID)
+# UUID=ABCD-1234  /mnt/usb  vfat  defaults,uid=1000,gid=1000,umask=022  0  0
+```
+
+Install tools if needed: `sudo dnf install -y dosfstools`. vfat has no Unix
+permissions model — `uid=`/`gid=`/`umask=` mount options map ownership.
 
 
 [↑ Back to TOC](#toc)

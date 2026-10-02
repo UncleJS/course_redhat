@@ -638,7 +638,7 @@ RHCA candidates are expected to execute these procedures quickly and correctly u
 
 ## Next step
 
-→ [Lab Environments Overview](../../90-labs/01-index.md)
+→ [Lab: Resource Triage and tuned](labs/01-triage-and-tuned.md)
 
 [↑ Back to TOC](#toc)
 

@@ -1,5 +1,8 @@
 # Tooling
 
+- [Markdown audit / fix](#markdown-audit--fix)
+- [Slide decks](#slide-decks)
+
 ## Markdown audit / fix
 
 Requires **Node.js 18+** (or Bun):
