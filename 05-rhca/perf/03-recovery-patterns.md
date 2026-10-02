@@ -213,7 +213,13 @@ $ sudo mount /dev/vda3 /mountpoint
 $ df -h /mountpoint
 ```
 
-> **XFS cannot be repaired while mounted.** If it is the root filesystem, boot from `emergency.target` (root is mounted read-only) or use RHEL install media.
+> **XFS cannot be repaired while mounted read-write.** For a data volume,
+> `umount` then run `xfs_repair`. For the **root** filesystem, boot **RHEL
+> install/rescue media** (or a live image) so the root LV is not in use, then
+> repair the device from there. Booting `emergency.target` alone is not
+> enough: root stays mounted (read-only), and plain `xfs_repair` refuses that
+> mount. The dangerous exception `xfs_repair -d` (repair on an RO mount) exists
+> but is last-resort only — prefer rescue media.
 
 ### ext4 recovery
 
@@ -481,15 +487,28 @@ Symptom: After the `rd.break` root password reset, the system boots normally
 but all login attempts fail with "Authentication failure" or a PAM error.
 Diagnosis: `/etc/shadow` has been written outside an SELinux context and now
 has a wrong label. `ls -Z /etc/shadow` shows `unlabeled_t` or `default_t`.
-Fix: Boot into emergency target, `chroot /sysroot`, `touch /.autorelabel`,
-reboot. The relabel restores `shadow_t` on `/etc/shadow`.
+Fix: If you are still in the `rd.break` / initramfs shell, remount and chroot
+as in Pattern 1, then `touch /.autorelabel` and reboot. If you already reached
+a normal or `emergency.target` boot, remount root read-write and touch the
+flag on `/` (there is **no** `/sysroot` outside initramfs):
+
+```bash
+# From emergency.target (root is already /)
+mount -o remount,rw /
+touch /.autorelabel
+systemctl reboot
+```
+
+The relabel restores `shadow_t` on `/etc/shadow`.
 
 **2. Running `xfs_repair` on a mounted filesystem**
 
 Symptom: `xfs_repair` reports "filesystem is mounted, cannot repair".
 Diagnosis: `mount | grep /dev/vdX` confirms the filesystem is mounted.
-Fix: `umount /dev/vdX` first. If it is the root filesystem, boot from
-`emergency.target` where root is mounted read-only, or use rescue media.
+Fix: `umount /dev/vdX` first for data volumes. If it is the **root**
+filesystem, boot RHEL install/rescue media and run `xfs_repair` there.
+`emergency.target` leaves root mounted RO — plain `xfs_repair` still fails;
+only use `xfs_repair -d` as a last resort you understand.
 
 **3. Masking a unit instead of disabling it**
 

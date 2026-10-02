@@ -388,7 +388,7 @@ sudo -u apache bash -c "echo test >> /var/www/myapp/index.html"
 | `Permission denied` even though permissions look correct | SELinux is denying access | Check `ausearch -m avc -ts recent` or `sealert -a /var/log/audit/audit.log` |
 | `usermod -G` removed user from other groups | `-G` without `-a` replaces all supplementary groups | Always use `usermod -aG`; recover with `usermod -aG group1,group2 user` |
 | SGID bit disappeared after `chmod` | Used a 3-digit octal (e.g., `chmod 775`) which implicitly sets special bits to 0 | Use 4-digit octal: `chmod 2775`; or symbolic: `chmod g+s` |
-| New files in shared directory not group-writable | `umask 0022` strips group write | Set `umask 0002` for users in the shared group, or set the sticky bit |
+| New files in shared directory not group-writable | `umask 0022` strips group write | Set `umask 0002` for users in the shared group (sticky bit only restricts delete/rename — it does not add group write) |
 | `chown` fails with "Operation not permitted" | Only root can change the owning user | Use `sudo chown user:group file` |
 
 

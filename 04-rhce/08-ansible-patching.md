@@ -233,14 +233,15 @@ This creates `patch-logs/<hostname>/var/log/ansible-patching.log` for each host.
     state: latest
 ```
 
-Apply patches for a specific CVE:
+Apply patches for a specific CVE (`ansible.builtin.dnf` has no `cves:`
+parameter — call DNF directly):
 
 ```yaml
 - name: Patch for specific CVE
-  ansible.builtin.dnf:
-    name: "*"
-    cves: CVE-2024-1234
-    state: latest
+  ansible.builtin.command: dnf update -y --cve CVE-2024-1234
+  register: cve_patch
+  changed_when: "'Nothing to do' not in cve_patch.stdout"
+  # Prefer listing advisories first: dnf updateinfo list --cve CVE-2024-1234
 ```
 
 List available security advisories before patching:

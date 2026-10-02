@@ -68,8 +68,9 @@ tuned daemon
 ```
 
 Profile directories:
-- `/usr/lib/tuned/` — shipped profiles (read-only)
-- `/etc/tuned/` — custom profiles (override or extend shipped ones)
+- `/usr/lib/tuned/profiles/` — shipped profiles (read-only; TuneD 2.x / RHEL 10)
+- `/etc/tuned/profiles/` — custom profiles (override or extend shipped ones)
+- `/etc/tuned/tuned-main.conf`, `/etc/tuned/active_profile` — daemon config (not profile dirs)
 
 Each profile is a directory containing at minimum a `tuned.conf` file.
 The `[main]` section may include an `include=` directive to inherit from
@@ -162,7 +163,7 @@ $ tuned-adm profile_info throughput-performance
 
 ```bash
 # Read the profile definition
-$ cat /usr/lib/tuned/throughput-performance/tuned.conf
+$ cat /usr/lib/tuned/profiles/throughput-performance/tuned.conf
 ```
 
 Example (abbreviated):
@@ -212,11 +213,11 @@ Available `tuned.conf` plugins and what they configure:
 
 ## Creating a Custom Profile
 
-Custom profiles live in `/etc/tuned/<profile-name>/tuned.conf`. The recommended approach is to **inherit** a base profile and override only what you need:
+Custom profiles live in `/etc/tuned/profiles/<profile-name>/tuned.conf`. The recommended approach is to **inherit** a base profile and override only what you need:
 
 ```bash
-$ sudo mkdir /etc/tuned/rhca-web
-$ sudo tee /etc/tuned/rhca-web/tuned.conf <<'EOF'
+$ sudo mkdir -p /etc/tuned/profiles/rhca-web
+$ sudo tee /etc/tuned/profiles/rhca-web/tuned.conf <<'EOF'
 [main]
 summary=RHCA lab - tuned profile for web server workloads
 include=throughput-performance
@@ -386,8 +387,8 @@ cat /sys/kernel/mm/transparent_hugepage/enabled
 **Step 3 — create a custom profile with additional tuning**
 
 ```bash
-sudo mkdir /etc/tuned/trading-latency
-sudo tee /etc/tuned/trading-latency/tuned.conf <<'EOF'
+sudo mkdir -p /etc/tuned/profiles/trading-latency
+sudo tee /etc/tuned/profiles/trading-latency/tuned.conf <<'EOF'
 [main]
 summary=Trading application — minimum latency
 include=latency-performance
@@ -509,8 +510,8 @@ $ cat /sys/kernel/mm/transparent_hugepage/enabled
 always madvise [never]
 
 # 4. Create a custom profile based on latency-performance
-$ sudo mkdir /etc/tuned/rhca-latency
-$ sudo tee /etc/tuned/rhca-latency/tuned.conf <<'EOF'
+$ sudo mkdir -p /etc/tuned/profiles/rhca-latency
+$ sudo tee /etc/tuned/profiles/rhca-latency/tuned.conf <<'EOF'
 [main]
 summary=RHCA custom latency profile
 include=latency-performance
@@ -541,7 +542,7 @@ kernel.sched_min_granularity_ns = 3000000
 
 ```bash
 $ sudo tuned-adm profile virtual-guest   # or whatever was active before
-$ sudo rm -rf /etc/tuned/rhca-latency
+$ sudo rm -rf /etc/tuned/profiles/rhca-latency
 ```
 
 ---
@@ -558,7 +559,7 @@ $ sudo rm -rf /etc/tuned/rhca-latency
 | Switch profile | `sudo tuned-adm profile <name>` |
 | Recommend | `sudo tuned-adm recommend` |
 | Show profile info | `tuned-adm profile_info <name>` |
-| Create custom | `/etc/tuned/<name>/tuned.conf` with `include=` |
+| Create custom | `/etc/tuned/profiles/<name>/tuned.conf` with `include=` |
 
 
 [↑ Back to TOC](#toc)

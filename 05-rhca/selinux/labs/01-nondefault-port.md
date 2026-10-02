@@ -145,8 +145,8 @@ sudo ausearch -m avc -ts recent | sudo audit2why
 
 Look for: "SELinux is preventing httpd from name_bind access on the tcp_socket port 9090."
 
-It should suggest a boolean (`httpd_can_network_relabelfrom`) or a `semanage port` fix.
-The correct fix is `semanage port`.
+It typically points at a `semanage port` fix for `name_bind` denials (not a
+boolean). The correct fix is `semanage port`.
 
 > **Hint:** `audit2why` output includes the exact `semanage port` command
 > with placeholder `PORT_TYPE`. Choose `http_port_t` as the type since

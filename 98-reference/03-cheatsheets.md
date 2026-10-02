@@ -446,9 +446,9 @@ sudo tuned-adm profile throughput-performance
 sudo tuned-adm recommend
 tuned-adm profile_info <name>
 
-# Custom profile
-sudo mkdir /etc/tuned/myprofile
-sudo tee /etc/tuned/myprofile/tuned.conf <<'EOF'
+# Custom profile (TuneD 2.x / RHEL 10 layout)
+sudo mkdir -p /etc/tuned/profiles/myprofile
+sudo tee /etc/tuned/profiles/myprofile/tuned.conf <<'EOF'
 [main]
 include=throughput-performance
 

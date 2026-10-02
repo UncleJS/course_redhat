@@ -386,7 +386,7 @@ Always specify the zone in playbooks to avoid relying on the default:
 
 | Mistake | Symptom | Fix |
 |---|---|---|
-| `firewalld` rule added without `immediate: true` | Rule is permanent but not active until next reboot | Always set both `permanent: true` and `immediate: true` |
+| `firewalld` rule added without `immediate: true` | Rule is permanent but not active until `firewall-cmd --reload`, a firewalld restart, or reboot | Always set both `permanent: true` and `immediate: true` (or reload after) |
 | Wrong SELinux type on custom web root | nginx starts, serves 403 Forbidden | Set `setype: httpd_sys_content_t`; run `restorecon -Rv /custom/path` |
 | Non-standard port not registered in SELinux | nginx fails to start; audit log shows AVC denial | Use `community.general.seport` to add the port to `http_port_t` |
 | `validate:` path incorrect in template task | Task fails with "command not found" | Use the full path: `validate: /usr/sbin/nginx -t -c %s` |

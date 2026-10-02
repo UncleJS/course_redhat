@@ -232,14 +232,16 @@ A production stack for a hypervisor host:
 ```text
 Physical NIC (ens3, ens4)
     └── Bond (bond0, mode=LACP)
-          ├── VLAN 10 (ens3.10) → Bridge br-mgmt (management traffic)
-          ├── VLAN 20 (ens3.20) → Bridge br-vm   (VM traffic)
-          └── VLAN 30 (ens3.30) → Bridge br-stor  (storage traffic)
+          ├── VLAN 10 (bond0.10) → Bridge br-mgmt (management traffic)
+          ├── VLAN 20 (bond0.20) → Bridge br-vm   (VM traffic)
+          └── VLAN 30 (bond0.30) → Bridge br-stor  (storage traffic)
 ```
 
 Each bridge is then the network backend for KVM virtual machines.
 
-Building this stack with nmcli:
+Building this stack with nmcli — **one** VLAN connection per ID, enslaved
+directly to its bridge (do not create a standalone VLAN conn and a second
+VLAN conn with the same `ifname`):
 
 ```bash
 # 1. Bond
@@ -248,30 +250,26 @@ sudo nmcli connection add type bond con-name bond0 ifname bond0 \
 sudo nmcli connection add type ethernet con-name bond0-s1 ifname ens3 master bond0
 sudo nmcli connection add type ethernet con-name bond0-s2 ifname ens4 master bond0
 
-# 2. VLAN interfaces on the bond (NOT on ens3/ens4 directly)
-sudo nmcli connection add type vlan con-name vlan10 ifname bond0.10 dev bond0 id 10
-sudo nmcli connection add type vlan con-name vlan20 ifname bond0.20 dev bond0 id 20
-
-# 3. Bridges for each VLAN
+# 2. Bridges (bring L3/L2 endpoints up later)
 sudo nmcli connection add type bridge con-name br-mgmt ifname br-mgmt \
   ipv4.method manual ipv4.addresses 10.10.0.1/24
 sudo nmcli connection add type bridge con-name br-vm ifname br-vm \
   ipv4.method disabled ipv6.method disabled
 
-# 4. Add VLAN interfaces as bridge slaves
+# 3. VLAN on the bond, enslaved to the bridge (single connection per VLAN ID)
 sudo nmcli connection add type vlan con-name vlan10-br ifname bond0.10 \
   dev bond0 id 10 master br-mgmt
 sudo nmcli connection add type vlan con-name vlan20-br ifname bond0.20 \
   dev bond0 id 20 master br-vm
 
-# 5. Bring everything up in dependency order
+# 4. Bring everything up in dependency order
 sudo nmcli connection up bond0
 sudo nmcli connection up bond0-s1
 sudo nmcli connection up bond0-s2
-sudo nmcli connection up vlan10-br
-sudo nmcli connection up vlan20-br
 sudo nmcli connection up br-mgmt
 sudo nmcli connection up br-vm
+sudo nmcli connection up vlan10-br
+sudo nmcli connection up vlan20-br
 ```
 
 

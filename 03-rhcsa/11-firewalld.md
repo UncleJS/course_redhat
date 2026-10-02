@@ -315,10 +315,12 @@ sudo firewall-cmd --permanent \
 sudo firewall-cmd --reload
 ```
 
-Rich rules are evaluated after service and port rules. If a service rule
-already accepts the traffic, the rich rule for the same service is never
-reached. Order of evaluation: service rules → port rules → rich rules →
-zone default.
+Rich-rule placement depends on **priority** (`firewalld.richlanguage(5)`):
+priority `< 0` runs before zone primitives (services/ports); `> 0` runs after;
+`0` uses action-dependent chains. A default-priority accept rich rule is
+**not** simply “always after services.” If a service already accepts the
+traffic, add a deny rich rule with a negative priority, or remove the
+service/port rule.
 
 To list all rich rules:
 
@@ -407,7 +409,7 @@ sudo firewall-cmd --list-all
 | `--permanent` rule not active yet | Forgot `--reload` | `firewall-cmd --list-all` vs `--permanent --list-all` differ | `sudo firewall-cmd --reload` |
 | Service still blocked despite rule | Rule in wrong zone | `firewall-cmd --get-active-zones` — check which zone the interface is in | Add rule to the correct zone with `--zone=<zone>` |
 | Port open but service unreachable | Service not listening | `ss -tlnp` — port not in LISTEN state | Fix the application / start the service |
-| Rich rule has no effect | Service rule matches first | `firewall-cmd --list-all` shows service already accepted | Remove the service rule or re-order logic using `--priority` |
+| Rich rule has no effect | Priority / primitives win first | Check `--list-all` and rich-rule `priority=` | Use `--priority` (e.g. negative for early deny) or remove conflicting service/port |
 | Cannot ping host but SSH works | ICMP blocked by zone | No `icmp` passthrough in zone | `firewall-cmd --permanent --add-protocol=icmp` + `--reload` |
 
 
@@ -425,22 +427,14 @@ sudo nft list ruleset   # view the raw nftables rules firewalld generated
 ```
 
 Do not write rules directly with `nft` while `firewalld` is running —
-`firewalld` will overwrite them on the next reload. The only correct way
-to customise firewall rules on a `firewalld`-managed system is through
-`firewall-cmd` or the `firewalld` D-Bus API.
+`firewalld` will overwrite them on the next reload. Prefer zones, services,
+ports, rich rules, and **policies**.
 
-If you need a rule that cannot be expressed with zones/services/rich rules,
-use `--direct` rules as a last resort:
-
-```bash
-# Add a direct nftables rule (permanent)
-sudo firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 \
-  -p tcp --dport 9090 -j ACCEPT
-sudo firewall-cmd --reload
-```
-
-Direct rules are passed as-is to nftables and are evaluated before zone rules.
-They bypass the zone model entirely — use with caution and document thoroughly.
+> **⚠️ Do NOT do this**
+> The old `--direct` interface (`firewall-cmd --direct --add-rule …`) is
+> **deprecated** and scheduled for removal. It bypasses the zone model and
+> behaves poorly with the nftables backend. Prefer a zone rich rule or a
+> firewalld **policy** for anything that used to need direct rules.
 
 
 [↑ Back to TOC](#toc)

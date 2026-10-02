@@ -223,10 +223,15 @@ type=AVC msg=audit(...): avc:  denied  { write } for  pid=12345
 
 The `tcontext=user_home_t` tells you the host directory has not been relabeled.
 
-**Fix:** Add `:Z` to the volume mount, or relabel manually:
+**Fix:** Prefer remounting with `:Z` (or `:z` for shared volumes) so Podman
+sets type **and** a private MCS category. Raw `chcon` only sets the type:
 
 ```bash
+# Incomplete for multi-container MCS isolation — type only, no cN,cM
 sudo chcon -Rt container_file_t ~/myapp/data/
+
+# Prefer: recreate/run with a labeled volume mount
+podman run -v ~/myapp/data:/data:Z ...
 ```
 
 ### "Container can't listen on port"
@@ -397,9 +402,10 @@ Fix:
 ```bash
 # Check context of files in volume
 ls -Z $(podman volume inspect mydata --format '{{.Mountpoint}}')
-# If not container_file_t:
+# If not container_file_t (type only — prefer remount with :Z for MCS):
 sudo chcon -Rt container_file_t \
   $(podman volume inspect mydata --format '{{.Mountpoint}}')
+# Better: stop the container and start it with -v ...:Z so Podman labels MCS
 ```
 
 ---
