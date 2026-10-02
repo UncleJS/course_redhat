@@ -51,7 +51,7 @@ active `tuned` profile and confirm with `tuned-adm active`.
 
 - [ ] You recorded load average and top CPU processes under load
 - [ ] `tuned-adm active` shows a profile you selected (e.g. `throughput-performance` or `virtual-guest`)
-- [ ] You restored the previous profile in Cleanup
+- [ ] Cleanup restored the **saved** previous profile (not a hardcoded name)
 
 
 [↑ Back to TOC](#toc)
@@ -84,10 +84,12 @@ wait 2>/dev/null || true
 
 ```bash
 PREV=$(tuned-adm active | awk -F': ' '{print $2}')
+echo "$PREV" | tee /tmp/tuned-prev-profile.txt
 echo "Previous profile: $PREV"
 sudo tuned-adm profile throughput-performance
 tuned-adm active
-# optional: cat /usr/lib/tuned/profiles/throughput-performance/tuned.conf | head
+tuned-adm verify || true
+# optional: head /usr/lib/tuned/profiles/throughput-performance/tuned.conf
 ```
 
 
@@ -98,9 +100,15 @@ tuned-adm active
 ## Cleanup
 
 ```bash
-# Restore prior profile if you saved it
-sudo tuned-adm profile virtual-guest   # or: sudo tuned-adm profile "$PREV"
+# Restore the profile saved in step 3 (do not hardcode virtual-guest)
+PREV=$(cat /tmp/tuned-prev-profile.txt 2>/dev/null || true)
+if [ -n "$PREV" ]; then
+  sudo tuned-adm profile "$PREV"
+else
+  echo "No saved profile; set one from: tuned-adm list"
+fi
 tuned-adm active
+rm -f /tmp/tuned-prev-profile.txt
 ```
 
 

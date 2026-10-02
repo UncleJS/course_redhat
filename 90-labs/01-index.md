@@ -10,7 +10,7 @@ The labs in this guide are designed for hands-on practice in a safe, isolated en
 | Configuration | Best For |
 |---|---|
 | [Single-VM](02-single-vm.md) | Working through all chapters sequentially; most exercises |
-| [Multi-VM](03-multi-vm.md) | Multi-node Ansible lab, optional networking/replication scenarios |
+| [Multi-VM](03-multi-vm.md) | Required for the multi-node Ansible lab ([RHCE Lab 03](../04-rhce/labs/03-multi-node-playbook.md)) |
 
 
 [↑ Back to TOC](#toc)

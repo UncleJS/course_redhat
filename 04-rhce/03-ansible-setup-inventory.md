@@ -158,7 +158,7 @@ If you manage many hosts, automate key distribution with a bootstrap script:
 set -euo pipefail
 
 HOSTS=(192.168.1.101 192.168.1.102 192.168.1.103)
-USER="rhel"
+USER="student"
 
 for HOST in "${HOSTS[@]}"; do
   echo "Copying key to ${HOST}..."

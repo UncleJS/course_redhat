@@ -31,6 +31,7 @@ so the workflow of edit → `mount -a` → verify is critical discipline.
 
 - [XFS — RHEL's default filesystem](#xfs--rhels-default-filesystem)
 - [Create and mount XFS](#create-and-mount-xfs)
+- [Create and mount ext4](#create-and-mount-ext4)
 - [`/etc/fstab` — persistent mounts](#etcfstab--persistent-mounts)
   - [Format](#format)
   - [Add an entry](#add-an-entry)
@@ -102,6 +103,36 @@ df -h /mnt/data
 
 Labels are optional but useful in `/etc/fstab` when they are more readable
 than a UUID. Use `LABEL=appdata` as the device field.
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Create and mount ext4
+
+Use **ext4** when you may need to shrink a filesystem later (XFS cannot
+shrink). Create, mount, and persist the same way as XFS:
+
+```bash
+# Format (destroys data on the partition)
+sudo mkfs.ext4 -L appdata /dev/vdb1
+
+# Temporary mount
+sudo mkdir -p /mnt/data
+sudo mount -t ext4 /dev/vdb1 /mnt/data
+df -hT /mnt/data
+
+# Persistent (prefer UUID)
+sudo blkid /dev/vdb1
+# UUID=…  /mnt/data  ext4  defaults  0  2
+sudo vim /etc/fstab
+sudo mount -a
+```
+
+Grow online with `sudo resize2fs /dev/vdb1` after expanding the LV/partition.
+Shrinking requires unmount + `e2fsck` + `resize2fs` to a smaller size — plan
+carefully; prefer growing over shrinking.
 
 
 [↑ Back to TOC](#toc)

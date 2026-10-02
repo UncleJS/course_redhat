@@ -42,6 +42,7 @@ directives without touching the vendor file.
   - [Status and introspection](#status-and-introspection)
 - [Listing units](#listing-units)
 - [System state (targets)](#system-state-targets)
+- [Tuning profiles (tuned)](#tuning-profiles-tuned)
 - [Unit files](#unit-files)
   - [View a unit file](#view-a-unit-file)
   - [Edit a unit (use systemctl — not vim directly)](#edit-a-unit-use-systemctl--not-vim-directly)
@@ -218,6 +219,35 @@ sudo systemctl isolate rescue.target
 | 3 | `multi-user.target` |
 | 5 | `graphical.target` |
 | 6 | `reboot.target` |
+
+
+### Emergency access outline (RHCSA)
+
+To reset a forgotten root password or repair early boot, interrupt GRUB,
+append `rd.break` (or boot `rescue.target`), remount `/sysroot` read-write,
+`chroot /sysroot`, then fix and `touch /.autorelabel` if SELinux labels need
+refresh. Full procedure: [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md).
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Tuning profiles (tuned)
+
+RHCSA expects you to list and apply **tuned** profiles:
+
+```bash
+sudo dnf install -y tuned
+sudo systemctl enable --now tuned
+
+tuned-adm list
+tuned-adm active
+sudo tuned-adm profile throughput-performance   # or virtual-guest, etc.
+tuned-adm verify
+```
+
+Deeper profile customization: [tuned (RHCA)](../05-rhca/perf/02-tuned.md).
 
 
 [↑ Back to TOC](#toc)

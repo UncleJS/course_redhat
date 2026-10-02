@@ -289,7 +289,7 @@ address1=192.168.1.200/24,192.168.1.1
 dns=192.168.1.1;8.8.8.8;
 
 [ipv6]
-method=ignore
+method=disabled
 ```
 
 Understanding this format is useful when editing is faster than re-creating a
@@ -402,7 +402,7 @@ Key fields:
 | `ipv4.dns` | `ipv4.dns "8.8.8.8 1.1.1.1"` | DNS servers (space-separated) |
 | `ipv4.dns-search` | `ipv4.dns-search "lab.local"` | DNS search domains |
 | `ipv4.routes` | `+ipv4.routes "10.0.0.0/8 192.168.1.1"` | Static routes |
-| `ipv6.method` | `ipv6.method ignore/auto/manual` | IPv6 configuration method |
+| `ipv6.method` | `ipv6.method disabled/auto/manual/ignore` | IPv6 method (`disabled` turns it off; `ignore` leaves kernel IPv6 alone) |
 
 To see the full list of settable fields:
 
@@ -429,11 +429,15 @@ sudo nmcli connection modify "Wired connection 1" \
 
 ## Configure IPv6 addresses
 
-Disable IPv6 on a profile when unused:
+Disable IPv6 on a profile when unused (`disabled`, **not** `ignore`):
 
 ```bash
-sudo nmcli connection modify "Wired connection 1" ipv6.method ignore
+sudo nmcli connection modify "Wired connection 1" ipv6.method disabled
 ```
+
+> **`ignore` vs `disabled`:** `ipv6.method ignore` means NetworkManager does
+> not configure IPv6 — the kernel can still obtain addresses via RA. Use
+> `disabled` when you want IPv6 off on that connection.
 
 Static IPv6 (manual):
 

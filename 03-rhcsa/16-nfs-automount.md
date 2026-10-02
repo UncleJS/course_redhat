@@ -31,7 +31,8 @@ sudo dnf install -y nfs-utils autofs
 ## Manual NFS mount
 
 ```bash
-# Discover exports (if allowed by server)
+# Discover exports (NFSv3 / mountd). Pure NFSv4-only servers may not answer;
+# if showmount fails, still try mount -t nfs with the known export path.
 showmount -e nfs.lab.example
 
 sudo mkdir -p /mnt/nfsdata
@@ -80,23 +81,26 @@ sudo dnf install -y autofs
 sudo systemctl enable --now autofs
 ```
 
-Master map includes the default `auto.master`. Add an indirect map, for
-example under `/misc`:
+Stock `auto.master` already maps `/misc` → `/etc/auto.misc` and includes
+`+dir:/etc/auto.master.d`. **Do not** redeclare `/misc` in a drop-in — that
+duplicates the mount point. Add a **new** base directory instead:
 
 ```bash
-# /etc/auto.master.d/misc.autofs
-/misc   /etc/auto.misc
+# /etc/auto.master.d/lab.autofs
+/shares   /etc/auto.shares
 ```
 
 ```bash
-# /etc/auto.misc  (example entry)
-data   -rw,soft,intr  nfs.lab.example:/export/data
+# /etc/auto.shares  (example entry)
+# Prefer hard mounts for data; soft is only for non-critical, interruptible access.
+# (intr is obsolete/no-op on modern NFS clients — omit it.)
+data   -fstype=nfs,rw,hard,timeo=600  nfs.lab.example:/export/data
 ```
 
 ```bash
 sudo systemctl reload autofs
-ls /misc/data          # triggers mount
-mount | grep /misc/data
+ls /shares/data          # triggers mount
+mount | grep /shares/data
 ```
 
 When the directory is idle, autofs unmounts after a timeout.

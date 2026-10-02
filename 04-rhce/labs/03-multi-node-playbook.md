@@ -19,6 +19,7 @@
   - [1 — Inventory for two managed nodes](#1--inventory-for-two-managed-nodes)
   - [2 — Ad-hoc ping](#2--ad-hoc-ping)
   - [3 — Playbook across both nodes](#3--playbook-across-both-nodes)
+  - [4 — Limit to one host and verify](#4--limit-to-one-host-and-verify)
 - [Cleanup](#cleanup)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Why this matters in production](#why-this-matters-in-production)
@@ -51,7 +52,8 @@ idempotence across the fleet — not just localhost.
 
 - [ ] `ansible all -m ping` succeeds for both nodes
 - [ ] Playbook installs `tree` (or similar) on both; second run reports `ok` not `changed` for the package task
-- [ ] You used `ansible_user=student`
+- [ ] `--limit node1` affects only one host
+- [ ] You used `ansible_user=student` and IPs from the Multi-VM guide (`192.168.100.x`)
 
 
 [↑ Back to TOC](#toc)
@@ -68,8 +70,8 @@ On the controller:
 mkdir -p ~/ansible-multi && cd ~/ansible-multi
 cat > inventory.ini <<'EOF'
 [web]
-node1 ansible_host=192.168.122.11
-node2 ansible_host=192.168.122.12
+node1 ansible_host=192.168.100.11
+node2 ansible_host=192.168.100.12
 
 [web:vars]
 ansible_user=student
@@ -77,7 +79,8 @@ ansible_become=true
 EOF
 ```
 
-Adjust IPs to match your Multi-VM setup.
+Adjust IPs to match [Multi-VM Labs](../../90-labs/03-multi-vm.md) (`192.168.100.11` /
+`.12` by default).
 
 ### 2 — Ad-hoc ping
 
@@ -102,6 +105,14 @@ EOF
 
 ansible-playbook -i inventory.ini site.yml
 ansible-playbook -i inventory.ini site.yml   # second run: no package change
+```
+
+### 4 — Limit to one host and verify
+
+```bash
+ansible-playbook -i inventory.ini site.yml --limit node1
+ansible -i inventory.ini node1 -m ansible.builtin.command -a 'rpm -q tree' --become
+ansible -i inventory.ini node2 -m ansible.builtin.command -a 'rpm -q tree' --become
 ```
 
 

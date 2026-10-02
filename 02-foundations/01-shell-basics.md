@@ -28,6 +28,7 @@ On RHEL, Bash inherits configuration from `/etc/profile`, `/etc/profile.d/*.sh`,
 - [Command history and recall](#command-history-and-recall)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
+- [Simple shell scripts (pointer)](#simple-shell-scripts-pointer)
 - [Further reading](#further-reading)
 - [Next step](#next-step)
 
@@ -42,7 +43,7 @@ When you log in you see a prompt like:
 
 | Part | Meaning |
 |---|---|
-| `rhel` | Current username |
+| `student` | Current username |
 | `rhel10-lab` | Hostname |
 | `~` | Current directory (`~` = your home directory) |
 | `$` | Regular user (would be `#` for root) |
@@ -301,7 +302,7 @@ pwd
 
 # 2. Who am I, and what groups do I belong to?
 id
-# uid=1000(rhel) gid=1000(rhel) groups=1000(rhel),10(wheel)
+# uid=1000(student) gid=1000(student) groups=1000(student),10(wheel)
 
 # 3. What is this server?
 cat /etc/hostname
@@ -341,6 +342,31 @@ Notice the pattern: navigate → inspect → act. Building this habit prevents a
 | Command not found for a root-only tool | `/sbin` not in normal user's `$PATH` | Use `sudo` or switch to root; check `echo $PATH` |
 | `pwd` shows the wrong path after a symlink | `pwd` returns the logical path | Use `pwd -P` for the physical (resolved) path |
 | History not saving between sessions | `HISTFILESIZE=0` or shell killed | Check `~/.bashrc`; use `history -a` to flush immediately |
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Simple shell scripts (pointer)
+
+RHCSA requires short Bash scripts (conditionals, loops, exit codes). After you
+are comfortable at the prompt, continue to
+[Bash Fundamentals](../04-rhce/02-bash-fundamentals.md) for `if`/`for`/`while`,
+`test`/`[[ ]]`, and exit status — taught in the RHCE track but required for
+EX200 as well.
+
+```bash
+# Minimal executable script pattern
+cat > ~/hello.sh <<'EOF'
+#!/bin/bash
+set -euo pipefail
+echo "hello from $(hostname)"
+exit 0
+EOF
+chmod +x ~/hello.sh
+~/hello.sh
+```
 
 
 [↑ Back to TOC](#toc)

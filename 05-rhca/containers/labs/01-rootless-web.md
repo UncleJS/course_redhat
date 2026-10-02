@@ -7,7 +7,7 @@
 
 Deploy a rootless Nginx container as a persistent systemd user service using a Quadlet `.container` file. The service survives reboots, restarts on failure, and runs entirely without root privileges.
 
-**Track:** D — RHCA-style  
+**Track:** RHCA  
 **Estimated time:** 45 minutes  
 **Difficulty:** Intermediate
 

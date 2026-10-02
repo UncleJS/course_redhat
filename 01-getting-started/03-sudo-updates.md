@@ -92,9 +92,11 @@ sudo -i
 sudo -u nginx id
 ```
 
-> **⚠️ sudo -i vs sudo su**
-> Prefer `sudo -i` over `sudo su -`. It is audited, respects sudoers policy,
-> and does not require the root password.
+> **⚠️ sudo -i vs sudo su -**
+> Prefer `sudo -i` over `sudo su -`. Both go through sudoers and are audited,
+> and neither asks for the root password after a successful sudo. Prefer
+> `sudo -i` because it is one process, starts a clean login environment, and
+> does not depend on allowing `su` in sudoers.
 >
 
 ### Switch users with `su`

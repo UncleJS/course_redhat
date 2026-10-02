@@ -18,7 +18,8 @@ for the first time to designing resilient infrastructure.
 ## What makes it different
 
 - **Beginner-safe language**: every concept is explained before it is used.
-- **Lab-driven**: you learn by doing, not just reading.
+- **Practice-backed**: theory chapters and labs at key milestones — not every
+  objective has a dedicated lab, but every track has hands-on work.
 - **Honest about "don't do this"**: common mistakes (disabling SELinux, opening
   all firewall ports, running everything as root) are called out explicitly, with
   the correct alternative shown.

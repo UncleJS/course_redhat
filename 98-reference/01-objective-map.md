@@ -24,6 +24,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
   - [Manage security](#manage-security)
 - [RHCE (EX294) — Ansible on RHEL 10](#rhce-ex294--ansible-on-rhel-10)
 - [RHCA Infrastructure Concentration (indicative topics)](#rhca-infrastructure-concentration-indicative-topics)
+- [Not covered in this guide](#not-covered-in-this-guide)
 - [Next step](#next-step)
 
 
@@ -49,7 +50,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 
 | Objective | Chapter | Lab |
 |---|---|---|
-| Conditionals, loops | [Bash Fundamentals](../04-rhce/02-bash-fundamentals.md) | — |
+| Conditionals, loops | [Shell Basics](../02-foundations/01-shell-basics.md) (pointer), [Bash Fundamentals](../04-rhce/02-bash-fundamentals.md) | — |
 | Process exit codes, test command | [Bash Fundamentals](../04-rhce/02-bash-fundamentals.md) | — |
 
 ### Operate running systems
@@ -57,12 +58,12 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | Objective | Chapter | Lab |
 |---|---|---|
 | Boot, reboot, shut down | [systemd Basics](../03-rhcsa/05-systemd-basics.md) | — |
-| Interrupt the boot process to gain access to a system | [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md) | — |
+| Interrupt the boot process to gain access to a system | [systemd Basics](../03-rhcsa/05-systemd-basics.md) (outline), [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md) | — |
 | Identify CPU/memory intensive processes and kill | [Process Management](../03-rhcsa/15-process-management.md), [Resource Triage](../05-rhca/perf/01-resource-triage.md) | [Triage and tuned](../05-rhca/perf/labs/01-triage-and-tuned.md) |
 | Adjust process scheduling | [Process Management](../03-rhcsa/15-process-management.md) (`nice` / `renice`) | — |
-| Manage tuning profiles | [tuned](../05-rhca/perf/02-tuned.md) | [Triage and tuned](../05-rhca/perf/labs/01-triage-and-tuned.md) |
+| Manage tuning profiles | [systemd Basics](../03-rhcsa/05-systemd-basics.md) (`tuned-adm`), [tuned](../05-rhca/perf/02-tuned.md) | [Triage and tuned](../05-rhca/perf/labs/01-triage-and-tuned.md) |
 | Locate and interpret system log files and journals | [Logging and journald](../03-rhcsa/06-logging-journald.md) | — |
-| Preserve system journals across reboots | [journald Retention](../05-rhca/04-journald-retention.md) | — |
+| Preserve system journals across reboots | [Logging and journald](../03-rhcsa/06-logging-journald.md), [journald Retention](../05-rhca/04-journald-retention.md) | — |
 | Start, stop, and check status of services | [systemd Basics](../03-rhcsa/05-systemd-basics.md) | [Systemd Service](../03-rhcsa/labs/02-systemd-service.md) |
 | Securely transfer files | [SSH](../03-rhcsa/12-ssh.md) (`scp` / `sftp` / `rsync`) | [SSH Keys and Transfer](../03-rhcsa/labs/06-ssh-keys-transfer.md) |
 
@@ -92,10 +93,10 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 |---|---|---|
 | Schedule tasks using at and cron | [Scheduling](../03-rhcsa/07-scheduling.md) | — |
 | Start and stop services, configure services to start automatically | [systemd Basics](../03-rhcsa/05-systemd-basics.md) | [Systemd Service](../03-rhcsa/labs/02-systemd-service.md) |
-| Configure systems to boot into a specific target | [systemd Advanced](../05-rhca/02-systemd-advanced.md) | — |
+| Configure systems to boot into a specific target | [systemd Basics](../03-rhcsa/05-systemd-basics.md), [systemd Advanced](../05-rhca/02-systemd-advanced.md) | — |
 | Configure time service clients | [Time Synchronization (chrony)](../03-rhcsa/17-time-chrony.md) | — |
 | Install and update software packages from a repository | [Packages and DNF](../03-rhcsa/01-packages-dnf.md) | — |
-| Modify the system bootloader | [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md) | — |
+| Modify the system bootloader | [systemd Basics](../03-rhcsa/05-systemd-basics.md) (outline), [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md) | — |
 
 ### Manage basic networking
 
@@ -121,11 +122,11 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 |---|---|---|
 | Configure firewall settings using firewall-cmd | [firewalld](../03-rhcsa/11-firewalld.md) | [firewalld Basics](../03-rhcsa/labs/05-firewalld-basics.md) |
 | Manage default file permissions | [Permissions](../02-foundations/05-permissions.md) | — |
-| Configure key-based authentication for SSH | [SSH](../03-rhcsa/12-ssh.md) | — |
+| Configure key-based authentication for SSH | [SSH](../03-rhcsa/12-ssh.md) | [SSH Keys and Transfer](../03-rhcsa/labs/06-ssh-keys-transfer.md) |
 | Set enforcing and permissive modes for SELinux | [SELinux Fundamentals](../03-rhcsa/13-selinux-fundamentals.md) | — |
 | List and identify SELinux file and process context | [SELinux Fundamentals](../03-rhcsa/13-selinux-fundamentals.md) | — |
 | Restore default file contexts | [SELinux AVC Basics](../03-rhcsa/14-selinux-avc-basics.md) | [SELinux Label Fix](../03-rhcsa/labs/04-selinux-label-fix.md) |
-| Manage SELinux port labels | [semanage](../05-rhca/selinux/02-semanage.md) | [Non-default Port](../05-rhca/selinux/labs/01-nondefault-port.md) |
+| Manage SELinux port labels | [SELinux AVC Basics](../03-rhcsa/14-selinux-avc-basics.md), [semanage](../05-rhca/selinux/02-semanage.md) | [Non-default Port](../05-rhca/selinux/labs/01-nondefault-port.md) |
 | Use Boolean settings to modify system SELinux settings | [SELinux Fundamentals](../03-rhcsa/13-selinux-fundamentals.md) | — |
 | Diagnose and address routine SELinux policy violations | [SELinux AVC Basics](../03-rhcsa/14-selinux-avc-basics.md) | [SELinux Label Fix](../03-rhcsa/labs/04-selinux-label-fix.md) |
 
@@ -149,7 +150,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | Download and use roles from Ansible Galaxy | [Ansible Roles](../04-rhce/06-ansible-roles.md) | — |
 | Use Ansible Vault for secrets | [Ansible Vars and Templates](../04-rhce/05-ansible-vars-templates.md) | — |
 | Manage content with collections | [Ansible Roles](../04-rhce/06-ansible-roles.md) | — |
-| Automate patching and updates | [Ansible Patching](../04-rhce/08-ansible-patching.md) | [Multi-Node Playbook](../04-rhce/labs/03-multi-node-playbook.md) |
+| Automate patching and updates | [Ansible Patching](../04-rhce/08-ansible-patching.md) | — |
 
 
 [↑ Back to TOC](#toc)
@@ -173,6 +174,12 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | System recovery procedures | [Recovery Patterns](../05-rhca/perf/03-recovery-patterns.md) |
 | journald retention and forwarding | [journald Retention](../05-rhca/04-journald-retention.md) |
 | Structured troubleshooting methodology | [Troubleshooting Playbook](../05-rhca/01-troubleshooting-playbook.md) |
+
+### Not covered in this guide
+
+Kickstart, Stratis, VDO, Cockpit UI workflows, Ansible Automation Platform /
+controller UI, IdM, Buildah deep dive, and bpftrace — specialist topics beyond
+the RHCA-infra concentration honesty of this course.
 
 
 [↑ Back to TOC](#toc)

@@ -19,6 +19,7 @@
   - [1 — Create a simple oneshot service](#1--create-a-simple-oneshot-service)
   - [2 — Add a drop-in](#2--add-a-drop-in)
   - [3 — Add one sandbox directive](#3--add-one-sandbox-directive)
+  - [4 — Prove the Environment= drop-in](#4--prove-the-environment-drop-in)
 - [Cleanup](#cleanup)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Why this matters in production](#why-this-matters-in-production)
@@ -51,6 +52,7 @@ vendor unit file in place.
 - [ ] Custom unit runs successfully
 - [ ] Drop-in visible in `systemctl cat`
 - [ ] `PrivateTmp=yes` (or similar) appears in the effective unit
+- [ ] `Environment=LAB_TAG=dropin` is visible via `systemctl show`
 
 
 [↑ Back to TOC](#toc)
@@ -110,6 +112,15 @@ echo -e '[Service]\nPrivateTmp=yes' \
 sudo systemctl daemon-reload
 systemctl show lab-hello.service -p PrivateTmp
 sudo systemd-analyze security lab-hello.service | head
+```
+
+### 4 — Prove the Environment= drop-in
+
+```bash
+systemctl show lab-hello.service -p Environment
+# Expect LAB_TAG=dropin among the Environment= values
+sudo systemctl start lab-hello.service
+journalctl -u lab-hello.service -n 5 --no-pager
 ```
 
 

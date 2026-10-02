@@ -4,9 +4,10 @@
 [![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 Accurate clocks matter for TLS, Kerberos, logs, and Ansible. On RHEL 10 the
-default NTP client is **chrony** (`chronyd`). `timedatectl set-ntp true`
-enables the systemd-timesyncd/chrony integration path; for exam and production
-control you should also know `/etc/chrony.conf` and `chronyc`.
+default NTP client is **chrony** (`chronyd`) — not systemd-timesyncd.
+`timedatectl set-ntp true` enables systemd NTP sync, which starts/uses
+chronyd when installed. For exam and production control also know
+`/etc/chrony.conf` and `chronyc`.
 
 ```bash
 sudo dnf install -y chrony
@@ -85,8 +86,8 @@ chronyc sourcestats
 # Tracking vs reference
 chronyc tracking
 
-# Manual sync attempt (rarely needed)
-sudo chronyc -a makestep
+# Manual step (rarely needed; requires privileges)
+sudo chronyc makestep
 ```
 
 

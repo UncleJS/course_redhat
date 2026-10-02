@@ -19,6 +19,7 @@
   - [1 — Generate a key pair](#1--generate-a-key-pair)
   - [2 — Install the public key](#2--install-the-public-key)
   - [3 — Transfer with scp and rsync](#3--transfer-with-scp-and-rsync)
+  - [4 — Fail closed then recover](#4--fail-closed-then-recover)
 - [Cleanup](#cleanup)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Why this matters in production](#why-this-matters-in-production)
@@ -52,6 +53,7 @@ second lab VM if you have Multi-VM ready).
 - [ ] Passwordless `ssh student@127.0.0.1 hostname` works (or remote host)
 - [ ] `scp` copied a file successfully
 - [ ] `rsync -av -e ssh` synced a directory
+- [ ] Wrong key is rejected; correct key still works
 
 
 [↑ Back to TOC](#toc)
@@ -82,6 +84,16 @@ ssh -i ~/.ssh/id_ed25519_lab student@127.0.0.1 cat /tmp/ssh-lab-remote.txt
 
 mkdir -p /tmp/rsync-src && echo hi > /tmp/rsync-src/a.txt
 rsync -av -e "ssh -i $HOME/.ssh/id_ed25519_lab" /tmp/rsync-src/ student@127.0.0.1:/tmp/rsync-dst/
+```
+
+### 4 — Fail closed then recover
+
+```bash
+# Wrong identity → should fail (or fall back to password — expect deny if keys-only)
+ssh -o BatchMode=yes -i /dev/null student@127.0.0.1 true && echo UNEXPECTED || echo "denied (expected)"
+
+# Correct key still works
+ssh -i ~/.ssh/id_ed25519_lab student@127.0.0.1 true && echo OK
 ```
 
 

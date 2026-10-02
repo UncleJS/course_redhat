@@ -20,6 +20,7 @@
   - [2 — Allow HTTP service permanently](#2--allow-http-service-permanently)
   - [3 — Add a custom port](#3--add-a-custom-port)
   - [4 — Verify runtime and permanent](#4--verify-runtime-and-permanent)
+  - [5 — Runtime-only test then discard](#5--runtime-only-test-then-discard)
 - [Cleanup](#cleanup)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Why this matters in production](#why-this-matters-in-production)
@@ -52,6 +53,7 @@ and confirm both runtime and permanent stores match.
 
 - [ ] `firewall-cmd --list-all` shows `http` and port `8080/tcp`
 - [ ] Same rules appear with `--permanent --list-all`
+- [ ] You proved a runtime-only rule disappears after `--reload` without `--permanent`
 - [ ] You did **not** disable firewalld or SELinux
 
 
@@ -91,6 +93,18 @@ sudo firewall-cmd --list-all
 sudo firewall-cmd --permanent --list-all
 ```
 
+### 5 — Runtime-only test then discard
+
+```bash
+# Runtime only (no --permanent) — useful for a safe experiment
+sudo firewall-cmd --add-port=9090/tcp
+sudo firewall-cmd --list-ports | grep 9090
+
+# Reload without saving → runtime-only rule is gone
+sudo firewall-cmd --reload
+sudo firewall-cmd --list-ports | grep 9090 || echo "9090 cleared (expected)"
+```
+
 
 [↑ Back to TOC](#toc)
 
@@ -123,8 +137,9 @@ sudo firewall-cmd --reload
 
 ## Why this matters in production
 
-Permanent + reload (or `immediate`) keeps firewall intent durable across
-reboots without locking yourself out mid-change.
+Use runtime rules (no `--permanent`) to test, then `--permanent` +
+`--reload` to make changes durable across reboots. There is no
+`firewall-cmd --immediate` flag.
 
 
 [↑ Back to TOC](#toc)

@@ -40,7 +40,7 @@ On top of DAC, RHEL 10 runs **SELinux** in enforcing mode. SELinux is a **Mandat
 Every file and directory has three permission sets:
 
 ```text
--rw-r--r--  1  rhel  rhel  1234  Feb 23 10:00  file.txt
+-rw-r--r--  1  student  student  1234  Feb 23 10:00  file.txt
 │└┬┘└┬┘└┬┘     │     │
 │ │   │   │     │     └── Group owner
 │ │   │   │     └──────── User owner
@@ -215,10 +215,10 @@ sudo groupadd developers
 sudo groupadd -g 2001 developers
 
 # Add a user to a group
-sudo usermod -aG developers rhel
+sudo usermod -aG developers student
 
 # Add a user to multiple groups at once
-sudo usermod -aG developers,wheel rhel
+sudo usermod -aG developers,wheel student
 
 # View your groups
 groups
@@ -231,6 +231,15 @@ getent group
 
 # View members of a specific group
 getent group developers
+
+# Rename a group
+sudo groupmod -n webdevs developers
+
+# Change a group's GID (files keep the old numeric GID until you fix them)
+sudo groupmod -g 2002 webdevs
+
+# Delete a group (fails if it is any user's primary group)
+sudo groupdel webdevs
 ```
 
 > **💡 The -aG flag**
@@ -238,10 +247,15 @@ getent group developers
 > all supplementary groups — a common mistake that locks users out.
 >
 
+> **⚠️ groupdel**
+> You cannot delete a group that is still the **primary** group of a user.
+> Change the user's primary group first (`usermod -g …`), or remove the user.
+>
+
 Group membership changes take effect on the user's **next login**. For the current session, use `newgrp <groupname>` to activate a new group without logging out:
 
 ```bash
-sudo usermod -aG developers rhel
+sudo usermod -aG developers student
 newgrp developers       # activate in current session
 groups                  # verify
 ```
@@ -340,7 +354,7 @@ If the execute bit is not set alongside the special bit, it appears as uppercase
 ```bash
 # 1. Create the group and add yourself
 sudo groupadd webadmin
-sudo usermod -aG webadmin rhel
+sudo usermod -aG webadmin student
 newgrp webadmin
 
 # 2. Create the web root directory
@@ -363,8 +377,8 @@ ls -ld /var/www/myapp
 # 6. Create a test file as your user
 echo "<h1>Hello</h1>" > /var/www/myapp/index.html
 ls -l /var/www/myapp/index.html
-# -rw-rw-r--. 1 rhel webadmin 17 ... index.html
-# Note: group is webadmin (SGID), not rhel
+# -rw-rw-r--. 1 student webadmin 17 ... index.html
+# Note: group is webadmin (SGID), not student
 
 # 7. Verify apache can read it
 sudo -u apache cat /var/www/myapp/index.html

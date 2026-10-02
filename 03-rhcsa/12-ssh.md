@@ -164,7 +164,7 @@ Saves you from typing options every time:
 ```text
 Host lab
     HostName 192.168.1.100
-    User rhel
+    User student
     IdentityFile ~/.ssh/id_ed25519
     Port 22
 
@@ -252,7 +252,7 @@ PubkeyAuthentication yes
 PermitEmptyPasswords no
 
 # Limit which users can log in
-AllowUsers rhel admin
+AllowUsers student admin
 
 # Set a login grace time
 LoginGraceTime 30
@@ -360,11 +360,14 @@ ssh -i ~/.ssh/id_deploy deploy@192.168.1.100
 # Confirm: logged in without password prompt
 
 # Step 5 — on the server, disable password auth for this user specifically
-# (or globally if appropriate)
-# Add to /etc/ssh/sshd_config.d/90-deploy.conf:
-echo "Match User deploy
+# RHEL sshd_config starts with Include sshd_config.d/*.conf — a Match opened
+# in a drop-in stays open for the rest of the merged config. Always close it.
+sudo tee /etc/ssh/sshd_config.d/90-deploy.conf >/dev/null <<'EOF'
+Match User deploy
     PasswordAuthentication no
-    PubkeyAuthentication yes" | sudo tee /etc/ssh/sshd_config.d/90-deploy.conf
+    PubkeyAuthentication yes
+Match all
+EOF
 
 # Step 6 — validate config and reload
 sudo sshd -t && sudo systemctl reload sshd
@@ -392,7 +395,7 @@ ssh -i ~/.ssh/id_deploy deploy@192.168.1.100
 | `WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED` | Server host key changed (reinstall, new VM) | `ssh-keygen -R <host>` to clear old key | `ssh-keygen -R 192.168.1.100` then reconnect |
 | Key-based auth fails for root | `PermitRootLogin` is `no` or `without-password` | `grep PermitRootLogin /etc/ssh/sshd_config` | Use a regular user with `sudo` — do not re-enable root login |
 | `ssh-copy-id` fails | Password auth already disabled | Run `ssh-copy-id` from a host that still has access | Copy public key manually via console |
-| Config change has no effect | Drop-in file overridden by main config | Check `/etc/ssh/sshd_config.d/` load order | Ensure drop-in filename sorts after conflicting files (e.g., `90-` prefix) |
+| Config change has no effect | Keyword already set earlier (Include is first; first-value-wins) | `sshd -T` / check drop-in order | Put your setting in an early-sorting drop-in, or remove the earlier assignment |
 
 
 [↑ Back to TOC](#toc)
@@ -456,13 +459,15 @@ ssh-keyscan -H 192.168.1.100 >> ~/.ssh/known_hosts
 
 ## sshd_config drop-in files
 
-RHEL 10 OpenSSH supports a `Match` block in `sshd_config` and drop-in files
-in `/etc/ssh/sshd_config.d/`. Use drop-ins to manage settings without
-modifying the base config:
+RHEL 10 `sshd_config` begins with `Include /etc/ssh/sshd_config.d/*.conf`.
+Drop-ins load **before** the rest of the main file. OpenSSH uses
+**first-value-wins**: a keyword set in a drop-in is not overridden by a later
+line in the base file. Among drop-ins, alphabetical order matters (`00-`
+before `90-`).
 
 ```bash
-# Create a hardening drop-in
-sudo vim /etc/ssh/sshd_config.d/90-hardening.conf
+# Create a hardening drop-in (global keywords — no Match)
+sudo vim /etc/ssh/sshd_config.d/50-hardening.conf
 ```
 
 ```text
@@ -479,18 +484,20 @@ ClientAliveInterval 300
 ClientAliveCountMax 2
 ```
 
-Drop-in files are loaded in alphabetical order. A setting in `90-hardening.conf`
-overrides the same setting in the base `sshd_config`. Numbering the file with
-a high prefix (80–99) ensures it takes precedence.
-
-The `Match` block applies settings conditionally:
+`Match` applies settings conditionally. Prefer putting `Match` blocks at the
+**end of the main** `sshd_config`, or close every drop-in Match with
+`Match all` so later global keywords are not scoped to that Match forever:
 
 ```text
-# Different settings for specific users or source IPs
+# /etc/ssh/sshd_config.d/90-deploy.conf — Match must be closed
 Match User deploy
     ForceCommand /usr/local/bin/deploy-wrapper.sh
     AllowTcpForwarding no
+Match all
+```
 
+```text
+# Safer for multi-Match policies: append at the end of /etc/ssh/sshd_config
 Match Address 192.168.1.0/24
     PasswordAuthentication yes   # allow password from trusted subnet
 ```

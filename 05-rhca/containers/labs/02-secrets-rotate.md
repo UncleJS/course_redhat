@@ -7,7 +7,7 @@
 
 Create a containerized application that reads a database password from a Podman secret, then perform a zero-downtime secret rotation: update the secret value, recreate the container, and verify the new credential is in use — all without ever writing the secret to disk or an environment variable that appears in `ps` output.
 
-**Track:** D — RHCA-style  
+**Track:** RHCA  
 **Estimated time:** 50 minutes  
 **Difficulty:** Intermediate–Advanced
 

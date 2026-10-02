@@ -267,13 +267,24 @@ journalctl -u sshd --since today | grep -c "Failed"
 ## Persistent journal
 
 By default on RHEL, the journal is persistent across reboots (stored in
-`/var/log/journal/`). If yours is not:
+`/var/log/journal/`). Confirm and force persistence if needed:
 
 ```bash
+# Ensure Storage=persistent (or auto with /var/log/journal present)
+grep -E '^Storage=' /etc/systemd/journald.conf /etc/systemd/journald.conf.d/* 2>/dev/null
+
 sudo mkdir -p /var/log/journal
 sudo systemd-tmpfiles --create --prefix /var/log/journal
+# Or explicitly:
+# sudo mkdir -p /etc/systemd/journald.conf.d
+# echo -e '[Journal]\nStorage=persistent' | sudo tee /etc/systemd/journald.conf.d/99-persistent.conf
 sudo systemctl restart systemd-journald
+
+# Verify prior boots appear
+journalctl --list-boots | head
 ```
+
+Advanced retention and forwarding: [journald Retention (RHCA)](../05-rhca/04-journald-retention.md).
 
 ### Control journal disk usage
 

@@ -1,12 +1,13 @@
-# Archives and Compression — tar, gzip, xz
+# Archives and Compression — tar, gzip, xz, zip
 [![CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey)](../LICENSE.md)
 [![RHEL 10](https://img.shields.io/badge/platform-RHEL%2010-red)](https://access.redhat.com/products/red-hat-enterprise-linux)
 [![RHEL](https://img.shields.io/badge/RHEL-10-red)](https://www.redhat.com)
 
 Packaging files into a single archive and compressing them is an everyday
 admin skill: backups, log bundles, software drops, and exam tasks all use
-`tar` with `gzip` or `xz`. On RHEL, GNU tar is always available on a minimal
-install; compression helpers come from `gzip` and `xz` packages.
+`tar` with `gzip` or `xz`, and sometimes `zip`/`unzip`. On RHEL, GNU tar is
+always available on a minimal install; compression helpers come from `gzip`,
+`xz`, and (when needed) the `zip`/`unzip` packages.
 
 An **archive** concatenates many files (and directory trees) into one stream
 or file. **Compression** shrinks that stream. You can combine both in one
@@ -21,6 +22,7 @@ ownership and permissions when moving system trees between hosts.
 - [Create and list archives](#create-and-list-archives)
 - [Extract archives](#extract-archives)
 - [gzip and xz alone](#gzip-and-xz-alone)
+- [zip and unzip](#zip-and-unzip)
 - [Preserve ownership and SELinux contexts](#preserve-ownership-and-selinux-contexts)
 - [Worked example](#worked-example)
 - [Common mistakes and how to diagnose them](#common-mistakes-and-how-to-diagnose-them)
@@ -100,16 +102,44 @@ journalctl -u sshd --since today | gzip > sshd-today.log.gz
 
 ---
 
+## zip and unzip
+
+```bash
+sudo dnf install -y zip unzip   # not always on minimal
+
+# Create (recursive)
+zip -r /tmp/web.zip /var/www/html
+
+# List
+unzip -l /tmp/web.zip | head
+
+# Extract
+mkdir -p /tmp/web-restore
+unzip /tmp/web.zip -d /tmp/web-restore
+```
+
+Prefer `tar` for Linux backups (permissions, ownership, sparse files). Use
+`zip` when exchanging archives with Windows or tools that expect `.zip`.
+
+
+[↑ Back to TOC](#toc)
+
+---
+
 ## Preserve ownership and SELinux contexts
+
+Permissions and modes travel with `tar` by default. **Ownership** is restored
+only when extracting as root (otherwise files belong to you).
 
 ```bash
 # As root: preserve numeric UID/GID when extracting on another host
 sudo tar xzf backup.tar.gz --numeric-owner -C /
 
-# Include SELinux contexts in the archive (GNU tar)
+# Include SELinux contexts in the archive AND on extract (GNU tar)
 sudo tar czf selinux-etc.tar.gz --selinux -C / etc
+sudo tar xzf selinux-etc.tar.gz --selinux -C /tmp/restore-etc
 
-# Restore contexts after extract if needed
+# restorecon applies *policy defaults*, not necessarily the archived labels
 sudo restorecon -RFv /etc
 ```
 
