@@ -6,6 +6,8 @@
 This page maps each chapter and lab to the official Red Hat exam objectives for RHCSA (EX200), RHCE (EX294), and the RHCA infrastructure concentration exams.
 
 > **Disclaimer:** Exam objectives change. Always cross-reference with the current Red Hat exam page at [access.redhat.com/training/exam-objectives](https://access.redhat.com/training/exam-objectives).
+>
+> Rows marked **Not covered** are real exam-shaped topics this guide does not yet teach — do not treat the map as a complete study checklist.
 
 ---
 <a name="toc"></a>
@@ -37,8 +39,8 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | Use input-output redirection | [Pipes and Redirection](../02-foundations/03-pipes-redirection.md) | — |
 | Use grep and regular expressions to analyze text | [Files and Text](../02-foundations/02-files-and-text.md) | — |
 | Access remote systems using SSH | [SSH](../03-rhcsa/12-ssh.md) | [Static IP & DNS](../03-rhcsa/labs/01-static-ip-dns.md) |
-| Log in and switch users in multiuser targets | [Shell Basics](../02-foundations/01-shell-basics.md) | — |
-| Archive, compress, unpack, and uncompress files | [Files and Text](../02-foundations/02-files-and-text.md) | — |
+| Log in and switch users in multiuser targets | **Not covered** (`su` / switch-user) | — |
+| Archive, compress, unpack, and uncompress files | **Not covered** (`tar` / `gzip` / `xz`) | — |
 | Create and edit text files | [Editors](../02-foundations/04-editors.md) | — |
 | Create, delete, copy, and move files and directories | [Files and Text](../02-foundations/02-files-and-text.md) | — |
 | Create hard and soft links | [Files and Text](../02-foundations/02-files-and-text.md) | — |
@@ -64,7 +66,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 | Locate and interpret system log files and journals | [Logging and journald](../03-rhcsa/06-logging-journald.md) | — |
 | Preserve system journals across reboots | [journald Retention](../05-rhca/04-journald-retention.md) | — |
 | Start, stop, and check status of services | [systemd Basics](../03-rhcsa/05-systemd-basics.md) | [Systemd Service](../03-rhcsa/labs/02-systemd-service.md) |
-| Securely transfer files | [SSH](../03-rhcsa/12-ssh.md) | — |
+| Securely transfer files | **Not covered** (`scp` / `sftp` / `rsync` over SSH) | — |
 
 ### Configure local storage
 
@@ -80,9 +82,9 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 
 | Objective | Chapter | Lab |
 |---|---|---|
-| Create, mount, unmount, and use vfat, ext4, xfs file systems | [Filesystems and fstab](../03-rhcsa/03-filesystems-fstab.md) | — |
-| Mount and unmount network file systems using NFS | [Filesystems and fstab](../03-rhcsa/03-filesystems-fstab.md) | — |
-| Configure automount | [Filesystems and fstab](../03-rhcsa/03-filesystems-fstab.md) | — |
+| Create, mount, unmount, and use vfat, ext4, xfs file systems | [Filesystems and fstab](../03-rhcsa/03-filesystems-fstab.md) (XFS/ext4 focus; **vfat not covered**) | — |
+| Mount and unmount network file systems using NFS | **Not covered** (only `_netdev` mentioned) | — |
+| Configure automount | **Not covered** (no autofs howto) | — |
 | Extend existing LVs | [LVM](../03-rhcsa/04-lvm.md) | [LVM XFS Grow](../03-rhcsa/labs/03-lvm-xfs-grow.md) |
 | Create and configure set-GID directories for collaboration | [Permissions](../02-foundations/05-permissions.md) | [Shared Team Dir](../02-foundations/labs/01-shared-team-dir.md) |
 
@@ -138,6 +140,7 @@ This page maps each chapter and lab to the official Red Hat exam objectives for 
 
 | Objective | Chapter | Lab |
 |---|---|---|
+| Automation mindset and idempotence | [Automation Mindset](../04-rhce/01-automation-mindset.md) | — |
 | Install and configure Ansible on a control node | [Ansible Setup and Inventory](../04-rhce/03-ansible-setup-inventory.md) | — |
 | Create and use static inventories | [Ansible Setup and Inventory](../04-rhce/03-ansible-setup-inventory.md) | [First Playbook](../04-rhce/labs/01-first-playbook.md) |
 | Create and use playbooks | [Ansible Playbooks](../04-rhce/04-ansible-playbooks.md) | [First Playbook](../04-rhce/labs/01-first-playbook.md) |

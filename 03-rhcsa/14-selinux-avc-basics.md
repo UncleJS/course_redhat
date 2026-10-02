@@ -516,7 +516,7 @@ or `semanage fcontext -a -t <type> <path>` + `restorecon`.
 
 ## Next step
 
-→ [Lab: Fix a SELinux Label Issue](labs/04-selinux-label-fix.md)
+→ [Lab: Static IP + DNS Validation](labs/01-static-ip-dns.md)
 
 [↑ Back to TOC](#toc)
 

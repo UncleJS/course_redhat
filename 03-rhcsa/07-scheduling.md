@@ -25,10 +25,11 @@ and there is no integration with systemd's dependency or resource-limiting
 machinery. For new work, prefer systemd timers. For existing cron jobs,
 migration is low priority unless the limitations cause problems.
 
-A critical operational difference: **cron uses the local system timezone**
-while **systemd timer `OnCalendar` expressions default to UTC**. Specify a
-timezone explicitly in timers when local-time scheduling is required, or
-place the timer in a systemd user session that follows the user's locale.
+A critical operational difference: **both cron and systemd timer `OnCalendar`
+expressions use the local system timezone by default**. When you need a
+different zone (for example, always Eastern regardless of the host's
+`timedatectl` setting), append the timezone as a **suffix** on the calendar
+expression, or set `Timezone=` in the `[Timer]` section.
 
 ---
 <a name="toc"></a>
@@ -132,8 +133,12 @@ OnBootSec=5min
 # Relative to last run
 OnUnitActiveSec=1h
 
-# Specify timezone explicitly (avoids UTC confusion)
-OnCalendar=America/New_York *-*-* 02:00:00
+# Specify a non-local timezone (suffix, not prefix)
+OnCalendar=*-*-* 02:00:00 America/New_York
+
+# Or set Timezone= in the [Timer] section (systemd 247+)
+# Timezone=America/New_York
+# OnCalendar=*-*-* 02:00:00
 ```
 
 Test calendar expressions before deploying:
@@ -141,15 +146,17 @@ Test calendar expressions before deploying:
 ```bash
 systemd-analyze calendar "*:0/15"
 systemd-analyze calendar "Mon *-*-* 08:30:00"
+systemd-analyze calendar "*-*-* 02:00:00 America/New_York"
 
 # Show the next 5 trigger times
 systemd-analyze calendar --iterations=5 "*-*-* 02:00:00"
 ```
 
-> **Exam tip:** cron uses local time; systemd timers default to UTC.
-> Specify the timezone explicitly with `OnCalendar=America/New_York *-*-* 02:00:00`
-> when local-time scheduling matters. Forgetting this causes jobs to fire at
-> the wrong hour in non-UTC environments.
+> **Exam tip:** cron and systemd timers both default to **local** time.
+> To pin a zone, use a timezone **suffix**
+> (`OnCalendar=*-*-* 02:00:00 America/New_York`) or `Timezone=` in the
+> timer unit — never a timezone *prefix*. Confirm with
+> `systemd-analyze calendar`.
 
 ### List and monitor timers
 
@@ -408,7 +415,7 @@ sudo tee /etc/systemd/system/db-backup.timer <<'EOF'
 Description=Run database backup daily at 01:30 Eastern
 
 [Timer]
-OnCalendar=America/New_York *-*-* 01:30:00
+OnCalendar=*-*-* 01:30:00 America/New_York
 Persistent=true
 RandomizedDelaySec=5min
 
@@ -443,7 +450,7 @@ create a resource spike.
 | Mistake | Symptom | Fix |
 |---|---|---|
 | Enabled the `.service` instead of `.timer` | Job runs at every boot instead of on schedule | `systemctl disable service`; `systemctl enable --now timer` |
-| Timer fires at wrong hour (UTC vs local time) | Job runs at unexpected time | Add `America/City` timezone prefix to `OnCalendar`, verify with `systemd-analyze calendar` |
+| Timer fires at wrong hour (wrong timezone) | Job runs at unexpected time | Use a timezone **suffix** on `OnCalendar` or set `Timezone=`; verify with `systemd-analyze calendar` |
 | `Persistent=true` missing | Missed runs silently skipped | Add `Persistent=true` to `[Timer]` section |
 | Script not executable | Service enters failed state immediately | `chmod +x /path/to/script` |
 | cron script has `.sh` extension in `/etc/cron.daily/` | `run-parts` silently skips it | Remove the `.sh` extension; scripts must have no extension |

@@ -21,10 +21,11 @@ downloads only what is needed. On registered RHEL systems, Red Hat's Content
 Delivery Network (CDN) is the primary repository source; on air-gapped systems
 you replicate that content to a local server (Satellite, or a plain HTTP share).
 
-The **AppStream** repository introduces **module streams** — a mechanism to
-deliver multiple versions of a software component (e.g., Node.js 18 and 22)
-from the same repo without conflict. You select the stream once and dnf
-handles the rest.
+The **AppStream** repository delivers user-space applications, language
+runtimes, and databases alongside the long-lifecycle **BaseOS** repo. On
+RHEL 10, AppStream packages are ordinary RPMs — **DNF modularity (module
+streams) was removed**. Install the version you need with plain
+`dnf install`; do not expect `dnf module` workflows from RHEL 8/9.
 
 ---
 <a name="toc"></a>
@@ -38,7 +39,7 @@ handles the rest.
 - [Removing packages](#removing-packages)
 - [Updating packages](#updating-packages)
 - [Package history and rollback](#package-history-and-rollback)
-- [Module streams (AppStream)](#module-streams-appstream)
+- [AppStream on RHEL 10](#appstream-on-rhel-10)
 - [Repository management](#repository-management)
 - [Creating a local offline repository](#creating-a-local-offline-repository)
 - [GPG key verification](#gpg-key-verification)
@@ -56,10 +57,10 @@ handles the rest.
 | **RPM** | The package format (`.rpm` file with metadata + files) |
 | **Repository (repo)** | A server or directory providing packages + metadata |
 | **dnf** | The client tool that resolves dependencies and manages RPMs |
-| **module stream** | Multiple versions of a package available side-by-side (AppStream) |
+| **AppStream** | Application repo — runtimes, databases, language stacks (regular RPMs on RHEL 10) |
 | **package group** | A named collection of packages installed as a unit |
 | **BaseOS** | Core RHEL repo — OS packages with long lifecycle guarantees |
-| **AppStream** | Application repo — modules, runtimes, language stacks |
+| **transaction** | A set of install/update/remove actions applied atomically |
 
 
 [↑ Back to TOC](#toc)
@@ -221,33 +222,32 @@ sudo dnf history replay 5
 
 ---
 
-## Module streams (AppStream)
+## AppStream on RHEL 10
 
-RHEL 10 provides multiple versions of some software via **AppStream modules**:
+On RHEL 8 and 9, AppStream often used **module streams** so one package name
+could ship multiple versions (`dnf module enable nodejs:18`). **RHEL 10
+removed DNF modularity.** AppStream is still the application repository —
+you just install packages normally:
 
 ```bash
-# List available modules
-sudo dnf module list
+# List enabled repos (BaseOS + AppStream on a registered system)
+sudo dnf repolist
 
-# List streams for a specific module
-sudo dnf module list nodejs
+# Install an AppStream package — no module enable step
+sudo dnf install -y nginx httpd postgresql
 
-# Enable and install a specific stream
-sudo dnf module enable nodejs:22
-sudo dnf install -y nodejs
-
-# Show currently enabled modules
-sudo dnf module list --enabled
-
-# Switch to a different stream (reset first)
-sudo dnf module reset nodejs
-sudo dnf module enable nodejs:18
-sudo dnf distro-sync
+# Search across all enabled repos
+sudo dnf search nodejs
 ```
 
-When you enable a module stream, dnf locks that version — subsequent
-`dnf upgrade` runs will not jump to a newer stream automatically. To upgrade
-a runtime, explicitly reset and re-enable the new stream, then `distro-sync`.
+If you still see `dnf module` examples elsewhere (older books, RHEL 8/9
+notes), treat them as historical. On RHEL 10 those commands either do
+nothing useful or fail — use plain `dnf install` / `dnf update`.
+
+> **💡 Pro tip**
+> BaseOS vs AppStream is still a useful mental model for support lifecycle
+> and content sources (CDN, Satellite, offline ISO), not for version
+> streams.
 
 
 [↑ Back to TOC](#toc)
@@ -449,7 +449,7 @@ rpm -qi git
 | Wrong `baseurl` path in `.repo` file | `Curl error ... No such file` | Double-check path with `ls`; use `file:///` (three slashes) for local paths |
 | `gpgcheck=1` but no key imported | `GPG key retrieval failed` | Import the key with `rpm --import <keyfile>` or set `gpgcheck=0` for trusted internal repos |
 | Forgot `dnf makecache` after adding repo | Package not found even though it exists | Run `sudo dnf makecache` to force metadata refresh |
-| Enabled wrong module stream — wrong version installed | App behaves unexpectedly or refuses to start | `dnf module reset <name>`, enable the correct stream, run `dnf distro-sync` |
+| Expected `dnf module` from RHEL 8/9 docs | `dnf module` empty or errors on RHEL 10 | Use plain `dnf install` / `dnf search`; modularity was removed |
 | `dnf remove` pulled out shared dependencies | Other apps stop working | Use `dnf remove` carefully; check `dnf history info` and `dnf history undo` to recover |
 
 
@@ -461,7 +461,7 @@ rpm -qi git
 
 | Resource | Notes |
 |---|---|
-| [RHEL 10 — Managing software with the DNF tool](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/managing_software_with_the_dnf_tool/index) | Official dnf guide — repositories, modules, groups |
+| [RHEL 10 — Managing software with the DNF tool](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/managing_software_with_the_dnf_tool/index) | Official dnf guide — repositories, groups, transactions |
 | [`dnf` man page](https://dnf.readthedocs.io/en/latest/command_ref.html) | Complete dnf command reference |
 | [RPM documentation](https://rpm.org/documentation.html) | Upstream RPM packaging and query reference |
 | [RHEL 10 — Content Services (repositories)](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/10/html/managing_rhel_subscriptions/index) | Subscription and repo management |

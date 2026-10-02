@@ -619,7 +619,7 @@ RHCA candidates are expected to execute these procedures quickly and correctly u
 
 ## Next step
 
-→ [Objective Map](../../98-reference/01-objective-map.md)
+→ [Lab Environments Overview](../../90-labs/01-index.md)
 
 [↑ Back to TOC](#toc)
 

@@ -623,7 +623,7 @@ ansible -i inventory.ini dbservers -m ansible.builtin.command \
 
 ## Next step
 
-→ [Variables, Templates, and Files](05-ansible-vars-templates.md)
+→ [Lab: Write Your First Playbook](labs/01-first-playbook.md)
 
 [↑ Back to TOC](#toc)
 

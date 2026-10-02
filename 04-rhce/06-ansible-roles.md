@@ -554,7 +554,7 @@ The same role, two completely different configurations — no code duplication.
 
 ## Next step
 
-→ [Deploy a Service with Ansible](07-ansible-service-deploy.md)
+→ [Lab: Role-Based Web Service Deploy](labs/02-role-web-deploy.md)
 
 [↑ Back to TOC](#toc)
 

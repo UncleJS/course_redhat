@@ -383,7 +383,7 @@ $ sudo virsh list --all
 
 ## Next step
 
-→ [Back to Contents](../README.md)
+→ [Exam Objective Map](../98-reference/01-objective-map.md)
 
 [↑ Back to TOC](#toc)
 

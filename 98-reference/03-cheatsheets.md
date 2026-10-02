@@ -22,6 +22,7 @@ Quick-reference cards for the most-used command groups. Each section is designed
 - [SSH](#ssh)
 - [Performance Triage Quick Reference](#performance-triage-quick-reference)
 - [tuned Quick Reference](#tuned-quick-reference)
+- [Ansible](#ansible)
 - [Next step](#next-step)
 
 
@@ -455,6 +456,54 @@ include=throughput-performance
 net.core.somaxconn=131072
 EOF
 sudo tuned-adm profile myprofile
+```
+
+
+[↑ Back to TOC](#toc)
+
+---
+
+## Ansible
+
+```bash
+# Install (RHEL 10 — plain RPM, no module stream)
+sudo dnf install -y ansible-core
+ansible --version
+
+# Ad-hoc
+ansible all -i inventory.ini -m ping
+ansible web -i inventory.ini -m ansible.builtin.command -a "hostname" --become
+
+# Playbooks
+ansible-playbook -i inventory.ini site.yml
+ansible-playbook -i inventory.ini site.yml --check --diff
+ansible-playbook -i inventory.ini site.yml --limit web1
+ansible-playbook -i inventory.ini site.yml -e "allow_reboot=true"
+
+# Inventory / config
+ansible-inventory -i inventory.ini --list
+ansible-config dump --only-changed
+
+# Galaxy / collections
+ansible-galaxy collection install ansible.posix
+ansible-galaxy role list
+ansible-galaxy collection list
+
+# Vault
+ansible-vault create group_vars/all/vault.yml
+ansible-vault edit group_vars/all/vault.yml
+ansible-playbook -i inventory.ini site.yml --ask-vault-pass
+```
+
+Minimal inventory (lab user `student`):
+
+```ini
+[web]
+web1.lab.example ansible_host=192.168.122.11
+
+[web:vars]
+ansible_user=student
+ansible_become=true
 ```
 
 

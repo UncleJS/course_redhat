@@ -1,6 +1,7 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 // Audit intra-file anchors + per-file TOC completeness for the course repo.
-// Usage: bun tools/md_audit.js <repo-root>
+// Usage: node tools/md_audit.js <repo-root>
+//        bun tools/md_audit.js <repo-root>
 import { readdirSync, readFileSync, statSync } from "fs";
 import { join } from "path";
 

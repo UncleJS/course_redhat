@@ -1,6 +1,7 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 // Fix broken intra-file anchors, then insert missing H2 TOC entries in doc order.
-// Usage: bun tools/md_fix.js <repo-root> [--write]
+// Usage: node tools/md_fix.js <repo-root> [--write]
+//        bun tools/md_fix.js <repo-root> [--write]
 import { readdirSync, readFileSync, writeFileSync, statSync } from "fs";
 import { join } from "path";
 

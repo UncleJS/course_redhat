@@ -549,7 +549,7 @@ You created a secret, injected it into a container via Quadlet, verified it was 
 
 ## Next step
 
-→ [Networking: L2 Concepts](../../networking/04-l2-concepts.md)
+→ [Performance: Resource Triage](../../perf/01-resource-triage.md)
 
 [↑ Back to TOC](#toc)
 

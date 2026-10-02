@@ -401,7 +401,7 @@ Skipping either step creates either a security gap or a broken service.
 
 ## Next step
 
-→ [RHCA Containers: Podman Fundamentals](../../containers/01-podman-fundamentals.md)
+→ [Networking: nmcli Profiles at Scale](../../networking/01-nmcli-profiles.md)
 
 [↑ Back to TOC](#toc)
 

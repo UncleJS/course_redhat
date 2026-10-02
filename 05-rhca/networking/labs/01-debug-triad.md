@@ -452,7 +452,7 @@ diagnostic order is the same.
 
 ## Next step
 
-→ [Performance Resource Triage](../../perf/01-resource-triage.md)
+→ [Containers: Podman Fundamentals](../../containers/01-podman-fundamentals.md)
 
 [↑ Back to TOC](#toc)
 

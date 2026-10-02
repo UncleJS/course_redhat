@@ -60,7 +60,7 @@ cat /etc/subuid | grep $(whoami)
 cat /etc/subgid | grep $(whoami)
 ```
 
-Expected: `rhel:100000:65536` — 65536 UIDs mapped starting at 100000.
+Expected: `student:100000:65536` — 65536 UIDs mapped starting at 100000 (username matches your lab user).
 
 If missing (fresh system):
 

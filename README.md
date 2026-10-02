@@ -60,7 +60,7 @@ self-contained and lists its prerequisites up front.
 | Track | Covers |
 |---|---|
 | **Onramp** | Terminal, files, permissions, editors, help system |
-| **RHCSA** | Storage, users, systemd, networking, firewall, SSH, SELinux |
+| **RHCSA** | Storage, systemd, networking, firewall, SSH, SELinux (users/groups in Foundations) |
 | **RHCE** | Bash, Ansible, roles, patching workflows |
 | **RHCA** | SELinux deep dive, advanced systemd, networking, Podman ops, performance |
 
@@ -214,6 +214,10 @@ Read the [Lab Workflow](00-preface/02-labs.md) page before starting your first l
 
 Full details in [Conventions](00-preface/03-conventions.md).
 
+### Maintainers — audit & slides
+
+See [tools/README.md](tools/README.md): `node tools/md_audit.js .` and
+`python3 slides/generate_slides.py` (needs `pip install -r requirements.txt`).
 
 
 [↑ Back to TOC](#toc)

@@ -139,22 +139,24 @@ ansible all -m ansible.builtin.command \
         msg: "Failed units detected after patching: {{ failed_units.stdout }}"
       when: failed_units.stdout | length > 0
 
-    - name: Check if reboot is required
-      ansible.builtin.stat:
-        path: /run/reboot-required
-      register: reboot_required
+    - name: Check if reboot is required (RHEL: needs-restarting)
+      ansible.builtin.command: needs-restarting -r
+      register: reboot_check
+      changed_when: false
+      failed_when: false
+      # Exit code 1 means a reboot is needed; 0 means not required
 
     - name: Report reboot needed
       ansible.builtin.debug:
         msg: "Reboot required on {{ inventory_hostname }}"
-      when: reboot_required.stat.exists
+      when: reboot_check.rc == 1
 
     - name: Reboot if required (optional — enable per environment)
       ansible.builtin.reboot:
         reboot_timeout: 300
         msg: "Rebooting for kernel update"
       when:
-        - reboot_required.stat.exists
+        - reboot_check.rc == 1
         - allow_reboot | default(false) | bool
 ```
 
@@ -237,9 +239,8 @@ Apply patches for a specific CVE:
 - name: Patch for specific CVE
   ansible.builtin.dnf:
     name: "*"
-    bugfix: true
+    cves: CVE-2024-1234
     state: latest
-  # Note: use cves parameter when targeting a specific CVE
 ```
 
 List available security advisories before patching:
@@ -458,7 +459,7 @@ ansible all -m ansible.builtin.fetch \
 
 ## Next step
 
-→ [Lab: Write Your First Playbook](labs/01-first-playbook.md)
+→ [Advanced Infrastructure — RHCA Track](../05-rhca/01-troubleshooting-playbook.md)
 
 [↑ Back to TOC](#toc)
 

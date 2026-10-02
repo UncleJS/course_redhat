@@ -9,10 +9,12 @@ Usage:
     python3 generate_slides.py                 # from slides/ directory
 
 Output:
-    slides/<mirror-of-source-tree>/<chapter>.odp
+    slides/NNN-<slug>.odp   (flat numbered decks; one per chapter in README_ORDER)
 
 Theme: RHEL dark/red — near-black background, Red Hat red titles, off-white body
 Dimensions: 16:9 widescreen (33.87 × 19.05 cm)
+
+Requires: pip install -r requirements.txt  (odfpy)
 """
 
 from __future__ import annotations
@@ -499,7 +501,7 @@ def slide_summary(doc: OpenDocumentPresentation, pd: ParsedDoc,
                   st: Styles) -> None:
     takeaways = []
     for sec in pd.sections:
-        if sec.level != 2:
+        if sec.level > 3:
             continue
         if sec.bullets:
             first = sec.bullets[0]
@@ -540,9 +542,9 @@ def build_odp(md_path: Path, out_path: Path, root: Path) -> None:
     # 2. objectives
     slide_objectives(doc, pd, st)
 
-    # 3. content (one slide per H2)
+    # 3. content (one slide per H2 and H3 — labs put procedure under H3)
     for sec in pd.sections:
-        if sec.level > 2:
+        if sec.level > 3:
             continue
         if sec.heading.lower() in SKIP_H:
             continue

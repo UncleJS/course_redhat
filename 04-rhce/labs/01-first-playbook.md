@@ -406,7 +406,7 @@ build every other role on.
 
 ## Next step
 
-→ [Lab — Role-Based Web Service Deploy](02-role-web-deploy.md)
+→ [Variables, Templates, and Files](../05-ansible-vars-templates.md)
 
 [↑ Back to TOC](#toc)
 

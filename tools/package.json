@@ -1,0 +1,13 @@
+{
+  "name": "course-redhat-tools",
+  "private": true,
+  "type": "module",
+  "description": "Markdown audit/fix scripts for course_redhat",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "audit": "node md_audit.js ..",
+    "fix": "node md_fix.js .. --write"
+  }
+}

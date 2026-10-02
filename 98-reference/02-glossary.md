@@ -61,6 +61,9 @@ The SELinux kernel subsystem that caches policy decisions for performance. AVC d
 **Boolean (SELinux)**
 A runtime switch that toggles a subset of SELinux policy rules without recompiling the policy. Managed with `getsebool` and `setsebool`. See [SELinux Fundamentals](../03-rhcsa/13-selinux-fundamentals.md).
 
+**Bond (network bonding)**
+Link aggregation: multiple physical NICs combined into one logical interface for throughput or failover. Modes and options vary by driver; concepts covered in [L2 Concepts](../05-rhca/networking/04-l2-concepts.md).
+
 **Boot target**
 A systemd unit of type `target` (e.g., `multi-user.target`, `graphical.target`) that groups dependencies for a system state. Replaces SysVinit runlevels.
 
@@ -151,6 +154,9 @@ A command-line tool for managing GRUB2 boot entries. Used to set the default ker
 
 ## I
 
+**Idempotence (idempotency)**
+A property of an operation that can be applied repeatedly with the same result as applying it once. Ansible modules are designed to be idempotent: a second playbook run makes no further changes if the desired state is already met. See [Automation Mindset](../04-rhce/01-automation-mindset.md).
+
 **inode**
 A data structure in a filesystem that stores metadata about a file (permissions, timestamps, ownership, data block pointers) but not the filename. Inode exhaustion (not disk space exhaustion) is a common cause of "disk full" errors on `/var/log`.
 
@@ -163,6 +169,9 @@ The percentage of CPU time spent waiting for I/O operations to complete (the `wa
 ---
 
 ## J
+
+**Jinja2**
+The templating language Ansible uses in the `template` module. Templates are **rendered on the control node**; the resulting file is copied to the managed node. See [Variables, Templates, and Files](../04-rhce/05-ansible-vars-templates.md).
 
 **journald**
 The systemd journal daemon (`systemd-journald`). Collects log data from the kernel, services, and applications into a structured binary format queryable with `journalctl`. See [Logging and journald](../03-rhcsa/06-logging-journald.md).
@@ -341,6 +350,9 @@ A Linux kernel feature that maps a range of host UIDs to a different range insid
 
 **VG (Volume Group)**
 A pool of storage in LVM created from one or more Physical Volumes. Logical Volumes are allocated from VGs.
+
+**VLAN (Virtual LAN)**
+A Layer-2 segment identified by a VLAN ID, often carried as an 802.1Q tagged interface (e.g. `eth0.100`). See [L2 Concepts](../05-rhca/networking/04-l2-concepts.md).
 
 **virsh**
 The command-line interface for libvirt/KVM VM management. Used for VM lifecycle, snapshot management, and network configuration.

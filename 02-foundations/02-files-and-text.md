@@ -204,11 +204,14 @@ Linux supports two types of links:
 | Symbolic (soft) link | `ln -s src dst` | Yes | No (dangling link) |
 
 ```bash
-# Hard link — both names point to the same inode
-ln /etc/hosts /tmp/hosts-hardlink
-ls -li /etc/hosts /tmp/hosts-hardlink   # same inode number
+# Hard link — both names must be on the SAME filesystem
+# (avoid /tmp: on RHEL it is often tmpfs, so ln across /etc → /tmp fails)
+mkdir -p ~/link-demo
+cp /etc/hosts ~/link-demo/hosts-copy
+ln ~/link-demo/hosts-copy ~/link-demo/hosts-hardlink
+ls -li ~/link-demo/hosts-copy ~/link-demo/hosts-hardlink   # same inode number
 
-# Symbolic link
+# Symbolic link — may cross filesystems
 ln -s /etc/nginx/nginx.conf /tmp/nginx.conf
 ls -l /tmp/nginx.conf                   # shows -> target
 ```

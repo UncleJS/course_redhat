@@ -22,7 +22,7 @@ venv/
 .env.*
 .env.example
 
-# Secrets and credentials
+# Secrets and credentials (explicit globs — avoid matching course files like *secrets*)
 *.pem
 *.key
 *.p12
@@ -34,8 +34,16 @@ id_rsa.pub
 id_ed25519
 id_ed25519.pub
 *credentials*
-*secret*
-*password*
+*.secret
+*.secrets
+.env.secret
+.env.secrets
+*password*.txt
+*password*.yml
+*password*.yaml
+*password*.json
+vault_pass*
+.vault_pass*
 
 # Common config files that may contain user/password values
 config.local.*

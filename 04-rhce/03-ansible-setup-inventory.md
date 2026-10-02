@@ -101,7 +101,7 @@ modules.
 ## Install Ansible on RHEL 10
 
 ```bash
-# Enable the Ansible module stream
+# Install ansible-core from AppStream (plain RPM — no module stream on RHEL 10)
 sudo dnf install -y ansible-core
 
 # Verify
@@ -193,7 +193,7 @@ web02 ansible_host=192.168.1.102
 db01 ansible_host=192.168.1.103
 
 [all:vars]
-ansible_user=rhel
+ansible_user=student
 ansible_become=true
 ansible_become_method=sudo
 ```
@@ -215,7 +215,7 @@ env=production
 # inventory.yaml
 all:
   vars:
-    ansible_user: rhel
+    ansible_user: student
     ansible_become: true
   children:
     webservers:
@@ -255,7 +255,7 @@ Project-level configuration (takes priority over global `/etc/ansible/ansible.cf
 # ansible.cfg  (in your project directory)
 [defaults]
 inventory = inventory.ini
-remote_user = rhel
+remote_user = student
 host_key_checking = False
 stdout_callback = yaml
 

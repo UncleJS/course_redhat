@@ -46,7 +46,7 @@ for the first time to designing resilient infrastructure.
 Commands in this guide were tested on:
 
 - **RHEL 10.0** (minimal install, 2 vCPU, 2 GB RAM, 20 GB disk)
-- Each lab page lists the exact package versions used.
+- Labs list prerequisites, verify steps, and cleanup; package names match RHEL 10.
 
 
 [↑ Back to TOC](#toc)
@@ -62,8 +62,9 @@ style guide and include a working `Verify` section.
 
 ## License
 
-This guide is published under the [Creative Commons Attribution 4.0 International
-License](https://creativecommons.org/licenses/by/4.0/).
+This guide is published under the
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 
 [↑ Back to TOC](#toc)

@@ -215,7 +215,8 @@ msg: "Deploying to {{ inventory_hostname }} on port {{ app_port }}"
 
 ## Jinja2 templates
 
-Templates use Jinja2 syntax and are rendered on the managed node.
+Templates use Jinja2 syntax and are **rendered on the control node**; Ansible
+then copies the rendered file to the managed node.
 
 ```text
 templates/

@@ -111,7 +111,7 @@ ansible-galaxy role init roles/nginx
 cat > ansible.cfg << 'EOF'
 [defaults]
 inventory = inventory.ini
-remote_user = rhel
+remote_user = student
 host_key_checking = False
 stdout_callback = yaml
 
@@ -442,7 +442,7 @@ and MAC policy.
 
 ## Next step
 
-→ [Advanced Infrastructure — RHCA Track](../../05-rhca/01-troubleshooting-playbook.md)
+→ [Deploy a Service with Ansible](../07-ansible-service-deploy.md)
 
 [↑ Back to TOC](#toc)
 

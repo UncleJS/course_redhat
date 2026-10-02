@@ -71,7 +71,7 @@ web-deploy/
 ```ini
 [defaults]
 inventory = inventory.ini
-remote_user = rhel
+remote_user = student
 host_key_checking = False
 stdout_callback = yaml
 

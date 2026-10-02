@@ -46,7 +46,7 @@ Curated resources to deepen your understanding beyond this guide. All Red Hat do
 | Resource | Notes |
 |---|---|
 | [RHCSA EX200 Exam Objectives](https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam) | Official, always check before exam |
-| [RHCE EX294 Exam Objectives](https://www.redhat.com/en/services/training/ex294-red-hat-certified-engineer-rhce-exam-red-hat-enterprise-linux-9) | Ansible exam objectives |
+| [RHCE EX294 Exam Objectives](https://www.redhat.com/en/services/training/ex294-red-hat-certified-engineer-rhce-exam) | Ansible exam objectives (verify current RHEL version on the page) |
 | [RHCA Infrastructure concentration](https://www.redhat.com/en/services/certification/rhca) | Overview of specialist credentials |
 | [Red Hat Learning Subscription](https://www.redhat.com/en/services/training/learning-subscription) | Video courses, hands-on labs in the cloud |
 

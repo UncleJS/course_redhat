@@ -88,7 +88,7 @@ confusion.
 |---|---|
 | Network interface shown as `ens3` | Common in QEMU/KVM VMs; yours may differ (check with `ip link`) |
 | Disk shown as `/dev/vda` | Common in KVM VMs; bare metal often uses `/dev/sda` |
-| Username shown as `rhel` | Replace with your actual username where relevant |
+| Username shown as `student` | Match the lab VM user from [Lab Environments](../90-labs/01-index.md); replace only if you chose a different name |
 
 When a command depends on a value you must substitute, it is shown in
 angle-bracket uppercase:
